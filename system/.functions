@@ -1,0 +1,11 @@
+# some basic cd functions
+
+cdup() {
+    limit=$1
+    counter=1
+    while [ $counter -le $limit ]
+    do
+        cd ../
+        ((counter++))
+    done
+}

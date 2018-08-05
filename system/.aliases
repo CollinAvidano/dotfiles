@@ -1,0 +1,35 @@
+# Some basic ls aliases
+alias ll='ls -alF'
+alias l='ls -CF'
+alias lsa='ls -A'
+
+# Basic remove aliases
+alias rm='rm -rf'
+
+# Refresh zsh
+alias refreshsh='source ~/.zshrc'
+
+# apt-get aliases
+alias inst='sudo apt-get install'
+alias fix='sudo apt-get -f install'
+
+# System info aliases
+# Free memory info
+alias meminfo='free -m -l -t'
+
+# Get CPU info
+alias cpuinfo='lscpu'
+ 
+# get GPU ram on desktop / laptop
+alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
+
+# Git aliases
+alias mainlog="git log --all --decorate --oneline --graph"
+
+# Eagle Alias
+alias eagle="/opt/eagle/eagle"
+
+# RJ alias
+alias rj='cd ~/Documents/robojackets/robocup-software/'
+
+alias stunnel='ssh -L 5901:localhost:5901 -N -f -l collin 136.59.225.152'
