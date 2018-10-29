@@ -26,10 +26,23 @@ alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 # Git aliases
 alias mainlog="git log --all --decorate --oneline --graph"
 
-# Eagle Alias
+# Eagle alias
 alias eagle="/opt/eagle/eagle"
+
+# Umlet alias
+alias umlet="java -jar /opt/umlet/umlet.jar"
 
 # RJ alias
 alias rj='cd ~/Documents/robojackets/robocup-software/'
 
+# VIP alias
+alias vip='cd ~/Documents/VIP/'
+alias epic='cd ~/opensim-epic/API/CPP/Collin/'
+
+# Class Aliases
+alias cs2200='cd ~/Documents/classes/cs2200/'
+alias cs3600='cd ~/Documents/classes/cs3600/'
 alias stunnel='ssh -L 5901:localhost:5901 -N -f -l collin 136.59.225.152'
+
+# Misc Aliases
+alias gib='git'

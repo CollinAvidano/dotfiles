@@ -91,17 +91,28 @@ source $ZSH/oh-my-zsh.sh
 #
 
 # Load zsh system configs (eg. aliases,functions,env)
-for DOTFILE in `find /Users/collin/.dotfiles/system`
-do
-  [ -f “$DOTFILE” ] && source “$DOTFILE”
-done
+#for DOTFILE in `find ~/.dotfiles/system`
+#do
+#  [ -f “$DOTFILE” ] && source “$DOTFILE”
+#done
 
+if [ -f $HOME/.env ]; then
+    . $HOME/.env
+fi
 
+if [ -f $HOME/.aliases ]; then
+    . $HOME/.aliases
+fi
+
+if [ -f $HOME/.functions ]; then
+    . $HOME/.functions
+fi
+
+if [ -f $HOME/.path ]; then
+    . $HOME/.path
+fi
 
 # load nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 
 
-export GOROOT=/usr/lib/go
-
-export SOCCER_THEME='DARCULIZED'
