@@ -40,31 +40,32 @@ values."
      semantic
      graphviz
      html
+     vimscript
      octave
-     (python :variables python-test-runner 'pytest)
+     python
      java
      rust
      (c-c++ :variables
             c-c++-enable-clang-support t)
      (auto-completion :variables
-        auto-completion-return-key-behavior 'complete
-        auto-completion-tab-key-behavior 'cycle
-        auto-completion-complete-with-key-sequence nil
-        auto-completion-complete-with-key-sequence-delay 0.1
-        auto-completion-private-snippets-directory nil)
+            auto-completion-return-key-behavior 'complete
+            auto-completion-tab-key-behavior 'cycle
+            auto-completion-complete-with-key-sequence nil
+            auto-completion-complete-with-key-sequence-delay 0.1
+            auto-completion-private-snippets-directory nil)
      emacs-lisp
      git
      org
      (shell :variables
-             shell-default-height 30
-             shell-default-position 'bottom)
+            shell-default-height 30
+            shell-default-position 'bottom)
      spell-checking
      syntax-checking
      markdown
      csv
      (latex :variables
-     latex-build-command "pdflatex"
-     latex-enable-auto-fill t
+            latex-build-command "pdflatex"
+            latex-enable-auto-fill t
      )
      ;; version-control
      )
@@ -151,7 +152,7 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 18
+                               :size 16
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -294,7 +295,7 @@ values."
    dotspacemacs-highlight-delimiters 'all
    ;; If non nil, advise quit functions to keep server open when quitting.
    ;; (default nil)
-   dotspacemacs-persistent-server nil
+   dotspacemacs-persistent-server t
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `ag', `pt', `ack' and `grep'.
    ;; (default '("ag" "pt" "ack" "grep"))
@@ -308,7 +309,7 @@ values."
    ;; `trailing' to delete only the whitespace at end of lines, `changed'to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup nil
+   dotspacemacs-whitespace-cleanup 'trailing
    ))
 
 (defun dotspacemacs/user-init ()
@@ -318,7 +319,8 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/use  r-conf  ig' first."
-  '(use-package nyan-mode))  
+  '(use-package nyan-mode)
+  )
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -335,8 +337,7 @@ you should place your code here."
 (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
 (custom-set-variables
-'(nyan-mode 1)
-)
+'(nyan-mode 1))
 (nyan-start-animation)
 (nyan-toggle-wavy-trail)
 
@@ -353,10 +354,11 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(evil-want-Y-yank-to-eol nil)
  '(nyan-mode 1)
  '(package-selected-packages
    (quote
-    (stickyfunc-enhance srefactor toml-mode racer flycheck-rust cargo rust-mode org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download htmlize gnuplot company-auctex auctex graphviz-dot-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data yapfify xterm-color ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline smeargle shell-pop restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort popwin pip-requirements persp-mode pcre2el paradox orgit org-bullets open-junk-file nyan-mode neotree multi-term move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint info+ indent-guide hy-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flyspell-correct-helm flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help elisp-slime-nav dumb-jump disaster define-word cython-mode csv-mode company-statistics company-emacs-eclim company-c-headers company-anaconda column-enforce-mode cmake-mode clean-aindent-mode clang-format auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
+    (vimrc-mode dactyl-mode d-mode company-dcd ivy flycheck-dmd-dub pos-tip f powerline s bind-key dash stickyfunc-enhance srefactor toml-mode racer flycheck-rust cargo rust-mode org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download htmlize gnuplot company-auctex auctex graphviz-dot-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data yapfify xterm-color ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline smeargle shell-pop restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort popwin pip-requirements persp-mode pcre2el paradox orgit org-bullets open-junk-file nyan-mode neotree multi-term move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint info+ indent-guide hy-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flyspell-correct-helm flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help elisp-slime-nav dumb-jump disaster define-word cython-mode csv-mode company-statistics company-emacs-eclim company-c-headers company-anaconda column-enforce-mode cmake-mode clean-aindent-mode clang-format auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
  '(standard-indent 4))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

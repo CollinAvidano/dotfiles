@@ -1,17 +1,24 @@
 # Some basic ls aliases
-alias ll='ls -alF'
 alias l='ls -CF'
+alias ll='ls -alF'
 alias lsa='ls -A'
+alias lsh='ls -alh'
+
+# df aliases
+alias df='df -H'
 
 # Basic remove aliases
 alias rm='rm -rf'
+
+# Emacs alias
+alias emacs='emacsclient -n -c'
+alias emacs-server='\emacs --daemon'
 
 # Refresh zsh
 alias refreshsh='source ~/.zshrc'
 
 # apt-get aliases
-alias inst='sudo apt-get install'
-alias fix='sudo apt-get -f install'
+alias fix='sudo apt -f install'
 
 # System info aliases
 # Free memory info
@@ -26,23 +33,25 @@ alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 # Git aliases
 alias mainlog="git log --all --decorate --oneline --graph"
 
-# Eagle alias
-alias eagle="/opt/eagle/eagle"
-
 # Umlet alias
 alias umlet="java -jar /opt/umlet/umlet.jar"
 
 # RJ alias
-alias rj='cd ~/Documents/robojackets/robocup-software/'
+alias rj='~/Documents/robojackets/robocup-software/'
+alias rj-software='~/Documents/robojackets/robocup-software/'
+alias rj-firmware='~/Documents/robojackets/robocup-firmware/'
 
 # VIP alias
-alias vip='cd ~/Documents/VIP/'
-alias epic='cd ~/opensim-epic/API/CPP/Collin/'
+alias vip='~/Documents/vip/'
+alias pipeline='~/epic/epic-opensim/API/CPP/Collin/'
 
 # Class Aliases
-alias cs2200='cd ~/Documents/classes/cs2200/'
-alias cs3600='cd ~/Documents/classes/cs3600/'
-alias stunnel='ssh -L 5901:localhost:5901 -N -f -l collin 136.59.225.152'
+alias ta='~/Documents/classes/ta-cs2200/'
+alias cs2200='~/Documents/classes/cs2200/'
+alias cs3600='~/Documents/classes/cs3600/'
+alias cs4240='~/Documents/classes/cs4240/'
+alias cs3210='~/Documents/classes/cs3210/'
+alias cs3210-vm='~/Documents/classes/cs3210/vagrant/'
 
 # Misc Aliases
 alias gib='git'

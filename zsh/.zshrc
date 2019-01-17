@@ -90,11 +90,6 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 
-# Load zsh system configs (eg. aliases,functions,env)
-#for DOTFILE in `find ~/.dotfiles/system`
-#do
-#  [ -f “$DOTFILE” ] && source “$DOTFILE”
-#done
 
 if [ -f $HOME/.env ]; then
     . $HOME/.env
@@ -111,6 +106,7 @@ fi
 if [ -f $HOME/.path ]; then
     . $HOME/.path
 fi
+
 
 # load nvm
 export NVM_DIR="$HOME/.nvm"

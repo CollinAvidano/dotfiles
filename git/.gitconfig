@@ -3,3 +3,5 @@
 	name = CollinAvidano
 [credential]
 	helper = cache --timeout 7200
+[help]
+	autocorrect = 1
