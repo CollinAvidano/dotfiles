@@ -99,6 +99,10 @@ if [ -f $HOME/.aliases ]; then
     . $HOME/.aliases
 fi
 
+if [ -f $HOME/.path ]; then
+    . $HOME/.shortcuts
+fi
+
 if [ -f $HOME/.functions ]; then
     . $HOME/.functions
 fi
@@ -106,9 +110,3 @@ fi
 if [ -f $HOME/.path ]; then
     . $HOME/.path
 fi
-
-
-# load nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 
-

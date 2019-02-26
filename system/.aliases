@@ -26,7 +26,7 @@ alias meminfo='free -m -l -t'
 
 # Get CPU info
 alias cpuinfo='lscpu'
- 
+
 # get GPU ram on desktop / laptop
 alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 
@@ -35,23 +35,6 @@ alias mainlog="git log --all --decorate --oneline --graph"
 
 # Umlet alias
 alias umlet="java -jar /opt/umlet/umlet.jar"
-
-# RJ alias
-alias rj='~/Documents/robojackets/robocup-software/'
-alias rj-software='~/Documents/robojackets/robocup-software/'
-alias rj-firmware='~/Documents/robojackets/robocup-firmware/'
-
-# VIP alias
-alias vip='~/Documents/vip/'
-alias pipeline='~/epic/epic-opensim/API/CPP/Collin/'
-
-# Class Aliases
-alias ta='~/Documents/classes/ta-cs2200/'
-alias cs2200='~/Documents/classes/cs2200/'
-alias cs3600='~/Documents/classes/cs3600/'
-alias cs4240='~/Documents/classes/cs4240/'
-alias cs3210='~/Documents/classes/cs3210/'
-alias cs3210-vm='~/Documents/classes/cs3210/vagrant/'
 
 # Misc Aliases
 alias gib='git'

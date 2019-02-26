@@ -1,0 +1,17 @@
+# RJ alias
+alias rj='~/Documents/robojackets/robocup-software/'
+alias rj-software='~/Documents/robojackets/robocup-software/'
+alias rj-firmware='~/Documents/robojackets/robocup-firmware/'
+
+# VIP alias
+alias vip='~/Documents/vip/'
+alias pipeline='~/epic/epic-opensim/API/CPP/Collin/'
+
+# Class Aliases
+alias ta='~/Documents/classes/ta-cs2200/'
+alias cs2200='~/Documents/classes/cs2200/'
+alias cs3600='~/Documents/classes/cs3600/'
+alias cs4240='~/Documents/classes/cs4240/'
+alias cs3210='~/Documents/classes/cs3210/'
+alias cs3210-vm='~/Documents/classes/cs3210/vagrant/'
+alias cs3210-lab='/home/collin/Documents/classes/cs3210/lab-cavidano3'

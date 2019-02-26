@@ -9,3 +9,8 @@ cdup() {
         ((counter++))
     done
 }
+
+short() {
+    echo alias $1=\'$PWD\' >> ~/.dotfiles/system/.shortcuts
+    source ~/.zshrc
+}
