@@ -1,17 +1,19 @@
 # RJ alias
-alias rj='~/Documents/robojackets/robocup-software/'
-alias rj-software='~/Documents/robojackets/robocup-software/'
-alias rj-firmware='~/Documents/robojackets/robocup-firmware/'
+alias rj='~/documents/robojackets/robocup-software/'
+alias rj-software='~/documents/robojackets/robocup-software/'
+alias rj-firmware='~/documents/robojackets/robocup-firmware/'
 
 # VIP alias
-alias vip='~/Documents/vip/'
+alias vip-docs='~/documents/vip/'
 alias pipeline='~/epic/epic-opensim/API/CPP/Collin/'
 
 # Class Aliases
-alias ta='~/Documents/classes/ta-cs2200/'
-alias cs2200='~/Documents/classes/cs2200/'
-alias cs3600='~/Documents/classes/cs3600/'
-alias cs4240='~/Documents/classes/cs4240/'
-alias cs3210='~/Documents/classes/cs3210/'
-alias cs3210-vm='~/Documents/classes/cs3210/vagrant/'
-alias cs3210-lab='/home/collin/Documents/classes/cs3210/lab-cavidano3'
+alias ta='~/documents/classes/ta-cs2200/'
+alias cs2200='~/documents/classes/cs2200/'
+alias cs3600='~/documents/classes/cs3600/'
+alias cs4240='~/documents/classes/cs4240/'
+alias cs3210='~/documents/classes/cs3210/'
+alias cs3210-lab='/home/collin/documents/classes/cs3210/lab-cavidano3/'
+alias cs3210-hw='/home/collin/documents/classes/cs3210/homework-cavidano3/'
+alias cs3210-xv6='/home/collin/documents/classes/cs3210/xv6-public/'
+alias BAML='/home/collin/epic/BAML/'
