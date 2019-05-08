@@ -5,15 +5,17 @@ alias rj-firmware='~/documents/robojackets/robocup-firmware/'
 
 # VIP alias
 alias vip-docs='~/documents/vip/'
-alias pipeline='~/epic/epic-opensim/API/CPP/Collin/'
 
 # Class Aliases
 alias ta='~/documents/classes/ta-cs2200/'
 alias cs2200='~/documents/classes/cs2200/'
-alias cs3600='~/documents/classes/cs3600/'
 alias cs4240='~/documents/classes/cs4240/'
 alias cs3210='~/documents/classes/cs3210/'
 alias cs3210-lab='/home/collin/documents/classes/cs3210/lab-cavidano3/'
 alias cs3210-hw='/home/collin/documents/classes/cs3210/homework-cavidano3/'
 alias cs3210-xv6='/home/collin/documents/classes/cs3210/xv6-public/'
-alias BAML='/home/collin/epic/BAML/'
+alias cs3210-finalproject='/home/collin/documents/classes/cs3210/xv6-final-project/'
+alias ta-cs2200='/home/collin/documents/classes/ta-cs2200/'
+alias mtrain-firmware='/home/collin/documents/robojackets/mtrain-firmware/'
+alias rj-firmware-mtrain='/home/collin/documents/robojackets/mtrain-firmware/'
+alias cs4240-project3='/home/collin/documents/classes/cs4240/CS4240-project3/'
