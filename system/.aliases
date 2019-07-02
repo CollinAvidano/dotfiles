@@ -1,8 +1,23 @@
+#!/bin/zsh
+# A function to see if a command exists. Basically cross platform which
+exists() {
+    command -v $1 >/dev/null
+    return $?
+}
+
+# pwetty colors
+alias ls='ls --color=always'
+
 # Basic ls aliases
 alias l='ls -CF'
 alias ll='ls -alF'
 alias lsa='ls -A'
 alias lsh='ls -alh'
+
+# When using sudo, use alias expansion (otherwise sudo ignores your aliases)
+alias sudo='sudo '
+alias s='sudo '
+alias se='sudoedit'
 
 # df aliases
 alias df='df -H'
@@ -11,26 +26,22 @@ alias df='df -H'
 alias rm='rm -rf'
 
 # Emacs alias
-alias emacs='emacsclient -n -c'
-alias emacs-server='\emacs --daemon'
+alias emacs='emacsclient -nc'
+
+# htop instead of top
+alias top='htop'
 
 # Refresh shell
-alias refreshsh='source ~/.zshrc'
-
-# apt-get aliases
-alias fix='sudo apt -f install'
+alias rfssh='source ~/.zshrc'
 
 # System info aliases
 # Free memory info
 alias meminfo='free -m -l -t'
 
-# Get CPU info
-alias cpuinfo='lscpu'
-
 # get GPU ram on desktop / laptop
 alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 
-# Git aliases
+# Git aexec_always ~/.config/i3/scripts/gnome-keyring.shliases
 alias mainlog="git log --all --decorate --oneline --graph"
 
 # Umlet alias

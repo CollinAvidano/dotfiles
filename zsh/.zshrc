@@ -4,14 +4,17 @@
 
 USERNAME=`whoami`
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/collin/.oh-my-zsh
+  export ZSH=/home/$USERNAME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-POWERLEVEL9K_MODE='awesome-fontconfig'
-ZSH_THEME="powerlevel9k/powerlevel9k"
-
+  # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+if [ "$TERM" = "xterm-256color" ]; then
+    ZSH_THEME="powerlevel9k/powerlevel9k"
+    POWERLEVEL9K_MODE='awesome-fontconfig'
+else
+    ZSH_THEME="af-magic"
+fi
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -20,7 +23,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -74,6 +77,10 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 
+if [ -n "$DESKTOP_SESSION" ];then
+    eval $(gnome-keyring-daemon --start)
+    export SSH_AUTH_SOCK
+fi
 
 if [ -f $HOME/.env ]; then
     . $HOME/.env
