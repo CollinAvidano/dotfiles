@@ -338,6 +338,9 @@ you should place your code here."
 (nyan-start-animation)
 (nyan-toggle-wavy-trail)
 
+
+(define-key evil-insert-state-map () 'evil-next-line)
+
 ;; (define-key evil-normal-state-map (kbd "j") 'evil-next-line)
 ;; (define-key evil-normal-state-map (kbd "k") 'evil-previous-line)
 ;; (define-key evil-normal-state-map (kbd "l") 'evil-backward-char)
@@ -357,10 +360,10 @@ you should place your code here."
 ;; TAB             helm-execute-persistent-action
 ;; C-j             helm-next-line
 ;; C-k             helm-previous-line
-;; C-l             helm-execute-persistent-action
+;; C-l             helm-execute-persistent-Do
 )
 
-;; Do not write anything past this comment. This is where Emacs will
+;; action not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (custom-set-variables ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

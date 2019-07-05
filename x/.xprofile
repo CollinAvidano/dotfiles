@@ -1,1 +1,2 @@
 touchegg &
+setxkbmap -option caps:escape
