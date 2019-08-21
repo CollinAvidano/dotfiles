@@ -9,7 +9,8 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod1
+# This is physical alt as this and the win key are swapped
+set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -57,8 +58,12 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 20 # decrease screen brightness
 
-bindsym XF86WLANoff exec ifconfig wlp2s0 down toggle
-bindsym XF86WLANon exec ifconfig wlp2s0 up toggle
+bindsym XF86WLANoff exec --no-startup-id ifconfig wlp2s0 down toggle
+bindsym XF86WLANon exec --no-startup-id ifconfig wlp2s0 up toggle
+
+bindsym XF86Display exec /home/$USER/.dotfiles/scripts/toggleredshift.sh
+
+# bindsym XF86Bluetooth exec /home/$USER/.dotfiles/scripts/togglebluetooth.sh
 
 # change focus
 bindsym $mod+j focus down
@@ -85,7 +90,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-  bindsym $mod+g split h
+bindsym $mod+g split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -171,8 +176,14 @@ bindsym $mod+r mode "resize"
 bindsym Print exec scrot '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f ~/pictures/'
 bindsym Control+Print exec gnome-screenshot -i
 
-# Wallpapers
+# Wallpaper
 exec /usr/bin/feh --bg-scale ~/pictures/astro-not-today.jpg
+
+# Network manager applet
+exec --no-startup-id nm-applet
+
+# Bluetooth applet
+exec --no-startup-id blueman-applet
 
 # solarized colors
 client.focused		#586e75 #586e75 #93a1a1 #586e75 #586e75

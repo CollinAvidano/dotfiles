@@ -1,2 +1,4 @@
-touchegg &
 setxkbmap -option caps:escape
+setxkbmap -option altwin:swap_alt_win
+touchegg &
+redshift &

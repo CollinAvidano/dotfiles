@@ -1,7 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-
 USERNAME=`whoami`
 # Path to your oh-my-zsh installation.
   export ZSH=/home/$USERNAME/.oh-my-zsh
@@ -58,18 +57,8 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -77,27 +66,19 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 
-if [ -n "$DESKTOP_SESSION" ];then
-    eval $(gnome-keyring-daemon --start)
-    export SSH_AUTH_SOCK
-fi
-
-if [ -f $HOME/.env ]; then
-    . $HOME/.env
+if [ -f $HOME/.functions ]; then
+    . $HOME/.functions
 fi
 
 if [ -f $HOME/.aliases ]; then
     . $HOME/.aliases
 fi
 
-if [ -f $HOME/.path ]; then
+if [ -f $HOME/.shortcuts ]; then
     . $HOME/.shortcuts
 fi
 
-if [ -f $HOME/.functions ]; then
-    . $HOME/.functions
-fi
-
-if [ -f $HOME/.path ]; then
-    . $HOME/.path
+# Source ROS enviroment
+if [ -f /opt/ros/melodic/setup.zsh ]; then
+   source /opt/ros/melodic/setup.zsh
 fi

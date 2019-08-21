@@ -1,9 +1,4 @@
 #!/bin/zsh
-# A function to see if a command exists. Basically cross platform which
-exists() {
-    command -v $1 >/dev/null
-    return $?
-}
 
 # pwetty colors
 alias ls='ls --color=always'

@@ -1,0 +1,5 @@
+# Path additions
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+export PATH='/bin:/sbin':"$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+#export PATH="/opt/cisco/anyconnect/bin"
