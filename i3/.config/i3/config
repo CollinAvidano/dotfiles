@@ -173,7 +173,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Screenshots
-bindsym Print exec scrot '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f ~/pictures/'
+bindsym Print exec scrot '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f ~/pictures/screenshots'
 bindsym Control+Print exec gnome-screenshot -i
 
 # Wallpaper

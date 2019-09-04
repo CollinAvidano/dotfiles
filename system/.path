@@ -1,5 +1,8 @@
 # Path additions
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
-export PATH='/bin:/sbin':"$PATH"
+export PATH="/bin:/sbin':$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
-#export PATH="/opt/cisco/anyconnect/bin"
+export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+export PATH="/opt/eagle:$PATH"
+export PATH="/opt/cisco/anyconnect/bin:$PATH"
+export PATH="/home/collin/anaconda3/bin:$PATH"

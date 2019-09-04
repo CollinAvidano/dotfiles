@@ -1,5 +1,5 @@
 # RJ alias
-alias rj='~/documents/robojackets/robocup-software/'
+alias rj='~/documents/robojackets/'
 alias rj-software='~/documents/robojackets/robocup-software/'
 alias rj-firmware='~/documents/robojackets/robocup-firmware/'
 
@@ -19,3 +19,6 @@ alias ta-cs2200='/home/collin/documents/classes/ta-cs2200/'
 alias mtrain-firmware='/home/collin/documents/robojackets/mtrain-firmware/'
 alias rj-firmware-mtrain='/home/collin/documents/robojackets/mtrain-firmware/'
 alias cs4240-project3='/home/collin/documents/classes/cs4240/CS4240-project3/'
+alias cs4290='/home/collin/documents/classes/cs4290/'
+alias rj-it='/home/collin/documents/robojackets/rj-it/'
+alias cs4641='/home/collin/documents/classes/cs4641/'

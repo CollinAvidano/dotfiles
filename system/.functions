@@ -20,3 +20,4 @@ short() {
     echo alias $1=\'$PWD\/$2\' >> ~/.dotfiles/system/.shortcuts
     source ~/.zshrc
 }
+

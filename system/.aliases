@@ -11,8 +11,16 @@ alias lsh='ls -alh'
 
 # When using sudo, use alias expansion (otherwise sudo ignores your aliases)
 alias sudo='sudo '
+
+# Other sudo aliases
 alias s='sudo '
 alias se='sudoedit'
+alias please='sudo'
+
+# Vim aliases
+alias v='vim'
+alias svim='sudo vim'
+alias sv='sudo vim'
 
 # df aliases
 alias df='df -H'
@@ -40,7 +48,14 @@ alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 alias mainlog="git log --all --decorate --oneline --graph"
 
 # Umlet alias
-alias umlet="java -jar /opt/umlet/umlet.jar"
+if [ -f /opt/umlet/umlet.jar ]; then	
+    alias umlet="java -jar /opt/umlet/umlet.jar"
+fi
 
-alias antlr='java -Xmx500M -cp "/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH" org.antlr.v4.Tool'
-alias grun='java -Xmx500M -cp "/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH" org.antlr.v4.gui.TestRig'
+# Old antlr aliases
+if [ -f "/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH" ]; then	
+    alias antlr='java -Xmx500M -cp "/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH" org.antlr.v4.Tool'
+    alias grun='java -Xmx500M -cp "/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH" org.antlr.v4.gui.TestRig'
+fi
+
+alias vpn-home='openvpn --config vpn/aegis.ovpn'
