@@ -59,3 +59,11 @@ if [ -f "/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH" ]; then
 fi
 
 alias vpn-home='openvpn --config vpn/aegis.ovpn'
+
+eval $(thefuck --alias fuck)
+eval $(thefuck --alias FUCK)
+eval $(thefuck --alias dammit)
+eval $(thefuck --alias shit)
+eval $(thefuck --alias hell)
+eval $(thefuck --alias endme)
+eval $(thefuck --alias endme)
