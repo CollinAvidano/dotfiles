@@ -47,6 +47,9 @@ alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 # Git aexec_always ~/.config/i3/scripts/gnome-keyring.shliases
 alias mainlog="git log --all --decorate --oneline --graph"
 
+alias chromecast="mkchromecast –y [youtube-URL] --video"
+
+
 # Umlet alias
 if [ -f /opt/umlet/umlet.jar ]; then	
     alias umlet="java -jar /opt/umlet/umlet.jar"
