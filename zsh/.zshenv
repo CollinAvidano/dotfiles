@@ -1,4 +1,3 @@
-
 if [ -f $HOME/.env ]; then
     . $HOME/.env
 fi

@@ -45,7 +45,6 @@ HYPHEN_INSENSITIVE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-git
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -77,11 +76,6 @@ fi
 if [ -f $HOME/.shortcuts ]; then
     . $HOME/.shortcuts
 fi
-
-# Source ROS enviroment
-#if [ -f /opt/ros/melodic/setup.zsh ]; then
-#   source /opt/ros/melodic/setup.zsh
-#fi
 
 export NPM_PACKAGES="/home/collin/.npm-packages"
 export NODE_PATH="$NPM_PACKAGES/lib/node_modules${NODE_PATH:+:$NODE_PATH}"
