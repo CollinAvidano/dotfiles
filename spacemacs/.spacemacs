@@ -315,7 +315,7 @@ values."
    dotspacemacs-whitespace-cleanup 'trailing
    ))
 
-(defun my-setup-indent (n)
+(defun setup-indent (n)
   ;; java/c/c++
   (setq c-basic-offset n)
   ;; web development
@@ -336,7 +336,7 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/use  r-conf  ig' first."
-  (my-setup-indent 4)
+  (setup-indent 4)
   )
 
 (defun dotspacemacs/user-config ()
@@ -346,7 +346,10 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-(setq-default tab-width 4)
+  (spacemacs/set-leader-keys
+    "qq" 'spacemacs/frame-killer
+    "qz" 'spacemacs/prompt-kill-emacs)
+
 
 (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
@@ -357,7 +360,6 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(standard-indent 4)
  '(evil-want-Y-yank-to-eol nil)
  '(helm-ff-lynx-style-map t)
  '(nyan-mode 1)
@@ -367,23 +369,3 @@ you should place your code here."
    (quote
     (yaml-mode org-mime magit-popup dash-functional gitignore-mode flyspell-correct flycheck magit transient git-commit with-editor eclim company markdown-mode yasnippet anaconda-mode pythonic auto-complete vimrc-mode dactyl-mode d-mode company-dcd ivy flycheck-dmd-dub pos-tip f powerline s bind-key dash stickyfunc-enhance srefactor toml-mode racer flycheck-rust cargo rust-mode org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download htmlize gnuplot company-auctex auctex graphviz-dot-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data yapfify xterm-color ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline smeargle shell-pop restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort popwin pip-requirements persp-mode pcre2el paradox orgit org-bullets open-junk-file nyan-mode neotree multi-term move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint info+ indent-guide hy-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flyspell-correct-helm flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help elisp-slime-nav dumb-jump disaster define-word cython-mode csv-mode company-statistics company-emacs-eclim company-c-headers company-anaconda column-enforce-mode cmake-mode clean-aindent-mode clang-format auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
 ))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(evil-want-Y-yank-to-eol nil)
- '(helm-ff-lynx-style-map t)
- '(nyan-animate-nyancat t)
- '(nyan-mode 1)
- '(nyan-wavy-trail t)
- '(package-selected-packages
-   (quote
-    (powerline spinner org-category-capture alert log4e gntp org-plus-contrib magit-popup hydra lv parent-mode projectile request haml-mode gitignore-mode flyspell-correct pos-tip flycheck pkg-info epl flx highlight magit transient git-commit with-editor smartparens iedit anzu evil goto-chg undo-tree web-completion-data dash-functional eclim company markdown-mode rust-mode bind-map bind-key yasnippet packed auctex anaconda-mode pythonic f dash s helm avy helm-core async auto-complete popup web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern tern coffee-mode vmd-mode git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter diff-hl yapfify yaml-mode xterm-color ws-butler winum which-key web-mode volatile-highlights vimrc-mode vi-tilde-fringe uuidgen use-package toml-mode toc-org tagedit stickyfunc-enhance srefactor spaceline smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters racer pyvenv pytest pyenv-mode py-isort pug-mode popwin pip-requirements persp-mode pcre2el paradox orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file nyan-mode neotree multi-term move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint less-css-mode indent-guide hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag graphviz-dot-mode google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flyspell-correct-helm flycheck-rust flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dumb-jump disaster diminish define-word dactyl-mode cython-mode csv-mode company-web company-statistics company-emacs-eclim company-c-headers company-auctex company-anaconda column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode clean-aindent-mode clang-format cargo auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
- '(standard-indent 4))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
