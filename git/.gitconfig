@@ -7,3 +7,6 @@
 	autocorrect = 1
 [core]
 	autocrlf = input
+[alias]
+	subup = submodule update --init --recursive
+	addext = --work-tree=/ add

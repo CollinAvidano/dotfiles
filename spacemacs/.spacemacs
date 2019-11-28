@@ -212,6 +212,12 @@ values."
    dotspacemacs-auto-save-file-location 'cache
    ;; Maximum number of rollback slots to keep in the cache. (default 5)
    dotspacemacs-max-rollback-slots 5
+
+   ;; If non-nil, the paste transient-state is enabled. While enabled, after you
+   ;; paste something, pressing `C-j' and `C-k' several times cycles through the
+   ;; elements in the `kill-ring'. (default nil)
+   dotspacemacs-enable-paste-transient-state nil
+
    ;; If non nil, `helm' will try to minimize the space it uses. (default nil)
    dotspacemacs-helm-resize nil
    ;; if non nil, the helm header is hidden when there is only one source.
@@ -298,6 +304,15 @@ values."
    dotspacemacs-highlight-delimiters 'all
    ;; If non nil, advise quit functions to keep server open when quitting.
    ;; (default nil)
+   dotspacemacs-enable-server t
+
+   ;; Set the emacs server socket location.
+   ;; If nil, uses whatever the Emacs default is, otherwise a directory path
+   ;; like \"~/.emacs.d/server\". It has no effect if
+   ;; `dotspacemacs-enable-server' is nil.
+   ;; (default nil)
+   dotspacemacs-server-socket-dir nil
+
    dotspacemacs-persistent-server t
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `ag', `pt', `ack' and `grep'.
@@ -346,12 +361,24 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  (setq-default
+   evil-move-cursor-back t
+   vc-follow-symlinks t
+   projectile-enable-caching t
+   helm-ff-skip-boring-files t)
+
   (spacemacs/set-leader-keys
     "qq" 'spacemacs/frame-killer
     "qz" 'spacemacs/prompt-kill-emacs)
 
+  (eval-after-load 'smartparens
+    '(progn
+       (sp-pair "(" nil :actions :rem)
+       (sp-pair "[" nil :actions :rem)
+       (sp-pair "'" nil :actions :rem)
+       (sp-pair "\"" nil :actions :rem)))
 
-(add-hook 'doc-view-mode-hook 'auto-revert-mode)
+  (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
 ;; action not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
