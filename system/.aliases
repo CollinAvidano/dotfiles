@@ -63,10 +63,15 @@ fi
 
 alias vpn-home='openvpn --config vpn/aegis.ovpn'
 
+# Because eagle is garbage
+alias eagle='LIBGL_ALWAYS_SOFTWARE=1 eagle'
+
+# For spotify lyrics and controller
+alias song='spotify-lyrics'
+
 eval $(thefuck --alias fuck)
 eval $(thefuck --alias FUCK)
 eval $(thefuck --alias dammit)
 eval $(thefuck --alias shit)
 eval $(thefuck --alias hell)
-eval $(thefuck --alias endme)
 eval $(thefuck --alias endme)

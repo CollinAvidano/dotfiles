@@ -188,6 +188,9 @@ exec --no-startup-id nm-applet
 # Battery alert script
 exec --no-startup-id i3-battery-popup
 
+# Disk automount wrapper for Udisks2
+exec --no-startup-id udiskie --tray --use-udisks2
+
 # solarized colors
 client.focused		#586e75 #586e75 #93a1a1 #586e75 #586e75
 client.unfocused	#002b36 #002b36 #93a1a1 #002b36 #002b36

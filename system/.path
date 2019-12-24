@@ -1,11 +1,11 @@
 # Path additions
-export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
-export PATH="/bin:/sbin':$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-export PATH="/opt/eagle/bin:$PATH"
-export PATH="/opt/cisco/anyconnect/bin:$PATH"
-export PATH="/opt/android-studio/bin:$PATH"
+export PATH="$PATH:$HOME/bin:$HOME/.local/bin"
+export PATH="$PATH:/bin:/sbin"
+export PATH="$PATH:$HOME/.cargo/bin"
+export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
+export PATH="$PATH:/opt/eagle"
+export PATH="$PATH:/opt/cisco/anyconnect/bin"
+export PATH="$PATH:/opt/android-studio/bin"
 
 # React Native Specific
 export PATH=$PATH:$ANDROID_HOME/emulator

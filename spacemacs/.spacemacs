@@ -1,4 +1,3 @@
-                                        ;psmouse.synaptics_intertouch=1; -*- mode: emacs-lisp -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
@@ -36,6 +35,7 @@ values."
    ;; ----------------------------------------------------------------
    dotspacemacs-configuration-layers
    '(
+     (neotree :variables neo-theme 'nerd)
      javascript
      (auto-completion :variables auto-completion-return-key-behavior
                       'complete auto-completion-tab-key-behavior
@@ -371,12 +371,12 @@ you should place your code here."
     "qq" 'spacemacs/frame-killer
     "qz" 'spacemacs/prompt-kill-emacs)
 
-  (eval-after-load 'smartparens
-    '(progn
-       (sp-pair "(" nil :actions :rem)
-       (sp-pair "[" nil :actions :rem)
-       (sp-pair "'" nil :actions :rem)
-       (sp-pair "\"" nil :actions :rem)))
+  ;; (eval-after-load 'smartparens
+  ;;   '(progn
+  ;;      (sp-pair "(" nil :actions :rem)
+  ;;      (sp-pair "[" nil :actions :rem)
+  ;;      (sp-pair "'" nil :actions :rem)
+  ;;      (sp-pair "\"" nil :actions :rem)))
 
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
