@@ -64,7 +64,7 @@ fi
 alias vpn-home='openvpn --config vpn/aegis.ovpn'
 
 # Because eagle is garbage
-alias eagle='LIBGL_ALWAYS_SOFTWARE=1 eagle'
+alias eagle='LIBGL_ALWAYS_SOFTWARE=1 /opt/eagle/eagle'
 
 # For spotify lyrics and controller
 alias song='spotify-lyrics'

@@ -1,3 +1,5 @@
+# .zshenv is launched as part of zsh loading process
+# loads .env and .path if they exist both of which are intended to be shell independent
 if [ -f $HOME/.env ]; then
     . $HOME/.env
 fi
