@@ -1,4 +1,5 @@
 [user]
+        # its on my github profile anyways
 	email = collin.avidano@gmail.com
 	name = CollinAvidano
 [credential]
@@ -9,4 +10,5 @@
 	autocrlf = input
 [alias]
 	subup = submodule update --init --recursive
-	addext = --work-tree=/ add
+        # for adding tracking of things that cant be moved here which is really only done in the rare case of things that look for symlinking
+        addext = --work-tree=/ add

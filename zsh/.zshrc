@@ -1,9 +1,7 @@
+# I primarily launch zsh as my default shell so this doesnt chain through .bashrc like some others I have seen. 
+
 # Profiling code for diagnosing long startup times
 # zmodload zsh/zprof
-
-
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 USERNAME=`whoami`
 # Path to your oh-my-zsh installation.
@@ -57,8 +55,6 @@ unsetopt sharehistory
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -70,6 +66,7 @@ unsetopt sharehistory
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
+# Most of these I try to keep shell independent
 
 if [ -f $HOME/.functions ]; then
     . $HOME/.functions
@@ -83,8 +80,9 @@ if [ -f $HOME/.shortcuts ]; then
     . $HOME/.shortcuts
 fi
 
-# Unset manpath so we can inherit from /etc/manpath via the `manpath`
-# command
-unset MANPATH  # delete if you already modified MANPATH elsewhere in your config
+# TODO Should look into if this is necessary
+export MANPATH="/usr/local/man:$MANPATH"
 export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
+
+# end for zsh profiler
 # zprof
