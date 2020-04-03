@@ -64,7 +64,6 @@ bindsym XF86WLANon exec --no-startup-id ifconfig wlp2s0 up toggle
 bindsym XF86Display exec toggleredshift.sh
 
 # Hardcoded id for now
-# TODO fix this
 bindsym XF86Tools exec --no-startup-id toggletouchpad.sh
 
 # bindsym XF86Bluetooth exec /home/$USER/.dotfiles/scripts/togglebluetooth.sh
@@ -177,30 +176,31 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Screenshots
-bindsym Print exec gnome-screenshot -i
-bindsym Control+Print exec scrot '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f ~/pictures/screenshots'
+bindsym Print exec gnome-screenshot -ia &
+bindsym Control+Print exec gnome-screenshot -id &
 
 # Wallpaper
-exec /usr/bin/feh --bg-scale ~/pictures/astro-not-today.jpg
+exec /usr/bin/feh --bg-scale ~/pictures/astro-not-today.jpg &
 
 # Network manager applet
-exec --no-startup-id nm-applet
+exec --no-startup-id nm-applet &
 
 # Battery alert script
-exec --no-startup-id i3-battery-popup
+exec --no-startup-id i3-battery-popup &
 
 # Disk automount wrapper for Udisks2
-exec --no-startup-id udiskie --tray --use-udisks2
+exec --no-startup-id udiskie --tray --use-udisks2 &
 
 # Gnome settings manager
 # Really just started so when I have to install apps through gnome software I dont have to switch to the full desktop
-exec --no-startup-id gnome-session
+# exec --no-startup-id gnome-session &
 
 # Bluetooth applet
 # exec --no-startup-id blueman-applet
 
 # solarized colors
-client.focused		#586e75 #586e75 #93a1a1 #586e75 #586e75
+# 4th color in the below is the indicator color
+client.focused		#586e75 #586e75 #93a1a1 #deb500 #586e75
 client.unfocused	#002b36 #002b36 #93a1a1 #002b36 #002b36
 client.focused_inactive #002b36 #002b36 #93a1a1 #002b36 #002b36
 client.placeholder 	#002b36 #002b36 #93a1a1 #002b36 #002b36

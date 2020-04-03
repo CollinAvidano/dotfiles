@@ -10,7 +10,7 @@ alias lsa='ls -A'
 alias lsh='ls -alh'
 
 # When using sudo, use alias expansion (otherwise sudo ignores your aliases)
-alias sudo='sudo '
+alias sudo=$'sudo '
 
 # Other sudo aliases
 alias s='sudo '
@@ -66,8 +66,15 @@ alias vpn-home='openvpn --config vpn/aegis.ovpn'
 # Because eagle is garbage
 alias eagle='LIBGL_ALWAYS_SOFTWARE=1 /opt/eagle/eagle'
 
+# Because arm is garbage
+alias cubeide='/home/collin/st/stm32cubeide_1.2.0_2/stm32cubeide'
+alias cubemx='/home/collin/st/stm32cubemx/STM32CubeMX'
+
 # For spotify lyrics and controller
 alias song='spotify-lyrics'
+
+# Alias for work
+alias work-ssh="ssh -t -L 5900:localhost:5900 gtri-workstation"
 
 eval $(thefuck --alias fuck)
 eval $(thefuck --alias FUCK)

@@ -11,7 +11,14 @@ INIT_USER=$1
 
 echo "Will install dotfiles for $INIT_USER"
 
-# install packages
+################################################
+# PPAs
+################################################
+
+
+################################################
+# Packages
+################################################
 apt-get update -y
 apt-get install $(grep -vE "^\s*#" packages.txt | tr "\n" " ") -y
 if [ $? -ne 0 ]; then
@@ -110,17 +117,17 @@ cd ../../..
 ./apply-theme.sh
 
 
-################################################
-# Install I3 Gaps
-################################################
-cd external/i3gaps/i3
-autoreconf --force --install
-rm -rf build/
-mkdir -p build && cd build/
-../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
-make install
-cd ..
-cd ../../..
+#################################################
+## Install I3 Gaps
+#################################################
+#cd external/i3gaps/i3
+#autoreconf --force --install
+#rm -rf build/
+#mkdir -p build && cd build/
+#../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
+#make install
+#cd ..
+#cd ../../..
 
 
 
@@ -155,24 +162,65 @@ cd ../../..
 # 	echo "No udev hwdb."
 # fi
 
-
-## Setup tap for X11
-#sudo mkdir -p /etc/X11/xorg.conf.d && sudo tee <<'EOF' /etc/X11/xorg.conf.d/90-touchpad.conf 1> /dev/null
-#Section "InputClass"
-#        Identifier "touchpad"
-#        MatchIsTouchpad "on"
-#        Driver "libinput"
-#        Option "Tapping" "on"
-#EndSection
-
-
-
 ################################################
 # Spacemacs
 ################################################
-git clone https://github.com/bhilburn/powerlevel9k.git /home/$INIT_USER/.oh-my-zsh/custom/themes/powerlevel9k
+git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 
-echo "Applying user level configs..."
-su $INIT_USER -c ./user-install.sh
+
+################################################
+# Stow 
+################################################
+cd ../
+shopt -s nullglob extglob
+array=!(cfg)
+shopt -u nullglob # Turn off nullglob to make sure it doesn't interfere with anything later
+for p in "${array[@]}"
+do
+    stow --no-folding --adopt $p
+done
+git checkout . # reset any adopted files essentially doing an overwrite
+
+
+
+
+
+################################################
+# Saleae Logic Analyzer
+################################################
+curl https://downloads.saleae.com/logic/1.2.18/Logic%201.2.18%20(64-bit).zip -o logic.zip
+unzip logic
+rm logic.zip
+mv logic /opt/logic
+
+
+################################################
+# Eagle
+################################################
+firefox https://www.autodesk.com/products/eagle/free-download
+echo "Download Eagle before preceding"
+read -p "Press enter to continue"
+sudo mv ~/downloads/Autodesk_EAGLE* /opt/eagle/
+
+
+################################################
+# Cisco Anyconnect
+################################################
+firefox https://anyc.vpn.gatech.edu/
+echo "Download Cisco AnyConnect before preceding"
+read -p "Press enter to continue"
+
+################################################
+# Libinput
+################################################
+# Setup tap for X11
+sudo mkdir -p /etc/X11/xorg.conf.d && sudo tee <<'EOF' /etc/X11/xorg.conf.d/90-touchpad.conf 1> /dev/null
+Section "InputClass"
+        Identifier "touchpad"
+        MatchIsTouchpad "on"
+        Driver "libinput"
+        Option "Tapping" "on"
+EndSection
+
 
 echo "Setup complete."
