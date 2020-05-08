@@ -100,37 +100,14 @@ config submodule update --init --recursive
 ################################################
 # Install Arc Theme
 ################################################
-#Install Arc theme
-cd external/arc-theme
-./autogen.sh --prefix=/usr
-make install
-cd ../..
-
-
-#Install Arc icons
-cd external/arcicon/arc-icon-theme
-./autogen.sh --prefix /usr
-make install
-cd ../../..
 
 #Apply theme
-./apply-theme.sh
+./install-arc-theme.sh
 
-
-#################################################
-## Install I3 Gaps
-#################################################
-#cd external/i3gaps/i3
-#autoreconf --force --install
-#rm -rf build/
-#mkdir -p build && cd build/
-#../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
-#make install
-#cd ..
-#cd ../../..
-
-
-
+################################################
+# Install I3 Gaps
+########################################I3
+./install-i3.sh
 
 ################################################
 # Hardware Setup
@@ -180,7 +157,6 @@ do
     stow --no-folding --adopt $p
 done
 git checkout . # reset any adopted files essentially doing an overwrite
-
 
 
 

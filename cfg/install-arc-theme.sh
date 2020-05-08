@@ -1,5 +1,19 @@
 #!/bin/bash
 
+#Install Arc theme
+cd external/arc-theme
+./autogen.sh --prefix=/usr
+make install
+cd ../..
+
+
+#Install Arc icons
+cd external/arcicon/arc-icon-theme
+./autogen.sh --prefix /usr
+make install
+cd ../../..
+
+
 # load gnome terminal theme
 dconf load /org/gnome/terminal/ < ~/.dotfiles/cfg/.gnome_terminal
 
