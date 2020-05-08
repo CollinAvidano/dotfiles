@@ -15,9 +15,12 @@ cdup() {
     done
 }
 
+dockershell() {
+    docker run -it $1 /bin/bash
+}
+
 # Shortcut creating function
 short() {
     echo alias $1=\'$PWD\/$2\' >> ~/.dotfiles/system/.shortcuts
     source ~/.zshrc
 }
-

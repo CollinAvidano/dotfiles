@@ -47,8 +47,6 @@ alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 # Git aliases 
 alias mainlog="git log --all --decorate --oneline --graph"
 
-alias chromecast="mkchromecast –y [youtube-URL] --video"
-
 
 # Umlet alias
 if [ -f /opt/umlet/umlet.jar ]; then	
@@ -61,8 +59,6 @@ if [ -f "/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH" ]; then
     alias grun='java -Xmx500M -cp "/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH" org.antlr.v4.gui.TestRig'
 fi
 
-alias vpn-home='openvpn --config vpn/aegis.ovpn'
-
 # Because eagle is garbage
 alias eagle='LIBGL_ALWAYS_SOFTWARE=1 /opt/eagle/eagle'
 
@@ -72,9 +68,12 @@ alias cubemx='/home/collin/st/stm32cubemx/STM32CubeMX'
 
 # For spotify lyrics and controller
 alias song='spotify-lyrics'
+alias chromecast="mkchromecast –y [youtube-URL] --video"
 
-# Alias for work
-alias work-ssh="ssh -t -L 5900:localhost:5900 gtri-workstation"
+
+# Docker Aliases
+alias dlsi='docker images'
+alias dockerflush='docker system prune'
 
 eval $(thefuck --alias fuck)
 eval $(thefuck --alias FUCK)
