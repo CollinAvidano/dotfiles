@@ -198,6 +198,10 @@ exec --no-startup-id udiskie --tray --use-udisks2 &
 # Bluetooth applet
 # exec --no-startup-id blueman-applet
 
+# Setup Gaps
+gaps inner 5
+gaps outer 5
+
 # solarized colors
 # 4th color in the below is the indicator color
 client.focused		#586e75 #586e75 #93a1a1 #deb500 #586e75

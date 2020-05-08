@@ -1,4 +1,4 @@
-# I primarily launch zsh as my default shell so this doesnt chain through .bashrc like some others I have seen. 
+# I primarily launch zsh as my default shell so this doesnt chain through .bashrc like some others I have seen.
 
 # Profiling code for diagnosing long startup times
 # zmodload zsh/zprof
@@ -43,7 +43,12 @@ HYPHEN_INSENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode)
+plugins=(
+git
+vi-mode
+zsh-autosuggestions
+docker
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -79,10 +84,6 @@ fi
 if [ -f $HOME/.shortcuts ]; then
     . $HOME/.shortcuts
 fi
-
-# TODO Should look into if this is necessary
-export MANPATH="/usr/local/man:$MANPATH"
-export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 
 # end for zsh profiler
 # zprof
