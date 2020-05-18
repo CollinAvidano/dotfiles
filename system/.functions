@@ -24,3 +24,13 @@ short() {
     echo alias $1=\'$PWD\/$2\' >> ~/.dotfiles/system/.shortcuts
     source ~/.zshrc
 }
+
+catkinbuild() {
+    cd $CATKIN_WORKSPACE && catkin build && source ./devel/setup.zsh
+    cd -
+}
+
+catkinmake() {
+    cd $CATKIN_WORKSPACE && catkin_make && ./devel/setup.zsh
+    cd -
+}
