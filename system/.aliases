@@ -78,6 +78,7 @@ alias dockerflush='docker system prune'
 eval $(thefuck --alias fuck)
 eval $(thefuck --alias FUCK)
 eval $(thefuck --alias dammit)
+eval $(thefuck --alias damn)
 eval $(thefuck --alias shit)
 eval $(thefuck --alias hell)
 eval $(thefuck --alias endme)
