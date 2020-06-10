@@ -88,10 +88,13 @@ if [ -f $HOME/.shortcuts ]; then
     . $HOME/.shortcuts
 fi
 
-source /opt/ros/melodic/setup.zsh
-source ~/catkin_ws/devel/setup.zsh
-export CATKIN_WORKSPACE="/home/user/catkin_ws"
+if [ -f $HOME/.path ]; then
+    . $HOME/.path
+fi
+
 
 # end for zsh profiler
 # zprof
 
+source /opt/ros/melodic/setup.zsh
+source /home/collin/catkin_ws/devel/setup.zsh

@@ -58,15 +58,8 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5 # increase screen brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 # decrease screen brightness
 
-bindsym XF86WLANoff exec --no-startup-id ifconfig wlp2s0 down toggle
-bindsym XF86WLANon exec --no-startup-id ifconfig wlp2s0 up toggle
-
 bindsym XF86Display exec toggleredshift.sh
 
-# Hardcoded id for now
-bindsym XF86Tools exec --no-startup-id toggletouchpad.sh
-
-# bindsym XF86Bluetooth exec /home/$USER/.dotfiles/scripts/togglebluetooth.sh
 
 # change focus
 bindsym $mod+j focus down
@@ -180,7 +173,7 @@ bindsym Print exec gnome-screenshot -ia &
 bindsym Control+Print exec gnome-screenshot -id &
 
 # Wallpaper
-exec /usr/bin/feh --bg-scale ~/pictures/astro-not-today.jpg &
+exec /usr/bin/feh --bg-scale ~/pictures/Gtrilogo.png &
 
 # Network manager applet
 exec --no-startup-id nm-applet &
@@ -198,9 +191,6 @@ exec --no-startup-id udiskie --tray --use-udisks2 &
 # Bluetooth applet
 # exec --no-startup-id blueman-applet
 
-# Setup Gaps
-gaps inner 5
-gaps outer 5
 
 # solarized colors
 # 4th color in the below is the indicator color

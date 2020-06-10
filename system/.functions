@@ -34,3 +34,17 @@ catkinmake() {
     cd $CATKIN_WORKSPACE && catkin_make && ./devel/setup.zsh
     cd -
 }
+
+catkinclean() {
+    cd $CATKIN_WORKSPACE && catkin clean
+    cd -
+}
+
+removesubmodule() {
+	repopath=$(git rev-parse --show-toplevel)
+
+	git submodule deinit $1
+	git rm $1
+	git commit -m "Removed submodule"
+	rm -rf $repopath/.git/modules/$1
+}

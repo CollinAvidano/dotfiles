@@ -7,3 +7,4 @@ fi
 if [ -f $HOME/.path ]; then
     . $HOME/.path
 fi
+export CATKIN_WORKSPACE=/home/collin/catkin_ws
