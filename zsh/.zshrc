@@ -11,7 +11,7 @@ USERNAME=`whoami`
 # it'll load a random theme each time that oh-my-zsh is loaded.
   # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 if [ "$TERM" = "xterm-256color" ]; then
-    ZSH_THEME="powerlevel9k/powerlevel9k"
+    ZSH_THEME="powerlevel10k/powerlevel10k"
     POWERLEVEL9K_MODE='awesome-fontconfig'
 else
     ZSH_THEME="af-magic"
@@ -87,3 +87,6 @@ fi
 
 # end for zsh profiler
 # zprof
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
