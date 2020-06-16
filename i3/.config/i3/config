@@ -70,8 +70,7 @@ bindsym XF86Tools exec --no-startup-id toggletouchpad.sh
 
 # change focus
 bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+bindsym $mod+k focus up bindsym $mod+l focus right
 bindsym $mod+h focus left
 
 # alternatively, you can use the cursor keys:
@@ -176,10 +175,10 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # start compton compositor
-exec compton
+exec compton --config ~/.config/compton.conf -b -c
 
 # Wallpaper
-exec /usr/bin/feh --bg-scale ~/pictures/skyrim.jpg &
+exec --no-startup-id /usr/bin/feh --bg-scale /home/collin/pictures/skyrim.jpg &
 
 # Screenshots
 bindsym Print exec gnome-screenshot -ia &
