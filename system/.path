@@ -9,9 +9,9 @@ export PATH="$PATH:/opt/blender"
 export PATH="$PATH:/opt/eagle"
 export PATH="$PATH:/opt/logic" # senale logic analyzer
 export PATH="$PATH:/opt/quartus/quartus/bin"
-export PATH="$PATH:$HOME/st/stm32cubeide_1.2.0_2"
+export PATH="$PATH:/opt/cubemx"
 
-export PATH="$PATH:/home/collin/.local/share/multimc"
+export PATH="$PATH:/opt/multimc"
 
 export PATH="$PATH:$HOME/.config/spicetify/spicetify-cli"
 

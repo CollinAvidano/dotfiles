@@ -45,7 +45,12 @@ values."
                       auto-completion-enable-help-tooltip t
                       auto-completion-enable-snippets-in-popup t
                       )
-     (c-c++ :variables c-c++-enable-clang-support t)
+     (c-c++ :variablesc-
+            c++-enable-clang-format-on-save t
+            c++-enable-organize-includes-on-save t
+            c-c++-adopt-subprojects t
+            c-c++-backend 'lsp-clangd
+            c-c++-enable-clang-support t)
      csv
      emacs-lisp
      (latex :variables
