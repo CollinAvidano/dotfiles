@@ -26,17 +26,17 @@ short() {
 }
 
 catkinbuild() {
-    cd $CATKIN_WORKSPACE && catkin build && source ./devel/setup.zsh
+    cd $CATKIN_WS && catkin build && source ./devel/setup.zsh
     cd -
 }
 
 catkinmake() {
-    cd $CATKIN_WORKSPACE && catkin_make && ./devel/setup.zsh
+    cd $CATKIN_WS && catkin_make && ./devel/setup.zsh
     cd -
 }
 
 catkinclean() {
-    cd $CATKIN_WORKSPACE && catkin clean
+    cd $CATKIN_WS && catkin clean
     cd -
 }
 
