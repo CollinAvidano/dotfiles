@@ -1,3 +1,4 @@
+
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
@@ -44,7 +45,12 @@ values."
                       auto-completion-enable-help-tooltip t
                       auto-completion-enable-snippets-in-popup t
                       )
-     (c-c++ :variables c-c++-enable-clang-support t)
+     (c-c++ :variables
+            c-c++-enable-clang-support t
+            c-c++-adopt-subprojects t
+            c-c++-backend 'lsp-clients-clangd-executable
+            c-c++-lsp-enable-semantic-highlight 'rainbow
+            )
      csv
      emacs-lisp
      (latex :variables

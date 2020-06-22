@@ -2,4 +2,5 @@
 export PATH="$PATH:$HOME/bin:$HOME/.local/bin"
 export PATH="$PATH:/bin:/sbin"
 export PATH="$PATH:/home/collin/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/201.7223.86/bin"
+export PATH="$PATH:/home/collin/.local/share/arduino-1.8.12"
 
