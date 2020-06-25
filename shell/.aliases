@@ -68,6 +68,7 @@ alias chromecast="mkchromecast –y [youtube-URL] --video"
 
 # Because arm is garbage
 alias cubemx='/opt/cubemx/STM32CubeMX'
+alias ghidra='/opt/ghidra_9.1.2/ghidraRun'
 
 # Docker Aliases
 alias dlsi='docker images'

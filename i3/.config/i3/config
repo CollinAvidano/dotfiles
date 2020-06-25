@@ -70,7 +70,8 @@ bindsym XF86Tools exec --no-startup-id toggletouchpad.sh
 
 # change focus
 bindsym $mod+j focus down
-bindsym $mod+k focus up bindsym $mod+l focus right
+bindsym $mod+k focus up 
+bindsym $mod+l focus right
 bindsym $mod+h focus left
 
 # alternatively, you can use the cursor keys:

@@ -24,3 +24,19 @@ short() {
     echo alias $1=\'$PWD\/$2\' >> ~/.dotfiles/system/.shortcuts
     source ~/.zshrc
 }
+
+submoduleadd() {
+    git submodule add $1
+    git submodule update --init --recursive
+    cd $CATKIN_WS && rosdep install --from-paths src --ignore-src -r -y
+}
+
+
+submoduleremove() {
+    repopath=$(git rev-parse --show-toplevel)
+
+    git submodule deinit $1
+    git rm $1
+    git commit -m "Removed submodule"
+    rm -rf $repopath/.git/modules/$1
+}
