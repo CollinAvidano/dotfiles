@@ -57,3 +57,7 @@ fi
 # Docker Aliases
 alias dlsi='docker images'
 alias dockerflush='docker system prune'
+
+alias git-commit-walker='git commit --author "Walker Byrnes<walker.byrnes@gtri.gatech.edu>"'
+alias git-commit-collin='git commit --author "Collin Avidano<collin.avidano@gtri.gatech.edu>"'
+alias git-commit-daniel='git commit --author "Daniel Martin<daniel.martin@gtri.gatech.edu>"'
