@@ -96,6 +96,6 @@ fi
 # end for zsh profiler
 # zprof
 
-export CATKIN_WS="/home/user/organoid_ws"
+export CATKIN_WS="/home/user/catkin_ws"
 source /opt/ros/melodic/setup.zsh
 source $CATKIN_WS/devel/setup.zsh
