@@ -31,7 +31,7 @@ catkinbuild() {
 }
 
 catkinmake() {
-    cd $CATKIN_WS && catkin_make && devel/setup.zsh
+    cd $CATKIN_WS && catkin_make && source devel/setup.zsh
     cd -
 }
 
