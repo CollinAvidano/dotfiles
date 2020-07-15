@@ -1,4 +1,4 @@
-# I primarily launch zsh as my default shell so this doesnt chain through .bashrc like some others I have seen.
+#I primarily launch zsh as my default shell so this doesnt chain through .bashrc like some others I have seen.
 
 # Profiling code for diagnosing long startup times
 # zmodload zsh/zprof
@@ -96,6 +96,6 @@ fi
 # end for zsh profiler
 # zprof
 
-export CATKIN_WS="/home/user/organoid_ws"
+export CATKIN_WS="/home/collin/dual_ws"
 source /opt/ros/melodic/setup.zsh
 source $CATKIN_WS/devel/setup.zsh
