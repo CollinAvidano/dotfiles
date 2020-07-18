@@ -74,6 +74,11 @@ alias ghidra='/opt/ghidra_9.1.2/ghidraRun'
 alias dlsi='docker images'
 alias dockerflush='docker system prune'
 
+# fun ones
+alias fortune='fortune gatech-cs'
+alias fun='fortune'
+
+
 eval $(thefuck --alias fuck)
 eval $(thefuck --alias FUCK)
 eval $(thefuck --alias dammit)

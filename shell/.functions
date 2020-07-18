@@ -15,16 +15,15 @@ cdup() {
     done
 }
 
-dockershell() {
-    docker run -it $1 /bin/bash
-}
 
 # Shortcut creating function
 short() {
-    echo alias $1=\'$PWD\/$2\' >> ~/.dotfiles/system/.shortcuts
+    echo alias $1=\'$PWD\/$2\' >> ~/.dotfiles/shell/.shortcuts
     source ~/.zshrc
 }
 
+
+# git functions
 submoduleadd() {
     git submodule add $1
     git submodule update --init --recursive
@@ -39,4 +38,14 @@ submoduleremove() {
     git rm $1
     git commit -m "Removed submodule"
     rm -rf $repopath/.git/modules/$1
+}
+
+# -t allocates a psuedo tty -i keps stdin open after the process exits
+# docker functions
+dockershellrun() {
+    docker run -it $1 /bin/bash
+}
+
+dockershellexec() {
+    docker exec -it $1 /bin/bash
 }

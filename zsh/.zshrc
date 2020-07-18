@@ -46,8 +46,8 @@ HYPHEN_INSENSITIVE="true"
 plugins=(
 git
 vi-mode
-zsh-autosuggestions
 docker
+zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
