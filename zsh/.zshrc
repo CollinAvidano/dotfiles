@@ -52,13 +52,16 @@ zsh-autosuggestions
 
 source $ZSH/oh-my-zsh.sh
 
+
+
 # don't verify history expansion before execution
 unsetopt histverify
 
 # don't share history
-unsetopt sharehistory
+#unsetopt sharehistory
 
 # User configuration
+setopt extended_glob
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8

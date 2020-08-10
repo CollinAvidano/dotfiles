@@ -1,5 +1,4 @@
 # Startup applications and configuration that is common to both I3 and gnome-desktop
 setxkbmap -option caps:escape
 setxkbmap -option altwin:swap_alt_win
-touchegg &
 redshift &

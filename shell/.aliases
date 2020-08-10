@@ -9,6 +9,12 @@ alias ll='ls -alF'
 alias lsa='ls -A'
 alias lsh='ls -alh'
 
+# df aliases
+alias df='df -H'
+
+# Basic remove aliases
+alias rm='rm -rf'
+
 # When using sudo, use alias expansion (otherwise sudo ignores your aliases)
 alias sudo=$'sudo '
 
@@ -21,12 +27,6 @@ alias please='sudo'
 alias v='vim'
 alias svim='sudo vim'
 alias sv='sudo vim'
-
-# df aliases
-alias df='df -H'
-
-# Basic remove aliases
-alias rm='rm -rf'
 
 # Emacs alias
 alias emacs='emacsclient -nc'
@@ -44,8 +44,9 @@ alias meminfo='free -m -l -t'
 # get GPU ram on desktop / laptop
 alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 
-# Git aliases 
-alias mainlog="git log --all --decorate --oneline --graph"
+# Apt package management
+alias list-installed-packages='sudo apt list --installed'
+alias search-installed-packages='sudo apt list --installed | grep '
 
 
 # Umlet alias
