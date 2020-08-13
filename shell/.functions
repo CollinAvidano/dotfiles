@@ -49,3 +49,24 @@ dockershellrun() {
 dockershellexec() {
     docker exec -it $1 /bin/bash
 }
+
+dockersr() {
+    docker container stop $1 && docker container rm $1
+}
+
+idrac-console() {
+    dockersr idrac-console
+    source $PRIVATE_DOTFILES/.env
+    gpg --decrypt $PRIVATE_DOTFILES/.private-env.gpg > $PRIVATE_DOTFILES/.private-env && source $PRIVATE_DOTFILES/.private-env
+    rm -f $PRIVATE_DOTFILES/.private-env
+    if [[ -n "$SOURCE_BIND" && -d "$SOURCE_BIND" && -n "$DEST_BIND" ]]
+    then
+        echo "Launching with mount path"
+        docker run -d -p 5800:5800 -p 5900:5900 --name idrac-console --mount type=bind,source=$SOURCE_BIND,target=$DEST_BIND -e IDRAC_HOST=$IDRAC_HOST -e IDRAC_USER=$IDRAC_USER -e IDRAC_PASSWORD=$IDRAC_PASSWORD domistyle/idrac6
+    else
+        echo "Launching without mount path"
+        docker run -d -p 5800:5800 -p 5900:5900 --name idrac-console -e IDRAC_HOST=$IDRAC_HOST -e IDRAC_USER=$IDRAC_USER -e IDRAC_PASSWORD=$IDRAC_PASSWORD domistyle/idrac6
+    fi
+    sleep 1
+    google-chrome 127.0.0.1:5800
+}

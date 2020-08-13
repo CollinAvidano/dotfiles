@@ -13,7 +13,7 @@ alias lsh='ls -alh'
 alias df='df -H'
 
 # Basic remove aliases
-alias rm='rm -rf'
+alias rm='rm -rfi'
 
 # When using sudo, use alias expansion (otherwise sudo ignores your aliases)
 alias sudo=$'sudo '
@@ -31,11 +31,11 @@ alias sv='sudo vim'
 # Emacs alias
 alias emacs='emacsclient -nc'
 
-# htop instead of top
-alias top='htop'
-
 # Refresh shell
 alias rfssh='source ~/.zshrc'
+
+# htop instead of top
+alias top='htop'
 
 # System info aliases
 # Free memory info
@@ -47,12 +47,6 @@ alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 # Apt package management
 alias list-installed-packages='sudo apt list --installed'
 alias search-installed-packages='sudo apt list --installed | grep '
-
-
-# Umlet alias
-if [ -f /opt/umlet/umlet.jar ]; then	
-    alias umlet="java -jar /opt/umlet/umlet.jar"
-fi
 
 # Old antlr aliases
 if [ -f "/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH" ]; then	
@@ -69,7 +63,7 @@ alias chromecast="mkchromecast –y [youtube-URL] --video"
 
 # Because arm is garbage
 alias cubemx='/opt/cubemx/STM32CubeMX'
-alias ghidra='/opt/ghidra_9.1.2/ghidraRun'
+alias ghidra='/opt/ghidra/ghidraRun'
 
 # Docker Aliases
 alias dlsi='docker images'
