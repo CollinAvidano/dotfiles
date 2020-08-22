@@ -13,6 +13,8 @@ USERNAME=`whoami`
 if [ "$TERM" = "xterm-256color" ]; then
     ZSH_THEME="powerlevel10k/powerlevel10k"
     POWERLEVEL9K_MODE='awesome-fontconfig'
+    # POWERLEVEL9K_VI_NORMAL_MODE_STRING="N"
+	# POWERLEVEL9K_VI_INSERT_MODE_STRING="I"
 else
     ZSH_THEME="af-magic"
 fi
@@ -93,3 +95,7 @@ fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Colorizer aliases using grc
+[[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
+

@@ -13,7 +13,7 @@ alias lsh='ls -alh'
 alias df='df -H'
 
 # Basic remove aliases
-alias rm='rm -rfi'
+alias rm='rm -rf'
 
 # When using sudo, use alias expansion (otherwise sudo ignores your aliases)
 alias sudo=$'sudo '
@@ -48,6 +48,7 @@ alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 alias list-installed-packages='sudo apt list --installed'
 alias search-installed-packages='sudo apt list --installed | grep '
 
+
 # Old antlr aliases
 if [ -f "/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH" ]; then	
     alias antlr='java -Xmx500M -cp "/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH" org.antlr.v4.Tool'
@@ -62,7 +63,7 @@ alias song='spotify-lyrics'
 alias chromecast="mkchromecast –y [youtube-URL] --video"
 
 # Because arm is garbage
-alias cubemx='/opt/cubemx/STM32CubeMX'
+alias cubemx='/opt/STM32CubeMX/STM32CubeMX'
 alias ghidra='/opt/ghidra/ghidraRun'
 
 # Docker Aliases
