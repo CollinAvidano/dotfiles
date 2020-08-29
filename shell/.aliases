@@ -1,5 +1,13 @@
 #!/bin/zsh
 
+# When using sudo, use alias expansion (otherwise sudo ignores your aliases)
+alias sudo=$'sudo '
+
+# Other sudo aliases
+alias s='sudo '
+alias se='sudoedit'
+alias please='sudo'
+
 # pwetty colors
 alias ls='ls --color=always'
 
@@ -8,20 +16,11 @@ alias l='ls -CF'
 alias ll='ls -alF'
 alias lsa='ls -A'
 alias lsh='ls -alh'
-
 # df aliases
 alias df='df -H'
 
 # Basic remove aliases
 alias rm='rm -rf'
-
-# When using sudo, use alias expansion (otherwise sudo ignores your aliases)
-alias sudo=$'sudo '
-
-# Other sudo aliases
-alias s='sudo '
-alias se='sudoedit'
-alias please='sudo'
 
 # Vim aliases
 alias v='vim'
@@ -34,10 +33,10 @@ alias emacs='emacsclient -nc'
 # Refresh shell
 alias rfssh='source ~/.zshrc'
 
+# System info aliases
 # htop instead of top
 alias top='htop'
 
-# System info aliases
 # Free memory info
 alias meminfo='free -m -l -t'
 
@@ -47,13 +46,6 @@ alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 # Apt package management
 alias list-installed-packages='sudo apt list --installed'
 alias search-installed-packages='sudo apt list --installed | grep '
-
-
-# Old antlr aliases
-if [ -f "/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH" ]; then	
-    alias antlr='java -Xmx500M -cp "/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH" org.antlr.v4.Tool'
-    alias grun='java -Xmx500M -cp "/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH" org.antlr.v4.gui.TestRig'
-fi
 
 # Because eagle is garbage
 alias eagle='LIBGL_ALWAYS_SOFTWARE=1 /opt/eagle/eagle'
