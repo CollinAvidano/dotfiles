@@ -1,4 +1,4 @@
-# A function to see if a command exists. Basically cross platform which
+# A function to see if a command exists. Basically cross platform
 exists() {
     command -v $1 >/dev/null
     return $?
@@ -15,6 +15,16 @@ cdup() {
     done
 }
 
+largest-files() {
+    DIR=${1:-./}    
+    NUMRES=${2:-20}
+    if [ -z "$3" ]; then
+        du -a $1 | sort -n -r| head -n $NUMRES
+    else  
+        du -a $1 | sort -n | head -n $NUMRES
+    fi
+
+}
 
 # Shortcut creating function
 short() {
@@ -56,7 +66,7 @@ dockersr() {
 
 idrac-console() {
     dockersr idrac-console
-    source $PRIVATE_DOTFILES/.env
+    source $PRIVATE_DOTFILES/.personal-env
     gpg --decrypt $PRIVATE_DOTFILES/.private-env.gpg > $PRIVATE_DOTFILES/.private-env && source $PRIVATE_DOTFILES/.private-env
     rm -f $PRIVATE_DOTFILES/.private-env
     if [[ -n "$SOURCE_BIND" && -d "$SOURCE_BIND" && -n "$DEST_BIND" ]]

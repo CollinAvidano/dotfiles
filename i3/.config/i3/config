@@ -63,8 +63,7 @@ bindsym XF86WLANon exec --no-startup-id ifconfig wlp2s0 up toggle
 
 bindsym XF86Display exec toggleredshift.sh
 
-# Hardcoded id for now
-bindsym XF86Tools exec --no-startup-id toggletouchpad.sh
+bindsym XF86Tools exec --no-startup-id toggletouchpad.sh 13
 
 # bindsym XF86Bluetooth exec /home/$USER/.dotfiles/scripts/togglebluetooth.sh
 

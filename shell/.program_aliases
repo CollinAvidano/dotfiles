@@ -1,0 +1,16 @@
+#!/bin/zsh
+
+# Because eagle is garbage
+alias eagle='LIBGL_ALWAYS_SOFTWARE=1 /opt/eagle/eagle'
+
+# For spotify lyrics and controller
+alias song='spotify-lyrics'
+alias chromecast="mkchromecast –y [youtube-URL] --video"
+
+# Because arm is garbage
+alias cubemx='/opt/STM32CubeMX/STM32CubeMX'
+alias ghidra='/opt/ghidra/ghidraRun'
+
+# fun ones
+alias fortune='fortune gatech-cs'
+alias fun='fortune'
