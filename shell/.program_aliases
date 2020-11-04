@@ -10,6 +10,7 @@ alias chromecast="mkchromecast –y [youtube-URL] --video"
 # Because arm is garbage
 alias cubemx='/opt/STM32CubeMX/STM32CubeMX'
 alias ghidra='/opt/ghidra/ghidraRun'
+alias evelauncher='/opt/evelauncher/evelauncher.sh'
 
 # fun ones
 alias fortune='fortune gatech-cs'

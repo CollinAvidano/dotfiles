@@ -99,3 +99,4 @@ fi
 # Colorizer aliases using grc
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 
+. "/home/collin/.acme.sh/acme.sh.env"
