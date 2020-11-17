@@ -159,7 +159,7 @@ bindsym $mod+r mode "resize"
 exec compton --config ~/.config/compton.conf -b -c
 
 # Wallpaper
-exec --no-startup-id /usr/bin/feh --bg-scale /home/collin/pictures/skyrim.jpg &
+exec --no-startup-id /usr/bin/feh --bg-scale /home/collin/pictures/wallpaper.png &
 
 # Screenshots
 bindsym Print exec gnome-screenshot -ia &

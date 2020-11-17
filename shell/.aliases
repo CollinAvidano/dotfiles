@@ -48,9 +48,6 @@ alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 alias list-installed-packages='sudo apt list --installed'
 alias search-installed-packages='sudo apt list --installed | grep '
 
-# Docker Aliases
-alias dlsi='docker images'
-alias dockerflush='docker system prune'
 
 # uncommon program aliases
 if [ -f $HOME/.program_aliases ]; then

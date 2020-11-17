@@ -10,7 +10,7 @@ general {
         colors = true
         interval = 5
 }
-order += "tztime eve"
+#order += "tztime eve"
 order += "tztime local_it"
 order += "volume master"
 order += "wireless _first_"
