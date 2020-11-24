@@ -26,10 +26,11 @@ export PATH="$PATH:$HOME/.config/spicetify/spicetify-cli"
 export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:/opt/quartus/quartus/bin"
 
-export PYTHONPATH="$PYTHONPATH:/usr/local/lib/python3.8/site-packages"
-export PYTHONPATH="$PYTHONPATH:/usr/local/lib/python/dist-packages/gnuradio/iio"
+export PATH="$NPM_PACKAGES/bin:$PATH"
 
+# Android studio
 export PATH="$PATH:/opt/android-studio/bin"
+
 # React Native Specific
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools

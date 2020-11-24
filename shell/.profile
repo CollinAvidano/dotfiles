@@ -26,3 +26,13 @@ if [ -n "$DESKTOP_SESSION" ];then
    eval $(gnome-keyring-daemon --start)
    export SSH_AUTH_SOCK
 fi
+
+# loads .env and .path if they exist both of which are intended to be shell independent
+if [ -f $HOME/.env ]; then
+    . $HOME/.env
+fi
+
+if [ -f $HOME/.path ]; then
+    . $HOME/.path
+fi
+

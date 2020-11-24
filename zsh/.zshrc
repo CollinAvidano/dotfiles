@@ -35,7 +35,6 @@ HYPHEN_INSENSITIVE="true"
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
-
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
@@ -90,13 +89,11 @@ if [ -f $HOME/.shortcuts ]; then
     . $HOME/.shortcuts
 fi
 
-# end for zsh profiler
-# zprof
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Colorizer aliases using grc
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 
-. "/home/collin/.acme.sh/acme.sh.env"
+# end for zsh profiler
+# zprof

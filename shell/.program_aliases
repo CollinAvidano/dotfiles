@@ -9,10 +9,15 @@ alias chromecast="mkchromecast –y [youtube-URL] --video"
 
 # Because arm is garbage
 alias cubemx='/opt/STM32CubeMX/STM32CubeMX'
-alias ghidra='/opt/ghidra/ghidraRun'
+#alias ghidra='/opt/ghidra/ghidraRun'
 alias evelauncher='/opt/evelauncher/evelauncher.sh'
+alias multimc='/opt/multimc/run.sh'
 
 # fun ones
 alias fortune='fortune gatech-cs'
 alias fun='fortune'
+
+# Docker Aliases
+alias dlsi='docker images'
+alias dockerflush='docker system prune'
 
