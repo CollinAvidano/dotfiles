@@ -35,16 +35,15 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle
 
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5 # increase screen brightness
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 # decrease screen brightness
-
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5 # increase screen brightness bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 # decrease screen brightness 
 bindsym XF86WLANoff exec --no-startup-id ifconfig wlp2s0 down toggle
 bindsym XF86WLANon exec --no-startup-id ifconfig wlp2s0 up toggle
 
 #bindsym XF86Display exec $scripts/toggleredshift.sh
 bindsym XF86Display exec $scripts/monitor-switch.sh
 
-bindsym XF86Tools exec --no-startup-id $scripts/toggletouchpad.sh 13
+bindsym XF86Tools exec --no-startup-id $scripts/toggletouchpad.sh
+
 
 # bindsym XF86Bluetooth exec $scripts/togglebluetooth.sh
 
@@ -154,6 +153,9 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
+# start locking script
+exec --no-startup-id xss-lock -- $scripts/lock.sh
 
 # start compton compositor
 exec compton --config ~/.config/compton.conf -b -c
