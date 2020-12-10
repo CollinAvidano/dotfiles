@@ -29,6 +29,7 @@ alias sv='sudo vim'
 
 # Emacs alias
 alias emacs='emacsclient -nc'
+alias emacs-cmd='emacsclient -nw'
 
 # Refresh shell
 alias rfssh='source ~/.zshrc'

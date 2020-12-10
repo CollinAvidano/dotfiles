@@ -49,6 +49,7 @@ git
 vi-mode
 docker
 zsh-autosuggestions
+pip
 )
 
 source $ZSH/oh-my-zsh.sh

@@ -1,20 +1,12 @@
 # RJ alias
-alias rj='~/documents/robojackets/'
-alias rj-software='~/documents/robojackets/robocup-software/'
-alias rj-firmware='~/documents/robojackets/robocup-firmware/'
-alias rj-mtrain-firmware='/home/collin/documents/robojackets/mtrain-firmware/'
+alias rj='/home/collin/documents/robojackets/'
+alias rj-software='/home/collin/documents/robojackets/rc-software/robocup-software/'
 alias rj-it='/home/collin/documents/robojackets/rj-it/'
-alias rj-datasheets='/home/collin/documents/robojackets/docs/datasheets/'
+alias rj-firmware='/home/documents/robojackets/rc-electrical/robocup-firmware/'
+alias mtrain-firmware='/home/collin/documents/robojackets/rc-electrical/mtrain-firmware/'
+alias mjackets-api='/home/collin/documents/robojackets/rc-electrical/mjackets-api'
 
-# VIP alias
-alias vip='~/documents/epic/'
-
-# Class Aliases
-alias ta='~/documents/classes/ta-cs2200/'
-alias ta-cs2200='/home/collin/documents/classes/ta-cs2200/'
-alias mtrain-firmware='/home/collin/documents/robojackets/mtrain-firmware/'
 alias dotfiles='/home/collin/.dotfiles'
 alias renderer='/home/collin/documents/personal-projects/renderer'
-alias mjackets-api='/home/collin/documents/robojackets/mjackets-api'
 alias minecraft-docs='/home/collin/documents/entertainment/minecraft'
 alias minecraft-modding='/home/collin/documents/personal-projects/minecraft-modding'
