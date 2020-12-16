@@ -165,6 +165,8 @@ endif
 "Start plugin loading and specify storage directory
 call plug#begin('~/.vim/plugged')
 Plug 'arcticicestudio/nord-vim'
+Plug 'hugolgst/vimsence'
+
 
 call plug#end()
 "------------------------------------------------------------

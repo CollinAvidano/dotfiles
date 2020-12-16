@@ -2,7 +2,7 @@
 alias rj='/home/collin/documents/robojackets/'
 alias rj-software='/home/collin/documents/robojackets/rc-software/robocup-software/'
 alias rj-it='/home/collin/documents/robojackets/rj-it/'
-alias rj-firmware='/home/documents/robojackets/rc-electrical/robocup-firmware/'
+alias rj-firmware='/home/collin/documents/robojackets/rc-electrical/robocup-firmware/'
 alias mtrain-firmware='/home/collin/documents/robojackets/rc-electrical/mtrain-firmware/'
 alias mjackets-api='/home/collin/documents/robojackets/rc-electrical/mjackets-api'
 

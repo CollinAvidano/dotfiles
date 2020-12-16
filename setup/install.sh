@@ -14,7 +14,8 @@ echo "Will install dotfiles for $INIT_USER"
 ################################################
 # PPAs
 ################################################
-
+# tries to run an apt update and fix any keys that return no pubkey
+# sudo apt update | sed -n -e 's/^.*NO_PUBKEY[[:space:]]//p' | xargs -I % sudo apt-key adv --recv-key --keyserver keyserver.ubuntu.com %
 
 ################################################
 # Packages
