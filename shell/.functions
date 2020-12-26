@@ -15,12 +15,37 @@ cdup() {
     done
 }
 
+# cdf cd into a directory and if it has only 1 child follow its children until
+# there is more than one or none do the same for cdf ..
+cdf() {
+    if [[ -d "$1" ]]; then
+        cd $1
+        zmodload zsh/parameter
+        if [[ "cdf .." != $history[$HISTCMD] ]]; then
+            # exits if there is a file and a directory done seperately so file is not skipped
+              while [[ $(ls -DA | wc -l) = "1" && $(ls -A | wc -l) = "1" ]]; do
+                f=$(\ls -DA) # graaahhhh coloring appends text to the file variable
+                if [[ -d "$f" ]]; then 
+                    cd "$f"
+                else
+                    break
+                fi
+            done
+        elif [[ "cdf .." == $history[$HISTCMD] ]]; then
+            # exits if there is a file and a directory done seperately so file is not skipped
+              while [[ $(ls -DA | wc -l) = "1" && $(ls -A | wc -l) = "1" ]]; do
+                cd ..
+            done
+        fi
+    fi
+}
+
 largest-files() {
-    DIR=${1:-./}    
+    DIR=${1:-./}
     NUMRES=${2:-20}
     if [ -z "$3" ]; then
         du -a $1 | sort -n -r| head -n $NUMRES
-    else  
+    else
         du -a $1 | sort -n | head -n $NUMRES
     fi
 
@@ -31,7 +56,6 @@ short() {
     echo alias $1=\'$PWD\/$2\' >> ~/.dotfiles/shell/.shortcuts
     source ~/.zshrc
 }
-
 
 # git functions
 submoduleadd() {

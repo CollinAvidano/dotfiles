@@ -47,16 +47,14 @@ bindkey -v
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-git
-vi-mode
-docker
-zsh-autosuggestions
-pip
+    docker
+    git
+    pip
+    vi-mode
+    zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
-
-
 
 # don't verify history expansion before execution
 unsetopt histverify
