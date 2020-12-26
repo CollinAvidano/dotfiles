@@ -13,6 +13,8 @@ alias cubemx='/opt/STM32CubeMX/STM32CubeMX'
 alias evelauncher='/opt/evelauncher/evelauncher.sh'
 alias multimc='/opt/multimc/run.sh'
 
+alias radar='mono /opt/virtual-radar/VirtualRadar.exe'
+
 # fun ones
 alias fortune='fortune gatech-cs'
 alias fun='fortune'

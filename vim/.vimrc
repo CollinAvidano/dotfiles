@@ -162,9 +162,11 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+"vim-plug stuff"
 "Start plugin loading and specify storage directory
 call plug#begin('~/.vim/plugged')
 Plug 'arcticicestudio/nord-vim'
+Plug 'francoiscabrol/ranger.vim'
 Plug 'hugolgst/vimsence'
 
 

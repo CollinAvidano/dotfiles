@@ -49,6 +49,10 @@ alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 alias list-installed-packages='sudo apt list --installed'
 alias search-installed-packages='sudo apt list --installed | grep '
 
+alias env-activate='source env/bin/activate && unset PYTHONPATH'
+alias activate-env='source env/bin/activate && unset PYTHONPATH'
+alias make-env='python3 -m venv env'
+alias make-venv='python3 -m venv env'
 
 # uncommon program aliases
 if [ -f $HOME/.program_aliases ]; then
