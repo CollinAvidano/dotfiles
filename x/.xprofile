@@ -5,3 +5,5 @@ setxkbmap -option altwin:swap_alt_win
 # add i3 specific scripts such as lock, toggle touchpad and others
 export PATH="$PATH:$HOME/.config/i3/"
 
+touchegg&
+

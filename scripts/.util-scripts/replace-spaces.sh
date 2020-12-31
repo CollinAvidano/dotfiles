@@ -1,8 +1,9 @@
 #!/bin/bash
 
 for f in *
-do
-    new="${f// /_}"
+do      
+    typeset -l new
+    new="${f// /-}"
     if [ "$new" != "$f" ]
     then
         if [ -e "$new" ]

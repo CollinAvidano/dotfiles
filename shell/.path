@@ -26,7 +26,9 @@ export PATH="$PATH:$HOME/.config/spicetify/spicetify-cli"
 export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:/opt/quartus/quartus/bin"
 
-export PATH="$NPM_PACKAGES/bin:$PATH"
+export PATH="$PATH:/media/collin/ext-storage/matlab/bin"
+
+export PATH="$PATH:$NPM_PACKAGES/bin"
 
 # Android studio
 export PATH="$PATH:/opt/android-studio/bin"
