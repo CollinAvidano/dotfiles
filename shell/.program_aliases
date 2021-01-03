@@ -15,6 +15,8 @@ alias multimc='/opt/multimc/run.sh'
 
 alias radar='mono /opt/virtual-radar/VirtualRadar.exe'
 
+#alias matlab='/media/collin/ext-storage/matlab/bin/matlab'
+
 # fun ones
 alias fortune='fortune gatech-cs'
 alias fun='fortune'

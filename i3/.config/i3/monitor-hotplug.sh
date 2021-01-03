@@ -1,4 +1,6 @@
 #!/bin/bash
+export XAUTHORITY=/home/collin/.Xauthority 
+export DISPLAY=:0
 
 # Get out of town if something errors
 set -e

@@ -17,7 +17,6 @@ def main():
     regex_postfix = re.compile(r"(\d)\-(st|nd|rd|th)(\-|$)") # fix anything like 3rd or 5th
     regex_multidash = re.compile(r"(-){2,}") # remove two or more dashes with 1
 
-
     for f in files:
         new_filename = regex_remove.sub("", f)
         new_filename = regex_decram.sub(r"\1-\2", new_filename)
