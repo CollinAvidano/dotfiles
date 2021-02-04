@@ -1,5 +1,9 @@
 # Startup applications and configuration that is common to both I3 and gnome-desktop
 setxkbmap -option caps:escape
 setxkbmap -option altwin:swap_alt_win
-touchegg &
-redshift &
+
+# add i3 specific scripts such as lock, toggle touchpad and others
+export PATH="$PATH:$HOME/.config/i3/"
+
+touchegg&
+insync start&

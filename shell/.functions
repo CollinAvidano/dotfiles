@@ -1,0 +1,126 @@
+# A function to see if a command exists. Basically cross platform
+exists() {
+    command -v $1 >/dev/null
+    return $?
+}
+
+# some basic cd functions
+cdup() {
+    limit=$1
+    counter=1
+    while [ $counter -le $limit ]
+    do
+        cd ../
+        ((counter++))
+    done
+}
+
+# cdf cd into a directory and if it has only 1 child follow its children until
+# there is more than one or none do the same for cdf ..
+cdf() {
+    if [[ -d "$1" ]]; then
+        cd $1
+        zmodload zsh/parameter
+        if [[ "cdf .." != $history[$HISTCMD] ]]; then
+            # exits if there is a file and a directory done seperately so file is not skipped
+              while [[ $(ls -DA | wc -l) = "1" && $(ls -A | wc -l) = "1" ]]; do
+                f=$(\ls -DA) # graaahhhh coloring appends text to the file variable
+                if [[ -d "$f" ]]; then 
+                    cd "$f"
+                else
+                    break
+                fi
+            done
+        elif [[ "cdf .." == $history[$HISTCMD] ]]; then
+            # exits if there is a file and a directory done seperately so file is not skipped
+              while [[ $(ls -DA | wc -l) = "1" && $(ls -A | wc -l) = "1" ]]; do
+                cd ..
+            done
+        fi
+    fi
+}
+
+largest-files() {
+    DIR=${1:-./}
+    NUMRES=${2:-20}
+    if [ -z "$3" ]; then
+        du -a $1 | sort -n -r| head -n $NUMRES
+    else
+        du -a $1 | sort -n | head -n $NUMRES
+    fi
+
+}
+
+# Shortcut creating function
+short() {
+    echo alias $1=\'$PWD\/$2\' >> ~/.dotfiles/shell/.shortcuts
+    source ~/.zshrc
+}
+
+# git functions
+submoduleadd() {
+    git submodule add $1
+    git submodule update --init --recursive
+    cd $CATKIN_WS && rosdep install --from-paths src --ignore-src -r -y
+}
+
+submoduleremove() {
+    repopath=$(git rev-parse --show-toplevel)
+
+    git submodule deinit $1
+    git rm $1
+    git commit -m "Removed submodule"
+    rm -rf $repopath/.git/modules/$1
+}
+
+# -t allocates a psuedo tty -i keps stdin open after the process exits
+# docker functions
+dockershellrun() {
+    docker run -it $1 /bin/bash
+}
+
+dockershellexec() {
+    docker exec -it $1 /bin/bash
+}
+
+dockersr() {
+    docker container stop $1 && docker container rm $1
+}
+
+# Shortcut creating function
+short() {
+    echo alias $1=\'$PWD\/$2\' >> ~/.dotfiles/system/.shortcuts
+    source ~/.zshrc
+}
+
+catkinbuild() {
+    cd $CATKIN_WS && catkin build && source devel/setup.zsh
+    cd -
+}
+
+catkinmake() {
+    cd $CATKIN_WS && catkin_make && source devel/setup.zsh
+    cd -
+}
+
+catkinclean() {
+    cd $CATKIN_WS && catkin clean
+    cd -
+}
+
+idrac-console() {
+    dockersr idrac-console
+    source $PRIVATE_DOTFILES/.personal-env
+    gpg --decrypt $PRIVATE_DOTFILES/.private-env.gpg > $PRIVATE_DOTFILES/.private-env && source $PRIVATE_DOTFILES/.private-env
+    rm -f $PRIVATE_DOTFILES/.private-env
+    if [[ -n "$SOURCE_BIND" && -d "$SOURCE_BIND" && -n "$DEST_BIND" ]]
+    then
+        echo "Launching with mount path"
+        docker run -d -p 5800:5800 -p 5900:5900 --name idrac-console --mount type=bind,source=$SOURCE_BIND,target=$DEST_BIND -e IDRAC_HOST=$IDRAC_HOST -e IDRAC_USER=$IDRAC_USER -e IDRAC_PASSWORD=$IDRAC_PASSWORD domistyle/idrac6
+    else
+        echo "Launching without mount path"
+        docker run -d -p 5800:5800 -p 5900:5900 --name idrac-console -e IDRAC_HOST=$IDRAC_HOST -e IDRAC_USER=$IDRAC_USER -e IDRAC_PASSWORD=$IDRAC_PASSWORD domistyle/idrac6
+    fi
+    sleep 1
+    google-chrome 127.0.0.1:5800
+}

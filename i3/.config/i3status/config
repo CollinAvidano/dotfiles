@@ -10,6 +10,7 @@ general {
         colors = true
         interval = 5
 }
+#order += "tztime eve"
 order += "tztime local_it"
 order += "volume master"
 order += "wireless _first_"
@@ -33,6 +34,12 @@ ethernet _first_ {
 
 battery all {
         format = "%status %percentage %remaining"
+}
+
+
+tztime eve {
+        format = "EVE Time %H:%M:%S %d-%m "
+        timezone = "Etc/UTC"
 }
 
 

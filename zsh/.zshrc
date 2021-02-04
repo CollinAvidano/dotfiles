@@ -13,6 +13,8 @@ USERNAME=`whoami`
 if [ "$TERM" = "xterm-256color" ]; then
     ZSH_THEME="powerlevel10k/powerlevel10k"
     POWERLEVEL9K_MODE='awesome-fontconfig'
+    # POWERLEVEL9K_VI_NORMAL_MODE_STRING="N"
+	# POWERLEVEL9K_VI_INSERT_MODE_STRING="I"
 else
     ZSH_THEME="af-magic"
 fi
@@ -33,21 +35,23 @@ HYPHEN_INSENSITIVE="true"
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
-
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # HIST_STAMPS="mm/dd/yyyy"
+
+bindkey -v
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-git
-vi-mode
-zsh-autosuggestions
-docker
+    docker
+    git
+    pip
+    vi-mode
+    zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -56,9 +60,10 @@ source $ZSH/oh-my-zsh.sh
 unsetopt histverify
 
 # don't share history
-unsetopt sharehistory
+#unsetopt sharehistory
 
 # User configuration
+setopt extended_glob
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -92,6 +97,11 @@ if [ -f $HOME/.path ]; then
     . $HOME/.path
 fi
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Colorizer aliases using grc
+[[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 
 # end for zsh profiler
 # zprof

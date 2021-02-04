@@ -1,0 +1,84 @@
+#!/bin/zsh
+
+# When using sudo, use alias expansion (otherwise sudo ignores your aliases)
+alias sudo=$'sudo '
+
+# Other sudo aliases
+alias s='sudo '
+alias se='sudoedit'
+alias please='sudo'
+
+# pwetty colors
+alias ls='ls --color=always'
+
+# Basic ls aliases
+alias l='ls -CF'
+alias ll='ls -alF'
+alias lsa='ls -A'
+alias lsh='ls -alh'
+# df aliases
+alias df='df -H'
+
+# Basic remove aliases
+alias rm='rm -rf'
+
+# Vim aliases
+alias v='vim'
+alias svim='sudo vim'
+alias sv='sudo vim'
+
+# Emacs alias
+alias emacs='emacsclient -nc'
+alias emacs-cmd='emacsclient -nw'
+
+# Refresh shell
+alias rfssh='source ~/.zshrc'
+
+# System info aliases
+# htop instead of top
+alias top='htop'
+alias pss='ps -e | grep '
+
+# Free memory info
+alias meminfo='free -m -l -t'
+
+# get GPU ram on desktop / laptop
+alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
+
+# Apt package management
+alias list-installed-packages='sudo apt list --installed'
+alias search-installed-packages='sudo apt list --installed | grep '
+
+alias env-activate='source env/bin/activate && unset PYTHONPATH'
+alias activate-env='source env/bin/activate && unset PYTHONPATH'
+alias make-env='python3 -m venv env'
+alias make-venv='python3 -m venv env'
+
+# Umlet alias
+if [ -f /opt/umlet/umlet.jar ]; then
+    alias umlet="java -jar /opt/umlet/umlet.jar"
+fi
+
+
+# Docker Aliases
+alias dlsi='docker images'
+alias dockerflush='docker system prune'
+
+alias git-commit-walker='git commit --author "Walker Byrnes<walker.byrnes@gtri.gatech.edu>"'
+alias git-commit-collin='git commit --author "Collin Avidano<collin.avidano@gtri.gatech.edu>"'
+alias git-commit-daniel='git commit --author "Daniel Martin<daniel.martin@gtri.gatech.edu>"'
+=======
+# uncommon program aliases
+if [ -f $HOME/.program_aliases ]; then
+    . $HOME/.program_aliases 
+fi
+
+
+eval $(thefuck --alias fuck)
+eval $(thefuck --alias FUCK)
+eval $(thefuck --alias dammit)
+eval $(thefuck --alias damn)
+eval $(thefuck --alias shit)
+eval $(thefuck --alias hell)
+eval $(thefuck --alias endme)
+>>>>>>> master:shell/.aliases

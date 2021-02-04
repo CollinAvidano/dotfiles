@@ -1,14 +1,15 @@
 [user]
-        # its on my github profile anyways
-	email = collin.avidano@gmail.com
-	name = CollinAvidano
+    # its on my github profile anyways
+    email = collin.avidano@gmail.com
+    name = CollinAvidano
 [credential]
-	helper = cache --timeout 7200
+    helper = cache --timeout 7200
 [help]
-	autocorrect = 1
+    autocorrect = 1
 [core]
-	autocrlf = input
+    autocrlf = input
 [alias]
+	mainlog = log --all --decorate --oneline --graph
 	subup = submodule update --init --recursive
         # for adding tracking of things that cant be moved here which is really only done in the rare case of things that look for symlinking
         addext = --work-tree=/ add
