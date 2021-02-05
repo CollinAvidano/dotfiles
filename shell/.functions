@@ -108,6 +108,19 @@ catkinclean() {
     cd -
 }
 
+setupnoetic() {
+export CATKIN_WS=dual_arm_ws
+source /opt/ros/noetic/setup.bash
+source ~/$CATKIN_WS/devel/setup.bash
+}
+
+setupfoxy() {
+export CATKIN_WS=dual_arm_ws
+source /opt/ros/foxy/setup.bash
+source ~/$CATKIN_WS/devel/setup.bash
+export _colcon_cd_root=~/ros2_install
+}
+
 idrac-console() {
     dockersr idrac-console
     source $PRIVATE_DOTFILES/.personal-env

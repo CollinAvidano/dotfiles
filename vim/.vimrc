@@ -130,13 +130,10 @@ set pastetoggle=<F11>
 
 " Indentation settings for using 4 spaces instead of tabs.
 " Do not change 'tabstop' from its default value of 8 with this setup.
-<<<<<<< HEAD
 set shiftwidth=4
 set softtabstop=4
 set expandtab
-=======
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
->>>>>>> master
+set smarttab
 
 " Indentation settings for using hard tabs for indent. Display tabs as
 " four characters wide.
@@ -168,19 +165,12 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-<<<<<<< HEAD
-"Start plugin loading and specify storage directory
-call plug#begin('~/.vim/plugged')
-Plug 'arcticicestudio/nord-vim'
-=======
 "vim-plug stuff"
 "Start plugin loading and specify storage directory
 call plug#begin('~/.vim/plugged')
 Plug 'arcticicestudio/nord-vim'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'hugolgst/vimsence'
-
->>>>>>> master
 
 call plug#end()
 "------------------------------------------------------------
