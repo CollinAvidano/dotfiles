@@ -64,6 +64,7 @@ unsetopt histverify
 
 # User configuration
 setopt extended_glob
+setopt auto_cd
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -95,6 +96,9 @@ fi
 
 # Colorizer aliases using grc
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
+
+# non shell independent stuff
+precmd() { eval "$PROMPT_COMMAND" }
 
 # end for zsh profiler
 # zprof

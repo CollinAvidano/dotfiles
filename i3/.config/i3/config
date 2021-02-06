@@ -15,7 +15,7 @@ font pango:monospace 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec gnome-terminal
+bindsym $mod+Return exec $scripts/i3-shell.sh
 
 # kill focused window
 bindsym $mod+x kill

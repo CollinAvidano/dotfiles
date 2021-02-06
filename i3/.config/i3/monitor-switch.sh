@@ -12,7 +12,7 @@ HDMI_STATUS=$(/bin/cat /sys/class/drm/card0/card0-HDMI-A-1/status)
 # Check to see if our state log exists
 if [ ! -f /tmp/monitor ]; then
 	touch /tmp/monitor
-	STATE=4
+	STATE=3
 else
 	STATE=$(</tmp/monitor)
 fi
@@ -28,28 +28,32 @@ case $STATE in
 	1)
 	# eDP is on, projectors not connected
 	/usr/bin/xrandr --output $INTERNAL_DISPLAY --auto
+        pactl set-card-profile 0 output:analog-stereo
 	STATE=2
 	;;
 	2)
 	# eDP is on, projectors are connected but inactive
         /usr/bin/xrandr --output $INTERNAL_DISPLAY --auto --output $EXTERNAL_DISPLAY --off
+        pactl set-card-profile 0 output:analog-stereo
         /usr/bin/notify-send -t 5000 --urgency=low "Graphics Update" "Switched to off"
 	STATE=3
 	;;
 	3)
-	# eDP is on, projectors are mirroring
+	# eDP is on, projectors are extending
 	if [ "connected" == "$HDMI_STATUS" ]; then
-		/usr/bin/xrandr --output $EXTERNAL_DISPLAY--auto --same-as $INTERNAL_DISPLAY
+            /usr/bin/xrandr --output $INTERNAL_DISPLAY --auto --output $EXTERNAL_DISPLAY --auto --left-of $INTERNAL_DISPLAY     
+            pactl set-card-profile 0 output:hdmi-stereo
 	fi
-	/usr/bin/notify-send -t 5000 --urgency=low "Graphics Update" "Switched to mirroring"
+	/usr/bin/notify-send -t 5000 --urgency=low "Graphics Update" "Switched to extending"
 	STATE=4
 	;;
 	4)
-	# eDP is on, projectors are extending
+	# eDP is on, projectors are mirroring
 	if [ "connected" == "$HDMI_STATUS" ]; then
-		/usr/bin/xrandr --output $INTERNAL_DISPLAY --auto --output $EXTERNAL_DISPLAY --auto --left-of $INTERNAL_DISPLAY
+	    /usr/bin/xrandr --output $EXTERNAL_DISPLAY --auto --same-as $INTERNAL_DISPLAY
+            pactl set-card-profile 0 output:hdmi-stereo
 	fi
-	/usr/bin/notify-send -t 5000 --urgency=low "Graphics Update" "Switched to extending"
+	/usr/bin/notify-send -t 5000 --urgency=low "Graphics Update" "Switched to mirroring"
 	STATE=2
 	;;
 	*)

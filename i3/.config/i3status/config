@@ -48,7 +48,7 @@ tztime local_it {
 }
 
 tztime local {
-        format = "%d-%m-%Y %I:%M%P"
+        format = "%m-%d-%Y %I:%M%P"
 }
 
 load {

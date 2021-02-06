@@ -6,4 +6,4 @@ setxkbmap -option altwin:swap_alt_win
 export PATH="$PATH:$HOME/.config/i3/"
 
 touchegg&
-insync start&
+#insync start&

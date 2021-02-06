@@ -15,7 +15,7 @@ alias multimc='/opt/multimc/run.sh'
 
 alias radar='mono /opt/virtual-radar/VirtualRadar.exe'
 
-#alias matlab='/media/collin/ext-storage/matlab/bin/matlab'
+alias matlab='export MESA_LOADER_DRIVER_OVERRIDE=i965; /media/$USER/ext-storage/matlab/bin/matlab -nosoftwareopengl'
 
 # fun ones
 alias fortune='fortune gatech-cs'

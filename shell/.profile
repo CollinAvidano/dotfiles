@@ -16,7 +16,6 @@ if [ -d "$HOME/bin" ]; then
     export PATH="$HOME/bin:$PATH"
 fi
 
-# set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/bin" ]; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
@@ -35,4 +34,7 @@ fi
 if [ -f $HOME/.path ]; then
     . $HOME/.path
 fi
+
+export PROMPT_COMMAND="pwd > /tmp/whereami"
+
 
