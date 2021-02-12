@@ -59,6 +59,7 @@ if [ -f /opt/umlet/umlet.jar ]; then
     alias umlet="java -jar /opt/umlet/umlet.jar"
 fi
 
+alias dual_arm="cd /home/rehang/dual_arm_ws/src/dual_arm_control/project_specific/dual_arm_control/config/launch"
 
 # Docker Aliases
 alias dlsi='docker images'
@@ -67,12 +68,11 @@ alias dockerflush='docker system prune'
 alias git-commit-walker='git commit --author "Walker Byrnes<walker.byrnes@gtri.gatech.edu>"'
 alias git-commit-collin='git commit --author "Collin Avidano<collin.avidano@gtri.gatech.edu>"'
 alias git-commit-daniel='git commit --author "Daniel Martin<daniel.martin@gtri.gatech.edu>"'
-=======
+
 # uncommon program aliases
 if [ -f $HOME/.program_aliases ]; then
     . $HOME/.program_aliases 
 fi
-
 
 eval $(thefuck --alias fuck)
 eval $(thefuck --alias FUCK)
@@ -81,4 +81,3 @@ eval $(thefuck --alias damn)
 eval $(thefuck --alias shit)
 eval $(thefuck --alias hell)
 eval $(thefuck --alias endme)
->>>>>>> master:shell/.aliases
