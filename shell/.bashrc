@@ -127,8 +127,33 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-export CATKIN_WS=~/rips_ws
+
+export SHELL_EXTENSION=bash
+
+# export CATKIN_WS=~/rips_ws
+#export CATKIN_WS=~/catkin_ws
+# export CATKIN_WS=~/rehang_ws
+# export CATKIN_WS=~/dual_arm_ws
+
 export COLCON_WS=~/ros2_ws
 
-#setupnoetic
-setupfoxy
+#setup-noetic
+setup-foxy
+
+#source /opt/ros/noetic/setup.bash
+#source ~/catkin_ws/devel/setup.bash
+## source ~/rehang_ws/devel/setup.bash
+#source ~/vr_ws/devel/setup.bash
+
+
+# just reference for the definitions of the setup bash functions
+# setup-noetic() {
+#     source /opt/ros/noetic/setup.$SHELL_EXTENSION
+#     source $CATKIN_WS/devel/setup.$SHELL_EXTENSION
+# }
+#
+#setup-foxy() {
+#    source /opt/ros/foxy/setup.$SHELL_EXTENSION
+#    export _colcon_cd_root=$COLCON_WS
+#    source $COLCON_WS/install/setup.$SHELL_EXTENSION
+#}

@@ -25,7 +25,7 @@ cdf() {
             # exits if there is a file and a directory done seperately so file is not skipped
               while [[ $(ls -DA | wc -l) = "1" && $(ls -A | wc -l) = "1" ]]; do
                 f=$(\ls -DA) # graaahhhh coloring appends text to the file variable
-                if [[ -d "$f" ]]; then 
+                if [[ -d "$f" ]]; then
                     cd "$f"
                 else
                     break
@@ -93,28 +93,38 @@ short() {
     source ~/.zshrc
 }
 
-catkinbuild() {
-    cd $CATKIN_WS && catkin build && source devel/setup.zsh
+catkin-build() {
+    cd $CATKIN_WS && catkin build && source devel/setup.$SHELL_EXTENSION
     cd -
 }
 
-catkinmake() {
-    cd $CATKIN_WS && catkin_make && source devel/setup.zsh
+catkin-make() {
+    cd $CATKIN_WS && catkin_make && source devel/setup.$SHELL_EXTENSION
     cd -
 }
 
-catkinclean() {
+catkin-clean() {
     cd $CATKIN_WS && catkin clean
     cd -
 }
 
-setupnoetic() {
-    source /opt/ros/noetic/setup.bash
+colcon-build() {
+    cd $COLCON_WS && colcon build --symlink-install --packages-select $@ && source install/setup.$SHELL_EXTENSION
+    cd -
 }
 
-setupfoxy() {
-    source /opt/ros/foxy/setup.bash
-    export _colcon_cd_root=~/ros2_ws
-    source $COLCON_WS/install/setup.bash
+colcon-build-all() {
+    cd $COLCON_WS && colcon build --symlink-install && source install/setup.$SHELL_EXTENSION
+    cd -
 }
 
+setup-noetic() {
+    source /opt/ros/noetic/setup.$SHELL_EXTENSION
+    source $CATKIN_WS/devel/setup.$SHELL_EXTENSION
+}
+
+setup-foxy() {
+    source /opt/ros/foxy/setup.$SHELL_EXTENSION
+    export _colcon_cd_root=$COLCON_WS
+    source $COLCON_WS/install/setup.$SHELL_EXTENSION
+}
