@@ -1,7 +1,3 @@
-" Features {{{1
-
-" These options and commands enable some very useful features in Vim, that
-" no user should have to live without.
 
 " Set 'nocompatible' to ward off unexpected things that your distro might
 " have made, as well as sanely reset options when re-sourcing .vimrc
@@ -10,39 +6,54 @@ set nocompatible
 " Attempt to determine the type of a file based on its name and possibly its
 " contents. Use this to allow intelligent auto-indenting for each filetype,
 " and for plugins that are filetype specific.
+" Required:
 filetype indent plugin on
+
+"*****************************************************************************
+"" Vim Plugins
+"*****************************************************************************
+
+" Autoload vim-plug"
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+"vim-plug stuff"
+"Start plugin loading and specify storage directory
+" Required:
+call plug#begin('~/.vim/plugged')
+Plug 'arcticicestudio/nord-vim'
+Plug 'francoiscabrol/ranger.vim'
+Plug 'hugolgst/vimsence'
+Plug 'preservim/vimux'
+Plug 'greghor/vim-pyshell'
+Plug 'julienr/vim-cellmode'
+
+
+call plug#end()
+"*****************************************************************************
+"" Visual Settings
+"*****************************************************************************
+
+" set vim colorscheme "
+colorscheme nord
 
 " Enable syntax highlighting
 syntax on
-
 
 " disables all colors and syntax highlighting if used with tmux
 " if (has("termguicolors"))
 "     set termguicolors
 " endif
 
-
 " Set status line display
 set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ [BUFFER=%n]\ %{strftime('%c')}
 
-"------------------------------------------------------------
-" Must have options {{{1
-"
-" These are highly recommended options.
-
-" Vim with default settings does not allow easy switching between multiple files
-" in the same editor window. Users can use multiple split windows or multiple
-" tab pages to edit multiple files, but it is still best to enable an option to
-" allow easier switching between files.
-"
-" One such option is the 'hidden' option, which allows you to re-use the same
-" window and switch from an unsaved buffer without saving it first. Also allows
-" you to keep an undo history for multiple files when re-using the same window
-" in this way. Note that using persistent undo also lets you undo in multiple
-" files even in the same window, but is less efficient and is actually designed
-" for keeping undo history after closing Vim entirely. Vim will complain if you
-" try to quit without saving, and swap files will keep you safe if your computer
-" crashes.
+"*****************************************************************************
+"" Options
+"*****************************************************************************
 set hidden
 
 set clipboard=unnamedplus
@@ -71,14 +82,6 @@ set matchpairs+=<:>
 " Highlight searches (use <C-L> to temporarily turn off highlighting; see the
 " mapping of <C-L> below)
 set hlsearch
-
-"------------------------------------------------------------
-" Usability options {{{1
-"
-" These are options that users frequently set in their .vimrc. Some of them
-" change Vim's behaviour in ways which deviate from the true Vi way, but
-" which are considered to add usability. Which, if any, of these options to
-" use is very much a personal preference, but they are harmless.
 
 " Use case insensitive search, except when using capital letters
 set ignorecase
@@ -131,21 +134,13 @@ set notimeout ttimeout ttimeoutlen=200
 " Use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F11>
 
-
-"------------------------------------------------------------
-" Indentation options {{{1
-"
-" Indentation settings according to personal preference.
-
-" Indentation settings for using 4 spaces instead of tabs.
-" Do not change 'tabstop' from its default value of 8 with this setup.
+" Indentation
 set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 
-"------------------------------------------------------------
-" Mappings {{{1
+"*****************************************************************************
+"" Mappings
+"*****************************************************************************
 "
-" Useful mappings
-
 " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
 " which is the default
 map Y y$
@@ -172,40 +167,33 @@ autocmd BufWinEnter *.* silent loadview"
 " imap <F2> <C-O>:set invpaste paste?<CR>
 " set pastetoggle=<F2>
 
+" vim cell-mode parameters
+let g:cellmode_use_tmux=1
+let g:cellmode_tmux_panenumber=1
+
 " ipython-shell
 noremap ,ss :call StartPyShell()<CR>
 noremap ,sk :call StopPyShell()<CR>
 
 " code execution
 nnoremap ,l  :call PyShellSendLine()<CR>
-noremap <silent> <C-n> :call RunTmuxPythonCell(0)<CR>
+noremap <silent> <C-b> :call RunTmuxPythonCell(0)<CR>
 noremap <C-a> :call RunTmuxPythonAllCellsAbove()<CR>
 
-"------------------------------------------------------------
-" Vim plugins "
+" code inspection
+nnoremap ,sl :call PyShellSendKey("len(<C-R><C-W>)\r")<CR><Esc>
+nnoremap ,sc :call PyShellSendKey("<C-R><C-W>.count()\r")<CR><Esc>
+nnoremap ,so :call PyShellSendKey("<C-R><C-W>\r")<CR><Esc>
+vnoremap ,so y:call PyShellSendKey(substitute('<C-R>0',"\"","\\\"","")."\r")<CR> 
 
-" Autoload vim-plug"
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
+" on data frames
+nnoremap ,sdh :call PyShellSendKey("<C-R><C-W>.head()\r")<CR><Esc>
+nnoremap ,sdc :call PyShellSendKey("<C-R><C-W>.columns\r")<CR><Esc>
+nnoremap ,sdi :call PyShellSendKey("<C-R><C-W>.info()\r")<CR><Esc>
+nnoremap ,sdd :call PyShellSendKey("<C-R><C-W>.describe()\r")<CR><Esc>
+nnoremap ,sdt :call PyShellSendKey("<C-R><C-W>.dtypes\r")<CR><Esc>
 
-"vim-plug stuff"
-"Start plugin loading and specify storage directory
-call plug#begin('~/.vim/plugged')
-Plug 'arcticicestudio/nord-vim'
-Plug 'francoiscabrol/ranger.vim'
-Plug 'hugolgst/vimsence'
-Plug 'benmmills/vimux'
-Plug 'greghor/vim-pyshell'
-Plug 'julienr/vim-cellmode'
-
-
-call plug#end()
-"------------------------------------------------------------
-
-" set vim colorscheme "
-colorscheme nord
-
-"------------------------------------------------------------
+" plot
+nnoremap ,spp :call PyShellSendKey("<C-R><C-W>.plot()\r")<CR><Esc>
+nnoremap ,sph :call PyShellSendKey("<C-R><C-W>.hist()\r")<CR><Esc>
+nnoremap ,spc :call PyShellSendKey("plt.close('all')\r")<CR><Esc>
