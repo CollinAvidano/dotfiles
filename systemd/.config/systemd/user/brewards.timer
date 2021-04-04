@@ -1,0 +1,12 @@
+[Unit]
+Description=Bing Rewards Timer
+RefuseManualStart=no
+RefuseManualStop=no
+
+[Timer]
+Persistent=true
+OnCalendar=Daily
+Unit=brewards.service
+
+[Install]
+WantedBy=default.target

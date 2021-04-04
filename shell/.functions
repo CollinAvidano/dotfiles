@@ -102,5 +102,5 @@ idrac-console() {
         docker run -d -p 5800:5800 -p 5900:5900 --name idrac-console -e IDRAC_HOST=$IDRAC_HOST -e IDRAC_USER=$IDRAC_USER -e IDRAC_PASSWORD=$IDRAC_PASSWORD domistyle/idrac6
     fi
     sleep 1
-    google-chrome 127.0.0.1:5800
+    firefox 127.0.0.1:5800
 }

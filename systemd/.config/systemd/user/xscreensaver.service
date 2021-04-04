@@ -1,0 +1,16 @@
+[Unit]
+Description=A flexible and lightweight screensaver
+
+[Service]
+Type=simple
+
+; Environment="DISPLAY=:0"
+; Environment="XAUTHORITY=/home/msh/.Xauthority"
+
+ExecStart=/usr/bin/env xscreensaver -no-splash
+Restart=always
+RestartSec=60
+
+[Install]
+WantedBy=xhack.target
+

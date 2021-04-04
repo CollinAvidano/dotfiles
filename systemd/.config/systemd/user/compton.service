@@ -1,0 +1,11 @@
+[Unit]
+Description=A Standalone Compositor
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/env compton
+StandardOutput=kmsg
+
+[Install]
+WantedBy=xhack.target
+

@@ -1,0 +1,15 @@
+[Unit]
+Description=A alternative pointer driver
+
+[Service]
+Type=simple
+
+# Environment="DISPLAY=:0"
+# Environment="XAUTHORITY=/home/msh/.Xauthority"
+ExecStart=/usr/bin/env keynav
+# Restart=always
+# RestartSec=60
+StandardOutput=kmsg
+
+[Install]
+WantedBy=xhack.target

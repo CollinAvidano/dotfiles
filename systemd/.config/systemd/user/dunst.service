@@ -1,0 +1,13 @@
+
+# WARNING. MAKE SURE THE `user-session` USE FLAG IS ENABLED ON DBUS
+# THIS UNIT SHOULD NOT BE ENABLED, DUNST SHOULD START ITSELF
+
+[Unit]
+Description=Dunst notification daemon
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/env dunst
+
+[Install]
+WantedBy=xhack.target

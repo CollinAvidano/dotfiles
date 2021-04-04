@@ -97,8 +97,12 @@ fi
 # Colorizer aliases using grc
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 
+
+
 # non shell independent stuff
+# run zsh hook
 precmd() { eval "$PROMPT_COMMAND" }
+
 
 # end for zsh profiler
 # zprof

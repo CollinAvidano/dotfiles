@@ -1,0 +1,9 @@
+[Unit]
+Description=Update seterc values
+
+[Service]
+Type=oneshot
+ExecStart=/opt/bin/update-seterc
+
+[Install]
+WantedBy=multi-user.target

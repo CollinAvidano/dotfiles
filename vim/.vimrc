@@ -15,9 +15,15 @@ filetype indent plugin on
 " Enable syntax highlighting
 syntax on
 
-if (has("termguicolors"))
-    set termguicolors
-endif
+
+" disables all colors and syntax highlighting if used with tmux
+" if (has("termguicolors"))
+"     set termguicolors
+" endif
+
+
+" Set status line display
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ [BUFFER=%n]\ %{strftime('%c')}
 
 "------------------------------------------------------------
 " Must have options {{{1
@@ -45,23 +51,26 @@ set clipboard=unnamedplus
 " Alternatives include using tabs or split windows instead of re-using the same
 " window as mentioned above, and/or either of the following options:
 " set confirm
-" set autowriteall
+set autowrite
+
+" wrap text
+set wrap
+
+" Show matching bracket
+set showmatch
 
 " Better command-line completion
 set wildmenu
 
 " Show partial commands in the last line of the screen
 set showcmd
+set showmode
+
+set matchpairs+=<:>
 
 " Highlight searches (use <C-L> to temporarily turn off highlighting; see the
 " mapping of <C-L> below)
 set hlsearch
-
-" Modelines have historically been a source of security vulnerabilities. As
-" such, it may be a good idea to disable them and use the securemodelines
-" script, <http://www.vim.org/scripts/script.php?script_id=1876>.
-" set nomodeline
-
 
 "------------------------------------------------------------
 " Usability options {{{1
@@ -130,13 +139,7 @@ set pastetoggle=<F11>
 
 " Indentation settings for using 4 spaces instead of tabs.
 " Do not change 'tabstop' from its default value of 8 with this setup.
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
-
-" Indentation settings for using hard tabs for indent. Display tabs as
-" four characters wide.
-"set shiftwidth=4
-"set tabstop=4
-
+set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 "------------------------------------------------------------
 " Mappings {{{1
@@ -151,6 +154,32 @@ map Y y$
 " next search
 nnoremap <C-L> :nohl<CR><C-L>
 
+augroup vimrc
+  au BufReadPre * setlocal foldmethod=indent
+  au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+augroup END
+
+" Map the <Space> key to toggle a selected fold opened/closed.
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
+
+" Automatically save and load folds
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview"
+
+" reformats code pasted from outside of vim
+" nnoremap <F2> :set invpaste paste?<CR>
+" imap <F2> <C-O>:set invpaste paste?<CR>
+" set pastetoggle=<F2>
+
+" ipython-shell
+noremap ,ss :call StartPyShell()<CR>
+noremap ,sk :call StopPyShell()<CR>
+
+" code execution
+nnoremap ,l  :call PyShellSendLine()<CR>
+noremap <silent> <C-n> :call RunTmuxPythonCell(0)<CR>
+noremap <C-a> :call RunTmuxPythonAllCellsAbove()<CR>
 
 "------------------------------------------------------------
 " Vim plugins "
@@ -168,6 +197,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'arcticicestudio/nord-vim'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'hugolgst/vimsence'
+Plug 'benmmills/vimux'
+Plug 'greghor/vim-pyshell'
+Plug 'julienr/vim-cellmode'
 
 
 call plug#end()

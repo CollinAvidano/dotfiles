@@ -1,0 +1,18 @@
+[Unit]
+Description=Locks the screen on suspend
+# TODO: Make this a systemd dependency, instead of using xss-lock at all
+
+[Service]
+Type=simple
+
+; Environment="DISPLAY=:0"
+; Environment="XAUTHORITY=/home/msh/.Xauthority"
+
+ExecStart=/usr/bin/env xss-lock -- xscreensaver-command -lock
+Restart=always
+RestartSec=60
+StandardOutput=kmsg
+
+[Install]
+WantedBy=xhack.target
+

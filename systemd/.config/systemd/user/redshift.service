@@ -1,0 +1,13 @@
+[Unit]
+Description=Makes the screen redder
+After=graphical.target
+
+[Service]
+Type=simple
+ExecStart=/bin/sh -c 'redshift -c $HOME/.redshiftrc'
+Restart=always
+RestartSec=60
+
+[Install]
+WantedBy=xhack.target
+

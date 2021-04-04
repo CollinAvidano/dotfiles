@@ -61,7 +61,6 @@ if [ -f $HOME/.program_aliases ]; then
     . $HOME/.program_aliases 
 fi
 
-
 eval $(thefuck --alias fuck)
 eval $(thefuck --alias FUCK)
 eval $(thefuck --alias dammit)

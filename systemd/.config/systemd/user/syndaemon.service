@@ -1,0 +1,12 @@
+[Unit]
+Description=Disables touchpad when typing on the keyboard
+
+[Service]
+Type=simple
+
+; -R needs the XRecord extension
+ExecStart=/usr/bin/env syndaemon -k -i 1 -R
+
+[Install]
+WantedBy=xhack.target
+

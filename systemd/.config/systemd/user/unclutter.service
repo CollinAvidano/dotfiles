@@ -1,0 +1,13 @@
+[Unit]
+Description=Clear the mouse to prevent me from destroying my keyboard
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/env unclutter -idle 1 -jitter 5 -root
+
+; Environment="DISPLAY=:0"
+; Environment="XAUTHORITY=/home/msh/.Xauthority"
+
+[Install]
+WantedBy=xhack.target
+

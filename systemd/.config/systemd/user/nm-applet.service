@@ -1,0 +1,17 @@
+[Unit]
+Description=NetworkManager Applet
+
+[Service]
+Type=simple
+
+; Environment="DISPLAY=:0"
+; Environment="XAUTHORITY=/home/msh/.Xauthority"
+
+ExecStart=/usr/bin/nm-applet
+Restart=always
+RestartSec=60
+StandardOutput=kmsg
+
+[Install]
+WantedBy=xhack.target
+

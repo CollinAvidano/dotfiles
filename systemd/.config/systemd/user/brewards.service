@@ -1,0 +1,9 @@
+[Unit]
+Description=Bing Rewards Service
+RefuseManualStart=no
+RefuseManualStop=no
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'python2 ~/.bingrewards/main.py'
+StandardOutput=journal
