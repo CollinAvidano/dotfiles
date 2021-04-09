@@ -32,7 +32,7 @@ alias emacs='emacsclient -nc'
 alias emacs-cmd='emacsclient -nw'
 
 # Refresh shell
-alias rfssh='source ~/.bashrc'
+alias rfssh='source ~/.'$SHELL_EXTENSION'rc'
 
 # System info aliases
 # htop instead of top
@@ -58,16 +58,6 @@ alias make-venv='python3 -m venv env'
 if [ -f /opt/umlet/umlet.jar ]; then
     alias umlet="java -jar /opt/umlet/umlet.jar"
 fi
-
-# ROS Aliases
-alias dual-arm="cd /home/rehang/dual_arm_ws/src/dual_arm_control/project_specific/dual_arm_control/config/launch"
-alias ur-sim="cd /home/rehang/ros2_ws/src/ur_sim/launch"
-alias install-deps="rosdep install -r --from-paths . --ignore-src "
-alias cdws="cd $COLCON_WS"
-
-# Git aliases
-alias git-commit-walker='git commit --author "Walker Byrnes<walker.byrnes@gtri.gatech.edu>"'
-alias git-commit-collin='git commit --author "Collin Avidano<collin.avidano@gtri.gatech.edu>"'
 
 # Docker Aliases
 alias dlsi='docker images'

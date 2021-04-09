@@ -36,3 +36,4 @@ if [ -f $HOME/.path ]; then
     . $HOME/.path
 fi
 
+gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"

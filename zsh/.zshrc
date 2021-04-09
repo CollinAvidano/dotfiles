@@ -3,6 +3,8 @@
 # Profiling code for diagnosing long startup times
 # zmodload zsh/zprof
 
+export SHELL_EXTENSION=zsh
+
 USERNAME=`whoami`
 # Path to your oh-my-zsh installation.
   export ZSH=/home/$USERNAME/.oh-my-zsh
@@ -103,9 +105,27 @@ fi
 # Colorizer aliases using grc
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 
+
+if [ -f $HOME/.ros_setup ]; then
+    . $HOME/.ros_setup
+fi
+
+#export CATKIN_WS=~/rips_ws
+#export CATKIN_WS=~/catkin_ws
+#export CATKIN_WS=~/rehang_ws
+export CATKIN_WS=~/dual_arm_ws
+
+#export COLCON_WS=~/ros2_ws
+
+setup-noetic
+#setup-foxy
+
+#source /opt/ros/noetic/setup.bash
+#source ~/catkin_ws/devel/setup.bash
+## source ~/rehang_ws/devel/setup.bash
+#source ~/vr_ws/devel/setup.bash
+
+. /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
+
 # end for zsh profiler
 # zprof
-
-export CATKIN_WS="/home/collin/dual_ws"
-source /opt/ros/melodic/setup.zsh
-source $CATKIN_WS/devel/setup.zsh

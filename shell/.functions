@@ -93,38 +93,3 @@ short() {
     source ~/.zshrc
 }
 
-catkin-build() {
-    cd $CATKIN_WS && catkin build && source devel/setup.$SHELL_EXTENSION
-    cd -
-}
-
-catkin-make() {
-    cd $CATKIN_WS && catkin_make && source devel/setup.$SHELL_EXTENSION
-    cd -
-}
-
-catkin-clean() {
-    cd $CATKIN_WS && catkin clean
-    cd -
-}
-
-colcon-build() {
-    cd $COLCON_WS && colcon build --symlink-install --packages-select $@ && source install/setup.$SHELL_EXTENSION
-    cd -
-}
-
-colcon-build-all() {
-    cd $COLCON_WS && colcon build --symlink-install && source install/setup.$SHELL_EXTENSION
-    cd -
-}
-
-setup-noetic() {
-    source /opt/ros/noetic/setup.$SHELL_EXTENSION
-    source $CATKIN_WS/devel/setup.$SHELL_EXTENSION
-}
-
-setup-foxy() {
-    source /opt/ros/foxy/setup.$SHELL_EXTENSION
-    export _colcon_cd_root=$COLCON_WS
-    source $COLCON_WS/install/setup.$SHELL_EXTENSION
-}

@@ -117,6 +117,10 @@ if [ -f $HOME/.path ]; then
     . $HOME/.path
 fi
 
+if [ -f $HOME/.ros_setup ]; then
+    . $HOME/.ros_setup
+fi
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -145,6 +149,7 @@ setup-foxy
 ## source ~/rehang_ws/devel/setup.bash
 #source ~/vr_ws/devel/setup.bash
 
+. /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
 
 # just reference for the definitions of the setup bash functions
 # setup-noetic() {
