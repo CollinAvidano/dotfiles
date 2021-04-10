@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -e
+
+/usr/bin/notify-send --urgency=normal -t 5000 "TEST MESSAGE"
+
+if [[ -f "$HOME/.config/i3/monitor-hotplug.sh" ]]; then
+    bash "$HOME/.config/i3/monitor-hotplug.sh"
+fi
