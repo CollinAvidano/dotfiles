@@ -1,7 +1,9 @@
-# I primarily launch zsh as my default shell so this doesnt chain through .bashrc like some others I have seen.
+#I primarily launch zsh as my default shell so this doesnt chain through .bashrc like some others I have seen.
 
 # Profiling code for diagnosing long startup times
 # zmodload zsh/zprof
+
+export SHELL_EXTENSION=zsh
 
 USERNAME=`whoami`
 # Path to your oh-my-zsh installation.
@@ -72,6 +74,9 @@ setopt auto_cd
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -91,6 +96,10 @@ if [ -f $HOME/.shortcuts ]; then
     . $HOME/.shortcuts
 fi
 
+if [ -f $HOME/.path ]; then
+    . $HOME/.path
+fi
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -98,11 +107,34 @@ fi
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 
 
+<<<<<<< HEAD
 
 # non shell independent stuff
 # run zsh hook
 precmd() { eval "$PROMPT_COMMAND" }
 
+=======
+if [ -f $HOME/.ros_setup ]; then
+    . $HOME/.ros_setup
+fi
+
+#export CATKIN_WS=~/rips_ws
+#export CATKIN_WS=~/catkin_ws
+#export CATKIN_WS=~/rehang_ws
+export CATKIN_WS=~/dual_arm_ws
+
+#export COLCON_WS=~/ros2_ws
+
+setup-noetic
+#setup-foxy
+
+#source /opt/ros/noetic/setup.bash
+#source ~/catkin_ws/devel/setup.bash
+## source ~/rehang_ws/devel/setup.bash
+#source ~/vr_ws/devel/setup.bash
+
+. /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
+>>>>>>> origin/work_dotfiles
 
 # end for zsh profiler
 # zprof

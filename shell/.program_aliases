@@ -25,6 +25,4 @@ alias fun='fortune'
 alias dlsi='docker images'
 alias dockerflush='docker system prune'
 
-
 alias ipython='python3 -m IPython'
-

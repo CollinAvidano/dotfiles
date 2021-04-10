@@ -9,8 +9,9 @@
 [core]
     autocrlf = input
 [alias]
-    mainlog = log --all --decorate --oneline --graph
-    subup = submodule update --init --recursive
-    # for adding tracking of things that cant be moved here which is really only done in the rare case of things that look for symlinking
-    addext = --work-tree=/ add
-    
+	mainlog = log --all --decorate --oneline --graph
+	subup = submodule update --init --recursive
+        # for adding tracking of things that cant be moved here which is really only done in the rare case of things that look for symlinking
+        addext = --work-tree=/ add
+[http]
+	sslCAinfo = /etc/ssl/certs/ca-certificates.crt

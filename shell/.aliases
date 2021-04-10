@@ -32,7 +32,7 @@ alias emacs='emacsclient -nc'
 alias emacs-cmd='emacsclient -nw'
 
 # Refresh shell
-alias rfssh='source ~/.zshrc'
+alias rfssh='source ~/.'$SHELL_EXTENSION'rc'
 
 alias sound='pavucontrol'
 
@@ -56,9 +56,18 @@ alias activate-env='source env/bin/activate && unset PYTHONPATH'
 alias make-env='python3 -m venv env'
 alias make-venv='python3 -m venv env'
 
+# Umlet alias
+if [ -f /opt/umlet/umlet.jar ]; then
+    alias umlet="java -jar /opt/umlet/umlet.jar"
+fi
+
+# Docker Aliases
+alias dlsi='docker images'
+alias dockerflush='docker system prune'
+
 # uncommon program aliases
 if [ -f $HOME/.program_aliases ]; then
-    . $HOME/.program_aliases 
+    . $HOME/.program_aliases
 fi
 
 eval $(thefuck --alias fuck)

@@ -11,6 +11,9 @@ export PATH="$PATH:$HOME/.dotfiles/scripts/.util-scripts"
 # Program path additions
 export PATH="$PATH:$HOME/.dotfiles/scripts/.program-scripts"
 
+# add i3 specific scripts such as lock, toggle touchpad and others
+export PATH="$PATH:$HOME/.config/i3/"
+
 export PATH="$PATH:/opt/blender"
 export PATH="$PATH:/opt/eagle"
 export PATH="$PATH:/opt/logic" # senale logic analyzer

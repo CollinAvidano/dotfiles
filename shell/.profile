@@ -37,4 +37,4 @@ fi
 
 export PROMPT_COMMAND="pwd > /tmp/whereami"
 
-
+gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"

@@ -1,0 +1,79 @@
+
+# Shortcut Aliases
+alias dual-arm="cd $HOME/dual_arm_ws/src/dual_arm_control/project_specific/dual_arm_control/config/launch"
+alias ur-sim="cd $HOME/ros2_ws/src/general_packages/simulation/ur_sim"
+
+# Useful Aliases
+alias install-deps="rosdep install -r --from-paths . --ignore-src "
+alias cdws="cd $COLCON_WS"
+
+
+# Exported Environment variables
+export PATH="$PATH:/usr/share/colcon_cd/function"
+. /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
+
+#Useful Functions
+
+ros2-color() {
+    ros2 $@ | grep --color -e ".*FATAL.*" --color -e ".*ERROR.*" -e "^"
+}
+
+catkin-build() {
+    cd $CATKIN_WS && catkin build $@ && source devel/setup.$SHELL_EXTENSION
+    cd -
+}
+
+catkin-build-debug() {
+    cd $CATKIN_WS && catkin build --cmake-args -DCMAKE_BUILD_TYPE=Debug $@ && source devel/setup.$SHELL_EXTENSION
+    cd -
+}
+
+catkin-make() {
+    cd $CATKIN_WS && catkin_make && source devel/setup.$SHELL_EXTENSION
+    cd -
+}
+
+catkin-clean() {
+    cd $CATKIN_WS && catkin clean
+    cd -
+}
+
+colcon-build() {
+    cd $COLCON_WS && colcon build --symlink-install --packages-select $@ && source install/setup.$SHELL_EXTENSION
+    cd -
+}
+
+colcon-build-all() {
+    cd $COLCON_WS && colcon build --symlink-install && source install/setup.$SHELL_EXTENSION
+    cd -
+}
+
+colcon-build-debug() {
+    cd $COLCON_WS && colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Debug --packages-select $@ && source install/setup.$SHELL_EXTENSION
+    cd -
+}
+
+colcon-build-debug-all() {
+    cd $COLCON_WS && colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Debug && source install/setup.$SHELL_EXTENSION
+    cd -
+}
+
+setup-noetic() {
+    source /opt/ros/noetic/setup.$SHELL_EXTENSION
+    source $CATKIN_WS/devel/setup.$SHELL_EXTENSION
+}
+
+setup-foxy() {
+    source /opt/ros/foxy/setup.$SHELL_EXTENSION
+    export _colcon_cd_root=$COLCON_WS
+    source $COLCON_WS/install/setup.$SHELL_EXTENSION
+
+    alias rostopic="ros2 topic"
+    alias roslaunch="ros2 launch"
+}
+
+setup-colcon-cd() {
+    sudo chmod +xrw /usr/share/colcon_cd/function/colcon_cd.sh
+    sudo ln -s /usr/share/colcon_cd/function/colcon_cd.sh /usr/share/colcon_cd/function/colcon_cd
+    sudo chmod +xrw /usr/share/colcon_cd/function/colcon_cd
+}

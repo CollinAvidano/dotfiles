@@ -35,8 +35,9 @@ values."
    ;; <M-m f e R> (Emacs style) to install them.
    ;; ----------------------------------------------------------------
    dotspacemacs-configuration-layers
-      '(php
-           lsp
+   '(
+     ;;php
+     lsp
      javascript
      (auto-completion :variables
                       auto-completion-return-key-behavior 'complete

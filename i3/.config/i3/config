@@ -45,7 +45,6 @@ bindsym XF86Display exec $scripts/monitor-switch.sh
 
 bindsym XF86Tools exec --no-startup-id $scripts/toggletouchpad.sh
 
-
 # bindsym XF86Bluetooth exec $scripts/togglebluetooth.sh
 
 # change focus
@@ -168,6 +167,12 @@ exec --no-startup-id /usr/bin/feh --bg-scale /home/collin/pictures/wallpaper.png
 bindsym Print exec gnome-screenshot -ia &
 bindsym Control+Print exec gnome-screenshot -id &
 
+<<<<<<< HEAD
+# Wallpaper
+exec /usr/bin/feh --bg-scale ~/pictures/Gtrilogo.png &
+
+=======
+>>>>>>> master
 # Network manager applet
 exec --no-startup-id nm-applet &
 
@@ -180,10 +185,13 @@ exec --no-startup-id udiskie --tray --use-udisks2 &
 # Bluetooth applet
 # exec --no-startup-id blueman-applet
 
+<<<<<<< HEAD
+=======
 
 # Setup Gaps
 gaps inner 5
 gaps outer 5
+>>>>>>> master
 
 
 # Nord theme colors

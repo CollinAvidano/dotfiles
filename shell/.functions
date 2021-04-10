@@ -25,7 +25,7 @@ cdf() {
             # exits if there is a file and a directory done seperately so file is not skipped
               while [[ $(ls -DA | wc -l) = "1" && $(ls -A | wc -l) = "1" ]]; do
                 f=$(\ls -DA) # graaahhhh coloring appends text to the file variable
-                if [[ -d "$f" ]]; then 
+                if [[ -d "$f" ]]; then
                     cd "$f"
                 else
                     break
@@ -63,7 +63,6 @@ submoduleadd() {
     git submodule update --init --recursive
     cd $CATKIN_WS && rosdep install --from-paths src --ignore-src -r -y
 }
-
 
 submoduleremove() {
     repopath=$(git rev-parse --show-toplevel)
@@ -103,4 +102,10 @@ idrac-console() {
     fi
     sleep 1
     firefox 127.0.0.1:5800
+}
+
+# Shortcut creating function
+short() {
+    echo alias $1=\'$PWD\/$2\' >> ~/.dotfiles/system/.shortcuts
+    source ~/.zshrc
 }
