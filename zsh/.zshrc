@@ -106,14 +106,10 @@ fi
 # Colorizer aliases using grc
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 
-
-<<<<<<< HEAD
-
 # non shell independent stuff
 # run zsh hook
 precmd() { eval "$PROMPT_COMMAND" }
 
-=======
 if [ -f $HOME/.ros_setup ]; then
     . $HOME/.ros_setup
 fi
@@ -134,7 +130,6 @@ setup-noetic
 #source ~/vr_ws/devel/setup.bash
 
 . /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
->>>>>>> origin/work_dotfiles
 
 # end for zsh profiler
 # zprof

@@ -137,11 +137,9 @@ set pastetoggle=<F11>
 " Indentation
 set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 
-<<<<<<< HEAD
 "*****************************************************************************
 "" Mappings
 "*****************************************************************************
-=======
 "------------------------------------------------------------
 " Indentation options {{{1
 "
@@ -162,7 +160,6 @@ set smarttab
 
 "------------------------------------------------------------
 " Mappings {{{1
->>>>>>> origin/work_dotfiles
 "
 " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
 " which is the default
@@ -172,7 +169,6 @@ map Y y$
 " next search
 nnoremap <C-L> :nohl<CR><C-L>
 
-<<<<<<< HEAD
 augroup vimrc
   au BufReadPre * setlocal foldmethod=indent
   au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
@@ -221,30 +217,3 @@ nnoremap ,sdt :call PyShellSendKey("<C-R><C-W>.dtypes\r")<CR><Esc>
 nnoremap ,spp :call PyShellSendKey("<C-R><C-W>.plot()\r")<CR><Esc>
 nnoremap ,sph :call PyShellSendKey("<C-R><C-W>.hist()\r")<CR><Esc>
 nnoremap ,spc :call PyShellSendKey("plt.close('all')\r")<CR><Esc>
-=======
-
-"------------------------------------------------------------
-" Vim plugins "
-
-" Autoload vim-plug"
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
-"vim-plug stuff"
-"Start plugin loading and specify storage directory
-call plug#begin('~/.vim/plugged')
-Plug 'arcticicestudio/nord-vim'
-Plug 'francoiscabrol/ranger.vim'
-Plug 'hugolgst/vimsence'
-
-call plug#end()
-"------------------------------------------------------------
-
-" set vim colorscheme "
-colorscheme nord
-
-"------------------------------------------------------------
->>>>>>> origin/work_dotfiles
