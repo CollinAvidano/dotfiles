@@ -115,9 +115,9 @@ if [ -f $HOME/.ros_setup ]; then
 fi
 
 #export CATKIN_WS=~/rips_ws
-#export CATKIN_WS=~/catkin_ws
-#export CATKIN_WS=~/rehang_ws
 export CATKIN_WS=~/dual_arm_ws
+export CATKIN_WS=~/behavior_ws
+export CATKIN_WS=~/gohbot_ws
 
 #export COLCON_WS=~/ros2_ws
 
