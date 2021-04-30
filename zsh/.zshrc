@@ -114,22 +114,17 @@ if [ -f $HOME/.ros_setup ]; then
     . $HOME/.ros_setup
 fi
 
-#export CATKIN_WS=~/rips_ws
-export CATKIN_WS=~/dual_arm_ws
-export CATKIN_WS=~/behavior_ws
-export CATKIN_WS=~/gohbot_ws
+#export CATKIN_WS=~/documents/ros/rips_ws
+export CATKIN_WS=~/documents/ros/dual_arm_ws
+#export CATKIN_WS=~/documents/ros/behavior_ws
+#export CATKIN_WS=~/documents/ros/gohbot_ws
 
 #export COLCON_WS=~/ros2_ws
 
 setup-noetic
 #setup-foxy
-
-#source /opt/ros/noetic/setup.bash
-#source ~/catkin_ws/devel/setup.bash
-## source ~/rehang_ws/devel/setup.bash
-#source ~/vr_ws/devel/setup.bash
-
-. /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
+#
+#. /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
 
 # end for zsh profiler
 # zprof

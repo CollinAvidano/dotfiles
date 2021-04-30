@@ -4,8 +4,8 @@ alias dual-arm="cd $HOME/dual_arm_ws/src/dual_arm_control/project_specific/dual_
 alias ur-sim="cd $HOME/ros2_ws/src/general_packages/simulation/ur_sim"
 
 # Useful Aliases
-alias install-deps="rosdep install -r --from-paths . --ignore-src "
-alias cdws="cd $COLCON_WS"
+alias install-deps="rosdep install -r --from-paths . --ignore-src"
+alias cdws="cd $CATKIN_WS"
 
 
 # Exported Environment variables

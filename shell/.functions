@@ -40,6 +40,10 @@ cdf() {
     fi
 }
 
+cded() {
+    cd $(dirname $(where $1))
+}
+
 largest-files() {
     DIR=${1:-./}
     NUMRES=${2:-20}

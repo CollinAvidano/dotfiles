@@ -9,7 +9,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 10
+font pango:Sauce Code Pro Medium Nerd Font Complete, FontAwesome, 9
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -36,7 +36,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle
 
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5 # increase screen brightness
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 # decrease screen brightness 
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 # decrease screen brightness
 bindsym XF86WLANoff exec --no-startup-id ifconfig wlp2s0 down toggle
 bindsym XF86WLANon exec --no-startup-id ifconfig wlp2s0 up toggle
 
@@ -49,7 +49,7 @@ bindsym XF86Tools exec --no-startup-id $scripts/toggletouchpad.sh
 
 # change focus
 bindsym $mod+j focus down
-bindsym $mod+k focus up 
+bindsym $mod+k focus up
 bindsym $mod+l focus right
 bindsym $mod+h focus left
 
@@ -167,12 +167,6 @@ exec --no-startup-id /usr/bin/feh --bg-scale /home/collin/pictures/wallpaper.png
 bindsym Print exec gnome-screenshot -ia &
 bindsym Control+Print exec gnome-screenshot -id &
 
-<<<<<<< HEAD
-# Wallpaper
-exec /usr/bin/feh --bg-scale ~/pictures/Gtrilogo.png &
-
-=======
->>>>>>> master
 # Network manager applet
 exec --no-startup-id nm-applet &
 
@@ -185,13 +179,9 @@ exec --no-startup-id udiskie --tray --use-udisks2 &
 # Bluetooth applet
 # exec --no-startup-id blueman-applet
 
-<<<<<<< HEAD
-=======
-
 # Setup Gaps
 gaps inner 5
 gaps outer 5
->>>>>>> master
 
 
 # Nord theme colors
@@ -233,4 +223,3 @@ bar {
 
   }
 }
-
