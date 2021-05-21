@@ -51,6 +51,17 @@ alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 alias list-installed-packages='sudo apt list --installed'
 alias search-installed-packages='sudo apt list --installed | grep '
 
+alias ns='tmux new -s '
+alias as='tmux attach-session -t '
+alias list-ports='netstat -tulpn'
+
+link-speeds(){
+    ip a |awk '/state UP/{print $2}' | sed 's/://' | while read output;
+    do
+    echo $output:
+    sudo ethtool $output |grep "Speed:"
+    done
+}
 alias env-activate='source env/bin/activate && unset PYTHONPATH'
 alias activate-env='source env/bin/activate && unset PYTHONPATH'
 alias make-env='python3 -m venv env'

@@ -167,12 +167,6 @@ exec --no-startup-id /usr/bin/feh --bg-scale /home/collin/pictures/wallpaper.png
 bindsym Print exec gnome-screenshot -ia &
 bindsym Control+Print exec gnome-screenshot -id &
 
-<<<<<<< HEAD
-# Wallpaper
-exec /usr/bin/feh --bg-scale ~/pictures/Gtrilogo.png &
-
-=======
->>>>>>> master
 # Network manager applet
 exec --no-startup-id nm-applet &
 
@@ -185,17 +179,11 @@ exec --no-startup-id udiskie --tray --use-udisks2 &
 # Bluetooth applet
 # exec --no-startup-id blueman-applet
 
-<<<<<<< HEAD
-=======
-
 # Setup Gaps
 gaps inner 5
 gaps outer 5
->>>>>>> master
-
 
 # Nord theme colors
-
 set $nord0   #2E3440
 set $nord1   #3B4252
 set $nord2   #434C5E

@@ -114,12 +114,14 @@ if [ -f $HOME/.ros_setup ]; then
     . $HOME/.ros_setup
 fi
 
-#export CATKIN_WS=~/rips_ws
-export CATKIN_WS=~/dual_arm_ws
-export CATKIN_WS=~/behavior_ws
-export CATKIN_WS=~/gohbot_ws
+#export CATKIN_WS=~/documents/ros/rips_ws
+#export CATKIN_WS=~/documents/ros/dual_arm_ws
+#export CATKIN_WS=~/documents/ros/behavior_ws
+#export CATKIN_WS=~/documents/ros/gohbot_ws
+export CATKIN_WS=~/documents/ros/perception_ws
 
-#export COLCON_WS=~/ros2_ws
+
+#export COLCON_WS=~/documents/ros/ros2_ws
 
 setup-noetic
 #setup-foxy
@@ -133,3 +135,6 @@ setup-noetic
 
 # end for zsh profiler
 # zprof
+export WEBOTS_HOME=/usr/local/webots
+export WEBOTS_LIBRARY_PATH=/home/collin/documents/ros/dual_arm_ws/devel/lib/webots_sim_driver
+export WEBOTS_PROJECT=/home/collin/documents/ros/dual_arm_ws/src/dual_arm_control/hardware/webots_sim_driver
