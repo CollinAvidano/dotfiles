@@ -69,9 +69,10 @@ values."
      html
      java
      (markdown :variables markdown-live-preview-engine 'vmd)
-     octave
-     python
-     rust
+        octave
+    ;; dont use anaconda mode python which is the default and tries to use anacondas default enviro
+    (python :variables python-backend 'lsp python-lsp-server 'pyls python-formatter 'lsp)
+    rust
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)

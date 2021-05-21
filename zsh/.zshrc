@@ -120,18 +120,12 @@ fi
 #export CATKIN_WS=~/documents/ros/gohbot_ws
 export CATKIN_WS=~/documents/ros/perception_ws
 
-
 #export COLCON_WS=~/documents/ros/ros2_ws
 
 setup-noetic
 #setup-foxy
 
-#source /opt/ros/noetic/setup.bash
-#source ~/catkin_ws/devel/setup.bash
-## source ~/rehang_ws/devel/setup.bash
-#source ~/vr_ws/devel/setup.bash
-
-. /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
+#. /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
 
 # end for zsh profiler
 # zprof
