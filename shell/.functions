@@ -107,9 +107,3 @@ idrac-console() {
     sleep 1
     firefox 127.0.0.1:5800
 }
-
-# Shortcut creating function
-short() {
-    echo alias $1=\'$PWD\/$2\' >> ~/.dotfiles/system/.shortcuts
-    source ~/.zshrc
-}
