@@ -48,12 +48,12 @@ largest-files() {
     DIR=${1:-./}
     NUMRES=${2:-20}
     if [ -z "$3" ]; then
-        du -a $1 | sort -n -r| head -n $NUMRES
+        du -h -a $1 | sort -h -r| head -n $NUMRES
     else
-        du -a $1 | sort -n | head -n $NUMRES
+        du -h -a $1 | sort -h | head -n $NUMRES
     fi
-
 }
+
 
 # Shortcut creating function
 short() {
