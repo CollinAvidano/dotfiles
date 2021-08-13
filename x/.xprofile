@@ -1,4 +1,6 @@
-# Startup applications and configuration that is common to both I3 and gnome-desktop
+# .xprofile is just for setting up the environment when logging in with an X session (usually via a display manager). It is similar to your .profile file, but specific to x sessions.
+
+# keys should already be done in .xinitrc
 setxkbmap -option caps:escape
 setxkbmap -option altwin:swap_alt_win
 

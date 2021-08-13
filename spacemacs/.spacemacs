@@ -36,19 +36,19 @@ values."
    ;; ----------------------------------------------------------------
    dotspacemacs-configuration-layers
    '(
-     ;;php
-     lsp
-     javascript
-     (auto-completion :variables
-                      auto-completion-return-key-behavior 'complete
-                      auto-completion-tab-key-behavior 'cycle
-                      auto-completion-complete-with-key-sequence nil
-                      auto-completion-complete-with-key-sequence-delay 0.1
-                      auto-completion-private-snippets-directory nil
-                      auto-completion-enable-help-tooltip t
-                      auto-completion-enable-snippets-in-popup t
-                      )
-     (c-c++ :variables
+        ;;php
+        lsp
+        javascript
+        (auto-completion :variables
+                        auto-completion-return-key-behavior 'complete
+                        auto-completion-tab-key-behavior 'cycle
+                        auto-completion-complete-with-key-sequence nil
+                        auto-completion-complete-with-key-sequence-delay 0.1
+                        auto-completion-private-snippets-directory nil
+                        auto-completion-enable-help-tooltip t
+                        auto-completion-enable-snippets-in-popup t
+                        )
+        (c-c++ :variables
             c++-enable-clang-format-on-save t
             c++-enable-organize-includes-on-save t
             c-c++-backend 'lsp-ccls
@@ -56,50 +56,52 @@ values."
             c-c++-lsp-enable-semantic-highlight 'rainbow
             c-c++-enable-clang-support t
             )
-     csv
-     emacs-lisp
-     (latex :variables
+        csv
+        emacs-lisp
+        (latex :variables
             latex-build-command "pdflatex"
             latex-enable-auto-fill t)
-     gtags
-     git
-     graphviz
-     helm
-     org
-     html
-     java
-     (markdown :variables markdown-live-preview-engine 'vmd)
+        gtags
+        git
+        graphviz
+        helm
+        org
+        html
+        java
+        (markdown :variables markdown-live-preview-engine 'vmd)
+        (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
         octave
-    ;; dont use anaconda mode python which is the default and tries to use anacondas default enviro
-    (python :variables python-backend 'lsp python-lsp-server 'pyls python-formatter 'lsp)
-    rust
-     (shell :variables
+        ;; dont use anaconda mode python which is the default and tries to use anacondas default enviro
+        (python :variables python-backend 'lsp python-lsp-server 'pyls python-formatter 'lsp)
+        rust
+        (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
-     semantic
-     spell-checking
-     syntax-checking
-     version-control
-     vimscript
-     yaml
-     )
-   ;; List of additional packages that will be installed without being
-   ;; wrapped in a layer. If you need some configuration for these
-   ;; packages, then consider creating a layer. You can also put the
-   ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(nyan-mode)
-   ;; A list of packages that cannot be updated.
-   dotspacemacs-frozen-packages '()
-   ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(smartparens)
-   ;; Defines the behaviour of Spacemacs when installing packages.
-   ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
-   ;; `used-only' installs only explicitly used packages and uninstall any
-   ;; unused packages as well as their unused dependencies.
-   ;; `used-but-keep-unused' installs only the used packages but won't uninstall
-   ;; them if they become unused. `all' installs *all* packages supported by
-   ;; Spacemacs and never uninstall them. (default is `used-only')
-   dotspacemacs-install-packages 'used-only))
+        semantic
+        spell-checking
+        syntax-checking
+        version-control
+        vimscript
+        yaml
+        )
+        ;; List of additional packages that will be installed without being
+        ;; wrapped in a layer. If you need some configuration for these
+        ;; packages, then consider creating a layer. You can also put the
+        ;; configuration in `dotspacemacs/user-config'.
+        ;;dotspacemacs-additional-packages '(nyan-mode verilog-mode rosemacs)
+        dotspacemacs-additional-packages '(nyan-mode verilog-mode)
+        ;; A list of packages that cannot be updated.
+        dotspacemacs-frozen-packages '()
+        ;; A list of packages that will not be installed and loaded.
+        dotspacemacs-excluded-packages '(smartparens)
+        ;; Defines the behaviour of Spacemacs when installing packages.
+        ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
+        ;; `used-only' installs only explicitly used packages and uninstall any
+        ;; unused packages as well as their unused dependencies.
+        ;; `used-but-keep-unused' installs only the used packages but won't uninstall
+        ;; them if they become unused. `all' installs *all* packages supported by
+        ;; Spacemacs and never uninstall them. (default is `used-only')
+        dotspacemacs-install-packages 'used-only))
 
 (defun dotspacemacs/init ()
   "Initialization function.

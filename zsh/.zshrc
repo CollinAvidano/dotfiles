@@ -62,7 +62,7 @@ source $ZSH/oh-my-zsh.sh
 unsetopt histverify
 
 # don't share history
-#unsetopt sharehistory
+unsetopt sharehistory
 
 # User configuration
 setopt extended_glob
@@ -72,7 +72,7 @@ setopt auto_cd
 # export LANG=en_US.UTF-8
 
 # Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+export ARCHFLAGS="-arch x86_64"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -116,9 +116,11 @@ fi
 
 #export CATKIN_WS=~/documents/ros/rips_ws
 #export CATKIN_WS=~/documents/ros/dual_arm_ws
+#export CATKIN_WS=~/documents/ros/forklift_ws
 #export CATKIN_WS=~/documents/ros/behavior_ws
 #export CATKIN_WS=~/documents/ros/gohbot_ws
-export CATKIN_WS=~/documents/ros/perception_ws
+#export CATKIN_WS=~/documents/ros/perception_ws
+export CATKIN_WS=~/temp/test-ws
 
 #export COLCON_WS=~/documents/ros/ros2_ws
 
@@ -129,6 +131,3 @@ setup-noetic
 
 # end for zsh profiler
 # zprof
-export WEBOTS_HOME=/usr/local/webots
-export WEBOTS_LIBRARY_PATH=/home/collin/documents/ros/dual_arm_ws/devel/lib/webots_sim_driver
-export WEBOTS_PROJECT=/home/collin/documents/ros/dual_arm_ws/src/dual_arm_control/hardware/webots_sim_driver

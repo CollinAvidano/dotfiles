@@ -2,6 +2,9 @@
 export PATH="$PATH:$HOME/bin:$HOME/.local/bin"
 export PATH="$PATH:/bin:/sbin"
 
+# so that libiio can be found
+export PATH=/usr/lib/:$PATH
+
 # add i3 specific scripts such as lock, toggle touchpad and others
 export PATH="$PATH:$HOME/.config/i3/"
 
@@ -26,6 +29,7 @@ export STM32_TOOLCHAIN_PATH="/usr/lib/arm-none-eabi"
 export PATH="$PATH:/opt/multimc"
 export PATH="$PATH:/opt/evelauncher"
 export PATH="$PATH:/opt/ghidra"
+export PATH="$PATH:/opt/zotero"
 
 export PATH="$PATH:$HOME/.config/spicetify/spicetify-cli"
 export PATH="$PATH:$HOME/.cargo/bin"

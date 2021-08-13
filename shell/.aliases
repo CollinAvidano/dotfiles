@@ -1,4 +1,11 @@
 #!/bin/zsh
+#
+## A function to see if a command exists. Basically cross platform
+exists() {
+    command -v $1 >/dev/null
+    return $?
+}
+
 
 # When using sudo, use alias expansion (otherwise sudo ignores your aliases)
 alias sudo=$'sudo '
@@ -11,25 +18,31 @@ alias please='sudo'
 # pwetty colors
 alias ls='ls --color=always'
 
-# Basic ls aliases
+# List aliases
 alias l='ls -CF'
 alias ll='ls -alF'
 alias lsa='ls -A'
 alias lsh='ls -alh'
-# df aliases
-alias df='df -H'
 
-# Basic remove aliases
+# Remove aliases
 alias rm='rm -rf'
 
-# Vim aliases
-alias v='vim'
-alias svim='sudo vim'
-alias sv='sudo vim'
+# Copy aliases
+alias cp='cp -r'
+alias scp='scp -r'
 
-# Emacs alias
-alias emacs='emacsclient -nc'
-alias emacs-cmd='emacsclient -nw'
+if exists vim; then
+    # Vim aliases
+    alias v='vim'
+    alias svim='sudo vim'
+    alias sv='sudo vim'
+fi
+
+if exists emacs; then
+    # Emacs alias
+    alias emacs='emacsclient -nc'
+    alias emacs-cmd='emacsclient -nw'
+fi
 
 # Refresh shell
 alias rfssh='source ~/.'$SHELL_EXTENSION'rc'
@@ -38,8 +51,15 @@ alias sound='pavucontrol'
 
 # System info aliases
 # htop instead of top
-alias top='htop'
+if exists htop; then
+    alias top='htop'
+fi
+
+alias df='df -H'
+
 alias pss='ps -e | grep '
+
+alias force-kill='killall -9 '
 
 # Free memory info
 alias meminfo='free -m -l -t'
@@ -50,9 +70,38 @@ alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 # Apt package management
 alias list-installed-packages='sudo apt list --installed'
 alias search-installed-packages='sudo apt list --installed | grep '
+# tries to run an apt update and fix any keys that return no pubkey
+fix-apt-keys() {
+    sudo apt update | sed -n -e 's/^.*NO_PUBKEY[[:space:]]//p' | xargs -I % sudo apt-key adv --recv-key --keyserver keyserver.ubuntu.com %
+    sudo apt update | sed -n -e 's/^.*EXPKEYSIG[[:space:]]//p' | xargs -I % sudo apt-key adv --recv-key --keyserver keyserver.ubuntu.com %
+}
 
-alias ns='tmux new -s '
-alias as='tmux attach-session -t '
+
+if exists git; then
+	alias g='git'
+	alias gs='git status'
+	alias gr='cd $(git rev-parse --show-toplevel)'
+fi
+
+alias py='python'
+if exists python3; then
+	alias py3='python3'
+    alias make-env='python3 -m venv env'
+    alias make-venv='python3 -m venv env'
+    alias env-activate='source env/bin/activate && unset PYTHONPATH'
+    alias activate-env='source env/bin/activate && unset PYTHONPATH'
+    alias ipython='python3 -m IPython'
+fi
+
+if exists python2; then
+	alias py2='python2'
+fi
+
+if exists tmux; then
+    alias ns='tmux new -s '
+    alias as='tmux attach-session -t '
+fi
+
 alias list-ports='netstat -tulpn'
 
 link-speeds(){
@@ -62,29 +111,13 @@ link-speeds(){
     sudo ethtool $output |grep "Speed:"
     done
 }
-alias env-activate='source env/bin/activate && unset PYTHONPATH'
-alias activate-env='source env/bin/activate && unset PYTHONPATH'
-alias make-env='python3 -m venv env'
-alias make-venv='python3 -m venv env'
 
-# Umlet alias
-if [ -f /opt/umlet/umlet.jar ]; then
-    alias umlet="java -jar /opt/umlet/umlet.jar"
-fi
+alias unlock-priv-env="gpg --decrypt --output $PRIVATE_DOTFILES/.private-env $PRIVATE_DOTFILES/.private-env.gpg"
+alias lock-priv-env="source $PRIVATE_DOTFILES/.personal-env && gpg --symmetric --output $PRIVATE_DOTFILES/.private-env.gpg $PRIVATE_DOTFILES/.private-env && rm $PRIVATE_DOTFILES/.private-env"
 
-# Docker Aliases
-alias dlsi='docker images'
-alias dockerflush='docker system prune'
 
 # uncommon program aliases
 if [ -f $HOME/.program_aliases ]; then
     . $HOME/.program_aliases
 fi
 
-eval $(thefuck --alias fuck)
-eval $(thefuck --alias FUCK)
-eval $(thefuck --alias dammit)
-eval $(thefuck --alias damn)
-eval $(thefuck --alias shit)
-eval $(thefuck --alias hell)
-eval $(thefuck --alias endme)

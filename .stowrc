@@ -1,0 +1,1 @@
+--target=../ --ignore=\.mypy_cache

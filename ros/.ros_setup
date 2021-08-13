@@ -9,11 +9,15 @@ alias cdws="cd $CATKIN_WS"
 
 
 # Exported Environment variables
-export PATH="$PATH:/usr/share/colcon_cd/function"
-. /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
+#export PATH="$PATH:/usr/share/colcon_cd/function"
+#. /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
+
+export WEBOTS_HOME=/usr/local/webots
+export WEBOTS_LIBRARY_PATH=/home/collin/documents/ros/dual_arm_ws/devel/lib/webots_sim_driver
+export WEBOTS_PROJECT=/home/collin/documents/ros/dual_arm_ws/src/dual_arm_control/hardware/webots_sim_driver
+
 
 #Useful Functions
-
 ros2-color() {
     ros2 $@ | grep --color -e ".*FATAL.*" --color -e ".*ERROR.*" -e "^"
 }
