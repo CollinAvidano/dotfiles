@@ -182,6 +182,10 @@ vnoremap <Space> zf
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview"
 
+"make < > shifts keep selection
+vnoremap < <gv
+vnoremap > >gv
+
 " reformats code pasted from outside of vim
 " nnoremap <F2> :set invpaste paste?<CR>
 " imap <F2> <C-O>:set invpaste paste?<CR>

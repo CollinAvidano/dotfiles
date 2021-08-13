@@ -43,12 +43,12 @@ largest-files() {
     DIR=${1:-./}
     NUMRES=${2:-20}
     if [ -z "$3" ]; then
-        du -a $1 | sort -n -r| head -n $NUMRES
+        du -h -a $1 | sort -h -r| head -n $NUMRES
     else
-        du -a $1 | sort -n | head -n $NUMRES
+        du -h -a $1 | sort -h | head -n $NUMRES
     fi
-
 }
+
 
 # Shortcut creating function
 short() {
@@ -111,8 +111,3 @@ iodine-connect() {
 }
 alias socks-tunnel='ssh -ND 31337 -i ~/.ssh/id_ed25519 collin@172.16.0.1'
 
-# Shortcut creating function
-short() {
-    echo alias $1=\'$PWD\/$2\' >> ~/.dotfiles/system/.shortcuts
-    source ~/.zshrc
-}
