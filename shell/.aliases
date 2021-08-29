@@ -6,7 +6,6 @@ exists() {
     return $?
 }
 
-
 # When using sudo, use alias expansion (otherwise sudo ignores your aliases)
 alias sudo=$'sudo '
 
@@ -67,6 +66,9 @@ alias meminfo='free -m -l -t'
 # get GPU ram on desktop / laptop
 alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 
+alias check-serial='ls -l /dev | grep ttyUSB'
+
+
 # Apt package management
 alias list-installed-packages='sudo apt list --installed'
 alias search-installed-packages='sudo apt list --installed | grep '
@@ -114,7 +116,6 @@ link-speeds(){
 
 alias unlock-priv-env="gpg --decrypt --output $PRIVATE_DOTFILES/.private-env $PRIVATE_DOTFILES/.private-env.gpg"
 alias lock-priv-env="source $PRIVATE_DOTFILES/.personal-env && gpg --symmetric --output $PRIVATE_DOTFILES/.private-env.gpg $PRIVATE_DOTFILES/.private-env && rm $PRIVATE_DOTFILES/.private-env"
-
 
 # uncommon program aliases
 if [ -f $HOME/.program_aliases ]; then

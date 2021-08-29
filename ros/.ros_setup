@@ -76,8 +76,18 @@ setup-foxy() {
     alias roslaunch="ros2 launch"
 }
 
+setup-galactic() {
+    source /opt/ros/galactic/setup.$SHELL_EXTENSION
+    export _colcon_cd_root=$COLCON_WS
+    source $COLCON_WS/install/setup.$SHELL_EXTENSION
+
+    alias rostopic="ros2 topic"
+    alias roslaunch="ros2 launch"
+}
+
 setup-colcon-cd() {
     sudo chmod +xrw /usr/share/colcon_cd/function/colcon_cd.sh
     sudo ln -s /usr/share/colcon_cd/function/colcon_cd.sh /usr/share/colcon_cd/function/colcon_cd
-    sudo chmod +xrw /usr/share/colcon_cd/function/colcon_cd
+    sudo chmod +xrw /usr/share/col
+    con_cd/function/colcon_cd
 }

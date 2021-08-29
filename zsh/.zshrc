@@ -123,9 +123,11 @@ fi
 export CATKIN_WS=~/temp/test-ws
 
 #export COLCON_WS=~/documents/ros/ros2_ws
+export COLCON_WS=~/documents/ateam/software_ws
 
-setup-noetic
+#setup-noetic
 #setup-foxy
+setup-galactic
 
 #. /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
 

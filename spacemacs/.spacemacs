@@ -50,7 +50,6 @@ values."
                         )
         (c-c++ :variables
             c++-enable-clang-format-on-save t
-            c++-enable-organize-includes-on-save t
             c-c++-backend 'lsp-ccls
             c-c++-adopt-subprojects t
             c-c++-lsp-enable-semantic-highlight 'rainbow
@@ -348,6 +347,9 @@ values."
    ))
 
 (defun setup-indent (n)
+  (setq-default tab-width n)
+  (setq lua-indent-level n)
+  (setq nxml-child-indent n nxml-attribute-indent n)
   ;; java/c/c++
   (setq c-basic-offset n)
   ;; web development
@@ -368,7 +370,7 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/use  r-conf  ig' first."
-  (setup-indent 4)
+  (setup-indent 2)
   )
 
 (defun dotspacemacs/user-config ()
