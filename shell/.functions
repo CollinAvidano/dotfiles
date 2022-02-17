@@ -1,4 +1,8 @@
 
+rftc() {
+    ssh $1 "cat $2" | xclip -selection c
+}
+
 # some basic cd functions
 cdup() {
     limit=$1

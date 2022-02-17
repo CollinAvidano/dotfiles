@@ -54,6 +54,7 @@ plugins=(
     pip
     vi-mode
     zsh-autosuggestions
+    zsh-nvm
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -74,8 +75,7 @@ setopt auto_cd
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+eval "$(zoxide init zsh)"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -114,22 +114,30 @@ if [ -f $HOME/.ros_setup ]; then
     . $HOME/.ros_setup
 fi
 
-#export CATKIN_WS=~/documents/ros/rips_ws
-#export CATKIN_WS=~/documents/ros/dual_arm_ws
-#export CATKIN_WS=~/documents/ros/forklift_ws
-#export CATKIN_WS=~/documents/ros/behavior_ws
-#export CATKIN_WS=~/documents/ros/gohbot_ws
-#export CATKIN_WS=~/documents/ros/perception_ws
-export CATKIN_WS=~/temp/test-ws
-
-#export COLCON_WS=~/documents/ros/ros2_ws
-export COLCON_WS=~/documents/ateam/software_ws
-
-#setup-noetic
-#setup-foxy
-setup-galactic
-
 #. /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
+
+
+#alias conda-init="unset PYTHON_PATH && conda init"
+## >>> conda initialize >>>
+## !! Contents within this block are managed by 'conda init' !!
+#__conda_setup="$('/opt/miniconda/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+#if [ $? -eq 0 ]; then
+#    eval "$__conda_setup"
+#else
+#    if [ -f "/opt/miniconda/etc/profile.d/conda.sh" ]; then
+#        . "/opt/miniconda/etc/profile.d/conda.sh"
+#    else
+#        export PATH="/opt/miniconda/bin:$PATH"
+#    fi
+#fi
+#unset __conda_setup
+#<<< conda initialize <<<
+
 
 # end for zsh profiler
 # zprof
+. "/home/collin/.acme.sh/acme.sh.env"
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+

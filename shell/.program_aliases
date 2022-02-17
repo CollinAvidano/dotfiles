@@ -15,12 +15,14 @@ alias multimc='/opt/multimc/run.sh'
 
 alias radar='mono /opt/virtual-radar/VirtualRadar.exe'
 
-alias matlab='export MESA_LOADER_DRIVER_OVERRIDE=i965; /media/$USER/ext-storage/matlab/bin/matlab -nosoftwareopengl'
+alias matlab="export MESA_LOADER_DRIVER_OVERRIDE=i965; /media/$USER/ssd-backup/matlab/bin/matlab -nosoftwareopengl"
+
+alias prusa='/opt/prusa/PrusaSlicer-2.3.3+linux-x64-202107161032.AppImage'
 
 alias slic3r='LD_PRELOAD='/usr/lib/x86_64-linux-gnu/libstdc++.so.6' /opt/slic3r/Slic3r-1.3.0-x86_64.AppImage'
 
-alias vitis='source /media/collin/ssd-backup/xilinx/Vitis/2021.1/settings64.sh && /media/collin/ssd-backup/xilinx/Vitis/2021.1/bin/vitis'
-alias vivado='sudo -s source /media/collin/ssd-backup/xilinx/Vivado/2021.1/settings64.sh && /media/collin/ssd-backup/xilinx/Vivado/2021.1/bin/vivado'
+alias vitis="source /media/$USER/ssd-backup/xilinx/Vitis/2021.1/settings64.sh && /media/collin/ssd-backup/xilinx/Vitis/2021.1/bin/vitis"
+alias vivado="source /media/$USER/ssd-backup/xilinx/Vivado/2021.1/settings64.sh && /media/collin/ssd-backup/xilinx/Vivado/2021.1/bin/vivado"
 
 if exists fortune; then
     # fun ones
