@@ -1,7 +1,23 @@
+# Exported Environment variables
+#export PATH="$PATH:/usr/share/colcon_cd/function"
+#. /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
+export WEBOTS_HOME=/usr/local/webots
+export WEBOTS_LIBRARY_PATH=/home/collin/documents/ros/dual_arm_ws/devel/lib/webots_sim_driver
+export WEBOTS_PROJECT=/home/collin/documents/ros/dual_arm_ws/src/dual_arm_control/hardware/webots_sim_driver
 
-# Shortcut Aliases
-alias dual-arm="cd $HOME/dual_arm_ws/src/dual_arm_control/project_specific/dual_arm_control/config/launch"
-alias ur-sim="cd $HOME/ros2_ws/src/general_packages/simulation/ur_sim"
+#export CATKIN_WS=~/documents/ros/rips_ws
+#export CATKIN_WS=~/documents/ros/dual_arm_ws
+#export CATKIN_WS=~/documents/ros/forklift_ws
+#export CATKIN_WS=~/documents/ros/behavior_ws
+#export CATKIN_WS=~/documents/ros/gohbot_ws
+#export CATKIN_WS=~/documents/ros/perception_ws
+export CATKIN_WS=~/temp/test-ws
+
+#export COLCON_WS=~/documents/ros/forklift_ws
+#export COLCON_WS=~/documents/ateam/software_ws
+#export COLCON_WS=~/documents/ateam/software_ws
+export COLCON_WS=~/documents/slam-suit/slam_suit_ws
+
 
 # Useful Aliases
 alias rosdep-install="rosdep install --from-paths src --ignore-src -r -y"
@@ -81,27 +97,6 @@ setup-colcon-cd() {
     sudo chmod +xrw /usr/share/col
     con_cd/function/colcon_cd
 }
-
-
-# Exported Environment variables
-#export PATH="$PATH:/usr/share/colcon_cd/function"
-#. /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
-export WEBOTS_HOME=/usr/local/webots
-export WEBOTS_LIBRARY_PATH=/home/collin/documents/ros/dual_arm_ws/devel/lib/webots_sim_driver
-export WEBOTS_PROJECT=/home/collin/documents/ros/dual_arm_ws/src/dual_arm_control/hardware/webots_sim_driver
-
-#export CATKIN_WS=~/documents/ros/rips_ws
-#export CATKIN_WS=~/documents/ros/dual_arm_ws
-#export CATKIN_WS=~/documents/ros/forklift_ws
-#export CATKIN_WS=~/documents/ros/behavior_ws
-#export CATKIN_WS=~/documents/ros/gohbot_ws
-#export CATKIN_WS=~/documents/ros/perception_ws
-export CATKIN_WS=~/temp/test-ws
-
-#export COLCON_WS=~/documents/ros/forklift_ws
-#export COLCON_WS=~/documents/ateam/software_ws
-#export COLCON_WS=~/documents/ateam/software_ws
-export COLCON_WS=~/documents/slam-suit/slam_suit_ws
 
 setup-noetic
 #setup-foxy
