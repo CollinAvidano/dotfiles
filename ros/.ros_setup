@@ -5,16 +5,9 @@ export WEBOTS_HOME=/usr/local/webots
 export WEBOTS_LIBRARY_PATH=/home/collin/documents/ros/dual_arm_ws/devel/lib/webots_sim_driver
 export WEBOTS_PROJECT=/home/collin/documents/ros/dual_arm_ws/src/dual_arm_control/hardware/webots_sim_driver
 
-#export CATKIN_WS=~/documents/ros/rips_ws
-#export CATKIN_WS=~/documents/ros/dual_arm_ws
-#export CATKIN_WS=~/documents/ros/forklift_ws
-#export CATKIN_WS=~/documents/ros/behavior_ws
-#export CATKIN_WS=~/documents/ros/gohbot_ws
-#export CATKIN_WS=~/documents/ros/perception_ws
+#export CATKIN_WS=~/documents/ros/test_ws
 export CATKIN_WS=~/temp/test-ws
 
-#export COLCON_WS=~/documents/ros/forklift_ws
-#export COLCON_WS=~/documents/ateam/software_ws
 #export COLCON_WS=~/documents/ateam/software_ws
 export COLCON_WS=~/documents/slam-suit/slam_suit_ws
 
@@ -33,9 +26,17 @@ catkin-build() {
     cd -
 }
 
+catkinbuild() {
+    catkin-build $@
+}
+
 catkin-build-debug() {
     cd $CATKIN_WS && catkin build --cmake-args -DCMAKE_BUILD_TYPE=Debug $@ && source devel/setup.$SHELL_EXTENSION
     cd -
+}
+
+catkinbuilddebug() {
+    catkin-build-debug $@
 }
 
 catkin-make() {
@@ -68,6 +69,11 @@ colcon-build-debug-all() {
     cd -
 }
 
+setup-melodic() {
+    source /opt/ros/melodic/setup.$SHELL_EXTENSION
+    source $CATKIN_WS/devel/setup.$SHELL_EXTENSION
+}
+
 setup-noetic() {
     source /opt/ros/noetic/setup.$SHELL_EXTENSION
     source $CATKIN_WS/devel/setup.$SHELL_EXTENSION
@@ -98,8 +104,7 @@ setup-colcon-cd() {
     con_cd/function/colcon_cd
 }
 
+#setup-melodic
 setup-noetic
 #setup-foxy
 #setup-galactic
-
-
