@@ -1,4 +1,8 @@
+# NOTE THIS IS SPERATE FROM .xinitrc BECAUSE TOUCHEGG ISNT ON PATH UNTIL THE LOGIN 
+
 # .xprofile is just for setting up the environment when logging in with an X session (usually via a display manager). It is similar to your .profile file, but specific to x sessions.
+
+# this does setup before you login and the env path export below provides path for when i3 boots so it can find scripts
 
 # keys should already be done in .xinitrc
 setxkbmap -option caps:escape
