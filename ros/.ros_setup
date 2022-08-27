@@ -105,6 +105,6 @@ setup-colcon-cd() {
 }
 
 #setup-melodic
-setup-noetic
+#setup-noetic
 #setup-foxy
 #setup-galactic
