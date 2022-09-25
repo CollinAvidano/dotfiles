@@ -21,8 +21,8 @@ alias prusa='/opt/prusa/prusa.AppImage'
 
 alias slic3r='LD_PRELOAD='/usr/lib/x86_64-linux-gnu/libstdc++.so.6' /opt/slic3r/Slic3r-1.3.0-x86_64.AppImage'
 
-alias vitis="source /media/$USER/ssd-backup/xilinx/Vitis/2021.1/settings64.sh && /media/collin/ssd-backup/xilinx/Vitis/2021.1/bin/vitis"
-alias vivado="source /media/$USER/ssd-backup/xilinx/Vivado/2021.1/settings64.sh && /media/collin/ssd-backup/xilinx/Vivado/2021.1/bin/vivado"
+alias vitis="source /media/$USER/ssd-backup/xilinx/Vitis/2021.1/settings64.sh && /media/$USER//ssd-backup/xilinx/Vitis/2021.1/bin/vitis"
+alias vivado="source /media/$USER/ssd-backup/xilinx/Vivado/2021.1/settings64.sh && /media/$USER/ssd-backup/xilinx/Vivado/2021.1/bin/vivado"
 
 if exists fortune; then
     # fun ones

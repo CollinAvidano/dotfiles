@@ -12,7 +12,7 @@ USERNAME=`whoami`
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
   # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-if [ "$TERM" = "xterm-256color" ]; then
+if [ "$TERM" = "xterm-256color" ] || [ "$TERM" = "screen-256color" ]; then
     ZSH_THEME="powerlevel10k/powerlevel10k"
     POWERLEVEL9K_MODE='awesome-fontconfig'
     # POWERLEVEL9K_VI_NORMAL_MODE_STRING="N"
@@ -136,8 +136,16 @@ fi
 
 # end for zsh profiler
 # zprof
-. "/home/collin/.acme.sh/acme.sh.env"
+#. "/home/collin/.acme.sh/acme.sh.env"
 
 # Generated for envman. Do not edit.
-[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+#[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/google-cloud-sdk/completion.zsh.inc'; fi
+
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/collin/.mujoco/mujoco200/bin"
