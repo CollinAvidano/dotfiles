@@ -17,7 +17,7 @@ alias radar='mono /opt/virtual-radar/VirtualRadar.exe'
 
 alias matlab="export MESA_LOADER_DRIVER_OVERRIDE=i965; /media/$USER/ssd-backup/matlab/bin/matlab -nosoftwareopengl"
 
-alias prusa='/opt/prusa/PrusaSlicer-2.3.3+linux-x64-202107161032.AppImage'
+alias prusa='/opt/prusa/prusa.AppImage'
 
 alias slic3r='LD_PRELOAD='/usr/lib/x86_64-linux-gnu/libstdc++.so.6' /opt/slic3r/Slic3r-1.3.0-x86_64.AppImage'
 

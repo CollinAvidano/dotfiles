@@ -26,9 +26,15 @@ curl -sS https://webinstall.dev/zoxide | bash
 sudo apt install python3-distutils -y
 sudo apt install thefuck -y
 
+# Install nerdfont
+curl https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/SourceCodePro.zip -o /usr/share/fonts/SourceCodePro.zip
+cd /usr/share/fonts/
+unzip ./SourceCodePro.zip
+rm ./SourceCodePro.zip
+
 # remove pre installed dotfiles
 cd $HOME
-rm .zshrc
+rm .zshrc .profile .bashrc .htoprc .vimrc
 # stow out
 cd $HOME/.dotfiles/
-stow zsh
+stow zsh gdb git htop shell style-configs tmux x vim ranger rclone
