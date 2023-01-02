@@ -37,10 +37,10 @@ battery all {
 }
 
 
-tztime eve {
-        format = "EVE Time %H:%M:%S %d-%m "
-        timezone = "Etc/UTC"
-}
+#tztime eve {
+#        format = "EVE Time %H:%M:%S %d-%m "
+#        timezone = "Etc/UTC"
+#}
 
 
 tztime local_it {
@@ -62,5 +62,4 @@ disk "/" {
 volume master {
         format = "♪: %volume"
         format_muted = "♪: muted (%volume)"
-        device = "pulse:0"
 }
