@@ -127,3 +127,5 @@ if [ -f $HOME/.program_aliases ]; then
 fi
 
 alias recvkey='sudo apt-key adv -keyserver hkp://keyserver.ubuntu.com:80 --recv-key '
+
+alias -g sd='; dunstify "done"'

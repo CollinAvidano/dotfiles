@@ -7,7 +7,7 @@ export SHELL_EXTENSION=zsh
 
 USERNAME=`whoami`
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/$USERNAME/.oh-my-zsh
+export ZSH=/home/$USERNAME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -55,6 +55,7 @@ plugins=(
     vi-mode
     zsh-autosuggestions
     zsh-nvm
+    wd
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -113,8 +114,6 @@ precmd() { eval "$PROMPT_COMMAND" }
 if [ -f $HOME/.ros_setup ]; then
     . $HOME/.ros_setup
 fi
-
-#. /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
 
 
 #alias conda-init="unset PYTHON_PATH && conda init"
