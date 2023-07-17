@@ -116,21 +116,27 @@ if [ -f $HOME/.ros_setup ]; then
 fi
 
 
-#alias conda-init="unset PYTHON_PATH && conda init"
-## >>> conda initialize >>>
-## !! Contents within this block are managed by 'conda init' !!
-#__conda_setup="$('/opt/miniconda/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+alias conda-init="unset PYTHON_PATH && conda init"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+#__conda_setup="$('/home/collin/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 #if [ $? -eq 0 ]; then
 #    eval "$__conda_setup"
 #else
-#    if [ -f "/opt/miniconda/etc/profile.d/conda.sh" ]; then
-#        . "/opt/miniconda/etc/profile.d/conda.sh"
+#    if [ -f "/home/collin/anaconda3/etc/profile.d/conda.sh" ]; then
+#        . "/home/collin/anaconda3/etc/profile.d/conda.sh"
 #    else
-#        export PATH="/opt/miniconda/bin:$PATH"
+#        export PATH="/home/collin/anaconda3/bin:$PATH"
 #    fi
 #fi
 #unset __conda_setup
-#<<< conda initialize <<<
+# <<< conda initialize <<<
+
+
+#if [ -f ~/.bashrc ]; then
+#   source ~/.bashrc
+#fi
 
 
 # end for zsh profiler
@@ -148,3 +154,4 @@ if [ -f '/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/google-cloud-sdk/pa
 if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/google-cloud-sdk/completion.zsh.inc'; fi
 
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/collin/.mujoco/mujoco200/bin"
+

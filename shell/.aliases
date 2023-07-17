@@ -129,3 +129,7 @@ fi
 alias recvkey='sudo apt-key adv -keyserver hkp://keyserver.ubuntu.com:80 --recv-key '
 
 alias -g sd='; dunstify "done"'
+
+if exists glances; then 
+    alias glances="glances --percpu"
+fi

@@ -47,3 +47,12 @@ fi
 export PROMPT_COMMAND="pwd > /tmp/whereami"
 
 gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
+
+if [ -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]; then
+  export NIX_REMOTE="daemon"
+  source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+elif [ -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" ] ; then
+  source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
+fi
+
+
