@@ -1,6 +1,11 @@
 # Exported Environment variables
 #export PATH="$PATH:/usr/share/colcon_cd/function"
 #. /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
+
+
+export ROS_LOCALHOST_ONLY=1
+
+
 export WEBOTS_HOME=/usr/local/webots
 export WEBOTS_LIBRARY_PATH=/home/collin/documents/ros/dual_arm_ws/devel/lib/webots_sim_driver
 export WEBOTS_PROJECT=/home/collin/documents/ros/dual_arm_ws/src/dual_arm_control/hardware/webots_sim_driver
@@ -14,11 +19,17 @@ export COLCON_WS=~/documents/ateam/software_ws
 
 # Useful Aliases
 alias rosdep-install="rosdep install --from-paths src --ignore-src -r -y"
-alias cdws="cd $CATKIN_WS"
+alias colcon-clean="cd $COLCON_WS && rm build install"
+#alias cdws="cd $CATKIN_WS"
 
-#Useful Functions
-ros2-color() {
-    ros2 $@ | grep --color -e ".*FATAL.*" --color -e ".*ERROR.*" -e "^"
+colcon-test-pkg () {
+    #cd $COLCON_WS && colcon build --packages-select $1 && source install/setup.$SHELL_EXTENSION
+    colcon test --packages-select $1
+    colcon test-result --verbose --test-result-base build/$1
+    #if [ cd $COLCON_WS && colcon build ]; then
+        #colcon test --packages-skip $1
+        #colcon test-result --verbose --test-result-base build/$1
+    #fi
 }
 
 
@@ -51,6 +62,8 @@ catkin-clean() {
     cd -
 }
 
+
+
 colcon-build() {
     cd $COLCON_WS && colcon build --symlink-install --packages-select $@ && source install/setup.$SHELL_EXTENSION
     cd -
@@ -81,46 +94,32 @@ setup-noetic() {
     source $CATKIN_WS/devel/setup.$SHELL_EXTENSION
 }
 
-setup-foxy() {
-    source /opt/ros/foxy/setup.$SHELL_EXTENSION
-    export _colcon_cd_root=$COLCON_WS
-    source $COLCON_WS/install/setup.$SHELL_EXTENSION
-
-    alias rostopic="ros2 topic"
-    alias roslaunch="ros2 launch"
+setup-colcon-cd() {
+    #sudo chmod -R o+xr /usr/share/colcon_cd/function/
+    /usr/share/colcon_cd/function/colcon_cd.sh
+    alias colconcd="colcon_cd"
 }
-
-#setup-colcon-cd() {
-#    sudo chmod +xrw /usr/share/colcon_cd/function/colcon_cd.sh
-#    sudo ln -s /usr/share/colcon_cd/function/colcon_cd.sh /usr/share/colcon_cd/function/colcon_cd
-#    sudo chmod +xrw /usr/share/col
-#    con_cd/function/colcon_cd
-#}
-
-setup-galactic() {
-    source /opt/ros/galactic/setup.$SHELL_EXTENSION
-    export _colcon_cd_root=$COLCON_WS
-    source $COLCON_WS/install/setup.$SHELL_EXTENSION
-
-    alias rostopic="ros2 topic"
-    alias roslaunch="ros2 launch"
-}
-
 
 setup-humble() {
     export ROS_DISTRO="humble"
-    source /opt/ros/humble/setup.sh
-    export _colcon_cd_root=$COLCON_WS
+    source /opt/ros/humble/setup.$SHELL_EXTENSION
     source $COLCON_WS/install/setup.$SHELL_EXTENSION
 
     eval "$(register-python-argcomplete3 ros2)"
     eval "$(register-python-argcomplete3 colcon)"
-    source /usr/share/colcon_cd/function/colcon_cd.sh
+
+    export _colcon_cd_root=$COLCON_WS
+    setup-colcon-cd
 
     alias rostopic="ros2 topic"
     alias roslaunch="ros2 launch"
 
     alias cdws="cd $COLCON_WS"
+}
+
+#Useful Functions
+ros2-color() {
+    ros2 $@ | grep --color -e ".*FATAL.*" --color -e ".*ERROR.*" -e "^"
 }
 
 
