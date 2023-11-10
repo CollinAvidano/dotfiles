@@ -62,15 +62,13 @@ catkin-clean() {
     cd -
 }
 
-
-
 colcon-build() {
-    cd $COLCON_WS && colcon build --symlink-install --packages-select $@ && source install/setup.$SHELL_EXTENSION
+    cd $COLCON_WS && colcon build --mixin main --event-handlers console_direct+ && source install/setup.$SHELL_EXTENSION
     cd -
 }
 
-colcon-build-all() {
-    cd $COLCON_WS && colcon build --symlink-install && source install/setup.$SHELL_EXTENSION
+colcon-build-select() {
+    cd $COLCON_WS && colcon build --mixin main --event-handlers console_direct+ --packages-select $@ && source install/setup.$SHELL_EXTENSION
     cd -
 }
 

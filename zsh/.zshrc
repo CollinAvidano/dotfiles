@@ -67,7 +67,7 @@ unsetopt histverify
 unsetopt sharehistory
 
 # User configuration
-setopt extended_glob
+#setopt extended_glob
 setopt auto_cd
 
 # You may need to manually set your language environment
@@ -148,3 +148,4 @@ if [ -f '/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/google-cloud-sdk/pa
 if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/google-cloud-sdk/completion.zsh.inc'; fi
 
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/collin/.mujoco/mujoco200/bin"
+

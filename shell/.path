@@ -33,7 +33,7 @@ export PATH="$PATH:/opt/ghidra"
 export PATH="$PATH:/opt/zotero"
 
 # campus vpn
-export PATH="$PATH:/opt/paloaltonetworks/globalprotect"
+#export PATH="$PATH:/opt/paloaltonetworks/globalprotect"
 
 export PATH="$PATH:$HOME/.config/spicetify/spicetify-cli"
 export PATH="$PATH:$HOME/.cargo/bin"
@@ -65,8 +65,11 @@ export WEBOTS_HOME=/usr/local/webots
 # GNU Radio Pluto
 export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python3/dist-packages
 
-export LD_LIBRARY_PATH=/opt/chitubox/lib:$LD_LIBRARY_PATH
+# LD
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/chitubox/lib
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$OPENSIM_HOME/lib
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
