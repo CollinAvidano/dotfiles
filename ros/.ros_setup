@@ -93,7 +93,10 @@ setup-noetic() {
 }
 
 setup-colcon-cd() {
-    #sudo chmod -R o+xr /usr/share/colcon_cd/function/
+    if [ ! -r /usr/share/colcon_cd/function/ ] || [ ! -x /usr/share/colcon_cd/function/ ]; then
+        echo "setting perms on /usr/share/colcon_cd/function/"
+        sudo chmod -R o+xr /usr/share/colcon_cd/function/
+    fi 
     /usr/share/colcon_cd/function/colcon_cd.sh
     alias colconcd="colcon_cd"
 }

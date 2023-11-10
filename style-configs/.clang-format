@@ -1,9 +1,87 @@
 ---
+# Most everything in here is already defined by this but I just like to be explicit
+# and some align options are not and things like sort includes
+# actually sort may be handled by my vscode
 BasedOnStyle: Google
-DerivePointerAlignment: false
-IndentWidth: 4
-TabWidth: 4
-UseTab: Never
-AccessModifierOffset: -4
-SpaceAfterCStyleCast: false
+AccessModifierOffset: -2
+ConstructorInitializerIndentWidth: 4
+
+AlignTrailingComments: true
+AlignOperands: AlignAfterOperator # may be a contentious one
+AlignEscapedNewlinesLeft: false
+AlignConsecutiveMacros: true
+AlignConsecutiveDeclarations: true # consider not doing this one
+AlignConsecutiveBitFields: true
+AlignConsecutiveAssignments: true
+AlignArrayOfStructures: Left
+
+AllowAllParametersOfDeclarationOnNextLine: false
+
+AllowShortBlocksOnASingleLine: Empty
+AllowShortLambdasOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: false
+
+AlwaysBreakTemplateDeclarations: true
+AlwaysBreakBeforeMultilineStrings: false
+
+# literally turn off all allman like styling
+# BreakBeforeBraces: Custom
+# BraceWrapping:
+#     AfterClass:            false
+#     AfterCaseLabel:        false # may be contentious
+#     AfterControlStatement: BWACS_Never
+#     AfterEnum:             false
+#     AfterFunction:         false
+#     AfterNamespace:        false
+#     AfterStruct:           false
+#     AfterUnion:            false
+#     BeforeCatch:           false
+#     BeforeElse:            false
+BreakBeforeBraces: Attach # attach is literally the same as all false
+
+BreakBeforeBinaryOperators: false
+BreakBeforeTernaryOperators: false
+BreakConstructorInitializersBeforeComma: true
+
+BinPackParameters: true
+ExperimentalAutoDetectBinPacking: false
+
+ColumnLimit: 100
+
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
+
+DerivePointerBinding: true
+
+MaxEmptyLinesToKeep: 1
+
+ObjCSpaceBeforeProtocolList: true
+
+PenaltyBreakBeforeFirstCallParameter: 19
+PenaltyBreakComment: 60
+PenaltyBreakString: 1
+PenaltyBreakFirstLessLess: 1000
+PenaltyExcessCharacter: 1000
+PenaltyReturnTypeOnItsOwnLine: 90
+
+PointerBindsToType: false
+SpacesBeforeTrailingComments: 2
+
+NamespaceIndentation: None
+IndentCaseLabels: true
+IndentFunctionDeclarationAfterType: false
+
+IndentWidth:     4
+TabWidth:        4
+UseTab:          Never
+ContinuationIndentWidth: 6
+
+
+SpacesInParentheses: false
+SpacesInAngles:  false
+SpaceInEmptyParentheses: false
+SpacesInCStyleCastParentheses: false
+SpaceAfterControlStatementKeyword: true
+SpaceBeforeAssignmentOperators: true
 ...
