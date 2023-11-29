@@ -7,10 +7,10 @@ exists() {
 }
 
 # When using sudo, use alias expansion (otherwise sudo ignores your aliases)
-alias sudo=$'sudo '
+alias sudo=$'sudo -E '
 
-# Other sudo aliasesdev
-alias s='sudo '
+# Other sudo aliases
+alias s=$'sudo -E'
 alias se='sudoedit'
 alias please='sudo'
 
