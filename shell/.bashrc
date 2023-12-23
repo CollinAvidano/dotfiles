@@ -117,9 +117,6 @@ if [ -f $HOME/.path ]; then
     . $HOME/.path
 fi
 
-if [ -f $HOME/.ros_setup ]; then
-    . $HOME/.ros_setup
-fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -141,8 +138,6 @@ export SHELL_EXTENSION=bash
 
 export COLCON_WS=~/ros2_ws
 
-#setup-noetic
-setup-foxy
 
 #source /opt/ros/noetic/setup.bash
 #source ~/catkin_ws/devel/setup.bash
@@ -162,3 +157,6 @@ setup-foxy
 #    export _colcon_cd_root=$COLCON_WS
 #    source $COLCON_WS/install/setup.$SHELL_EXTENSION
 #}
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"

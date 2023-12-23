@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# Become root
-if [ $UID -ne 0 ]; then
-	echo "-- Becoming root"
-	exec sudo $0 $@
-fi
-
 # Install zsh
 sudo apt install zsh
 
@@ -27,11 +21,13 @@ sudo apt install python3-distutils -y
 sudo apt install thefuck -y
 
 # Install nerdfont
-curl https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/SourceCodePro.zip -o /usr/share/fonts/SourceCodePro.zip
+sudo curl -L https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/SourceCodePro.zip -o /usr/share/fonts/SourceCodePro.zip
 cd /usr/share/fonts/
-unzip ./SourceCodePro.zip
-rm ./SourceCodePro.zip
+sudo unzip ./SourceCodePro.zip
+sudo rm ./SourceCodePro.zip
 
+
+# THIS IS INCORRECT IF YOU HAVE TO SUDO TSO DONT
 # remove pre installed dotfiles
 cd $HOME
 rm .zshrc .profile .bashrc .htoprc .vimrc
