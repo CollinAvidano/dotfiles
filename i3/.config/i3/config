@@ -1,7 +1,9 @@
 # i3 config file (v4)
 #
-# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+# quick hack THAT I SHOULD NOT COMMIT to get tap to touch working because I didnt want to setup synaptic drivers yet on my laptop
+#exec xinput set-prop 'ELAN0676:00 04F3:3195 Touchpad' "libinput Tapping Enabled" 1
 
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
 set $scripts ~/.config/i3
 
 # This is physical alt as this and the win key are swapped
@@ -131,14 +133,9 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # resize window (you can also use the mouse for that)
 mode "resize" {
     # These bindings trigger as soon as you enter the resize mode
-
-    # Pressing left will shrink the window’s width.
-    # Pressing right will grow the window’s width.
-    # Pressing up will shrink the window’s height.
-    # Pressing down will grow the window’s height.
-    bindsym j resize shrink width 10 px or 10 ppt
+    bindsym j resize shrink height 10 px or 10 ppt
     bindsym k resize grow height 10 px or 10 ppt
-    bindsym h resize shrink height 10 px or 10 ppt
+    bindsym h resize shrink width 10 px or 10 ppt
     bindsym l resize grow width 10 px or 10 ppt
 
     # same bindings, but for the arrow keys

@@ -101,9 +101,9 @@ setup-colcon-cd() {
     alias colconcd="colcon_cd"
 }
 
-setup-humble() {
-    export ROS_DISTRO="humble"
-    source /opt/ros/humble/setup.$SHELL_EXTENSION
+setup-iron() {
+    export ROS_DISTRO="iron"
+    source /opt/ros/$ROS_DISTRO/setup.$SHELL_EXTENSION
     source $COLCON_WS/install/setup.$SHELL_EXTENSION
 
     eval "$(register-python-argcomplete3 ros2)"
@@ -128,4 +128,4 @@ ros2-color() {
 #setup-noetic
 #setup-foxy
 #setup-galactic
-setup-humble
+#setup-humble
