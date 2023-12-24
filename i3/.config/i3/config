@@ -1,7 +1,4 @@
 # i3 config file (v4)
-#
-# quick hack THAT I SHOULD NOT COMMIT to get tap to touch working because I didnt want to setup synaptic drivers yet on my laptop
-#exec xinput set-prop 'ELAN0676:00 04F3:3195 Touchpad' "libinput Tapping Enabled" 1
 
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 set $scripts ~/.config/i3
@@ -174,7 +171,7 @@ exec --no-startup-id $scripts/i3-battery-popup.sh &
 exec --no-startup-id udiskie --tray --use-udisks2 &
 
 # Bluetooth applet
-# exec --no-startup-id blueman-applet
+exec --no-startup-id blueman-applet
 
 # Setup Gaps
 gaps inner 5

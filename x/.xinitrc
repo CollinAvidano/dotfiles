@@ -2,7 +2,7 @@
 #[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
 
 # quick settings for above
-setxkbmap -option caps:escape
+setxkbmap -option caps:swapescape
 setxkbmap -option altwin:swap_alt_win
 
 # this does setup before you login and the env path export below provides path for when i3 boots so it can find scripts

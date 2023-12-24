@@ -1,12 +1,12 @@
 [Unit]
 Description=easyeffects
-PartOf=graphical-session.target
+After=pipewire.service
 
 [Service]
 Type=simple
-Environment=DISPLAY:0
 ExecStartPre=sleep 4
 ExecStart=/usr/bin/flatpak --socket=fallback-x11 run --command=easyeffects com.github.wwmm.easyeffects --gapplication-service
+Restart=always
 
 [Install]
-WantedBy=graphical-session.target
+WantedBy=pipewire.service
