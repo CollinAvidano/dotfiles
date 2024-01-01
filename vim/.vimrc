@@ -24,21 +24,19 @@ endif
 "Start plugin loading and specify storage directory
 " Required:
 call plug#begin('~/.vim/plugged')
-Plug 'arcticicestudio/nord-vim'
+Plug 'doums/darcula'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'hugolgst/vimsence'
 Plug 'preservim/vimux'
 Plug 'greghor/vim-pyshell'
 Plug 'julienr/vim-cellmode'
-
-
 call plug#end()
 "*****************************************************************************
 "" Visual Settings
 "*****************************************************************************
 
 " set vim colorscheme "
-colorscheme nord
+colorscheme darcula
 
 " Enable syntax highlighting
 syntax on
