@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo apt install rename
+
 declare -a StringArray=("examples.desktop" "Templates" "Public")
  
 # Iterate the string array using for loop

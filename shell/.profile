@@ -3,6 +3,8 @@
 # This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
 # exists.
 
+TZ='America/New_York'; export TZ
+
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
@@ -46,7 +48,13 @@ fi
 
 export PROMPT_COMMAND="pwd > /tmp/whereami"
 
-gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
-
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+
+#gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
+setxkbmap -option caps:swapescape
+setxkbmap -option altwin:swap_alt_win
+
+. "$HOME/.cargo/env"
+
+tsh ls type=nixos-remote-builder-ear

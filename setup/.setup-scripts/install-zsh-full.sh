@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# variant that installs nerdfonts as well
+
 # Install zsh
 sudo apt install zsh
 
@@ -27,10 +29,20 @@ sudo unzip ./SourceCodePro.zip
 sudo rm ./SourceCodePro.zip
 
 
-# THIS IS INCORRECT IF YOU HAVE TO SUDO TSO DONT
+# THIS IS INCORRECT IF YOU HAVE TO SUDO SO DONT
 # remove pre installed dotfiles
 cd $HOME
 rm .zshrc .profile .bashrc .htoprc .vimrc
 # stow out
 cd $HOME/.dotfiles/
 stow zsh gdb git htop shell style-configs tmux x vim ranger rclone
+
+# should use mktemp -d for this
+# Install nerdfont
+git clone https://github.com/ryanoasis/nerd-fonts.git
+cd nerd-fonts
+./install.sh SourceCodePro
+cd ../
+rm nerd-fonts
+
+

@@ -5,9 +5,8 @@ set -e
 INIT_USER=$(whoami);
 
 # prompt for root
-[ "$INIT_USER" != "root" ] && exec sudo -- "$0" $INIT_USER "$@"
+#[ "$INIT_USER" != "root" ] && exec sudo -- "$0" $INIT_USER "$@"
 
-INIT_USER=$1
 
 echo "Will install dotfiles for $INIT_USER"
 
@@ -30,81 +29,80 @@ echo "Will install dotfiles for $INIT_USER"
 ################################################
 # ZSH Install
 ################################################
-#if [ `grep -c "$INIT_USER" /etc/passwd` -eq 0 ]; then
-#	echo "Unable to change shell. $INIT_USER not found in local user registery."
-#	echo "Is the machine on directory services? Set atl init cmd in gnome-terminal or talk to the sysadmin."
-#else
-#	# set Zsh default sh
-#	chsh -s $(which zsh) $INIT_USER
-#fi
+if [ `grep -c "$INIT_USER" /etc/passwd` -eq 0 ]; then
+	echo "Unable to change shell. $INIT_USER not found in local user registery."
+	echo "Is the machine on directory services? Set atl init cmd in gnome-terminal or talk to the sysadmin."
+else
+	# set Zsh default sh
+	chsh -s $(which zsh) $INIT_USER
+fi
 
 ## TODO Setup stow for git and for zsh here
 
 # grab oh-my-zsh
-#if [ -d "/home/$INIT_USER/.oh-my-zsh" ]; then
-#	git --git-dir=/home/$INIT_USER/.oh-my-zsh/.git status > /dev/null
-#	if [ $? -ne 0 ]; then
-#		echo "Oh-My-Zsh exists but the repo is in an invalid state."
-#		echo "Will not clone."
-#	fi
-#else
-#	echo "No Oh-My-Zsh folder was found. Will run RR inst."
-#	wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O - | bash -s - --unattended
-#	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
-#	chown -R $INIT_USER:$INIT_USER /home/$INIT_USER/.oh-my-zsh
-#	chown $INIT_USER:$INIT_USER /home/$INIT_USER/.zshrc
-#	if [ -f /home/$INIT_USER/.zsh_history ]; then
-#		chown $INIT_USER:$INIT_USER /home/$INIT_USER/.zsh_history
-#	fi
-#
-#	# restore zshrc
-#	if [ -f $HOME/.zshrc.pre-oh-my-zsh ]; then
-#		mv $HOME/.zshrc.pre-oh-my-zsh $HOME/.zshrc
-#	fi
+if [ -d "/home/$INIT_USER/.oh-my-zsh" ]; then
+	git --git-dir=/home/$INIT_USER/.oh-my-zsh/.git status > /dev/null
+	if [ $? -ne 0 ]; then
+		echo "Oh-My-Zsh exists but the repo is in an invalid state."
+		echo "Will not clone."
+	fi
+else
+	echo "No Oh-My-Zsh folder was found. Will run RR inst."
+	wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O - | bash -s - --unattended
+	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
+	chown -R $INIT_USER:$INIT_USER /home/$INIT_USER/.oh-my-zsh
+	chown $INIT_USER:$INIT_USER /home/$INIT_USER/.zshrc
+	if [ -f /home/$INIT_USER/.zsh_history ]; then
+		chown $INIT_USER:$INIT_USER /home/$INIT_USER/.zsh_history
+	fi
 
-#	echo "Will perform one time install of powerline fonts."
-#	git clone https://github.com/powerline/fonts.git --depth=1
-#	cd fonts
-#	./install.sh
-#	su $INIT_USER -c ./install.sh
-#	cd ..
-#	rm -rf fonts
+	# restore zshrc
+	if [ -f $HOME/.zshrc.pre-oh-my-zsh ]; then
+		mv $HOME/.zshrc.pre-oh-my-zsh $HOME/.zshrc
+	fi
 
-#	echo "Will perform one time install of nerd font glyphs."
-#	git clone https://github.com/ryanoasis/nerd-fonts.git --depth=1
-#	cd nerd-fonts
-#	./install.sh
-#	su $INIT_USER -c ./install.sh
-#	cd ..
-#	rm -rf nerd-fonts
-#fi
+	echo "Will perform one time install of powerline fonts."
+	git clone https://github.com/powerline/fonts.git --depth=1
+	cd fonts
+	./install.sh
+	su $INIT_USER -c ./install.sh
+	cd ..
+	rm -rf fonts
+
+	echo "Will perform one time install of nerd font glyphs."
+	git clone https://github.com/ryanoasis/nerd-fonts.git --depth=1
+	cd nerd-fonts
+	./install.sh
+	su $INIT_USER -c ./install.sh
+	cd ..
+	rm -rf nerd-fonts
+fi
 
 
 ################################################
 # Decrap directories
 ################################################
 
-#su $INIT_USER -c ./decrap-directories.sh
-#
-#
+su $INIT_USER -c ./decrap-directories.sh
+
+
 #################################################
 ## Install Arc Theme
 #################################################
-#
-##Apply theme
-#./install-arc-theme.sh
-#
+
+#Apply theme
+./install-arc-theme.sh
+
 #################################################
 ## Install I3 Gaps
 #########################################I3
-#./install-i3.sh
-#
-#
+./install-i3.sh
+
+
 #################################################
 ## Spacemacs
 #################################################
-#git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
-
+git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 
 ################################################
 # Stow 

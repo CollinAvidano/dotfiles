@@ -1,11 +1,6 @@
 #!/bin/bash
 
-# Become root
-if [ $UID -ne 0 ]; then
-	echo "-- Becoming root"
-	exec sudo $0 $@
-fi
-
+# no nerd font install
 # Install zsh
 sudo apt install zsh
 
@@ -28,7 +23,8 @@ sudo apt install thefuck -y
 
 # remove pre installed dotfiles
 cd $HOME
-rm .zshrc
+rm -f .zshrc
+rm -f .zshenv
 # stow out
 cd $HOME/.dotfiles/
 stow zsh
