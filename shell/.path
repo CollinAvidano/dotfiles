@@ -55,9 +55,14 @@ export SPICETIFY_INSTALL="/home/$USER/.config/spicetify"
 export CLASSPATH="/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH"
 
 export GOROOT=/usr/lib/go
+<<<<<<< Updated upstream
 export PATH=$PATH:$GOROOT/bin
 export PATH=$PATH:$HOME/go/bin
 
+=======
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+>>>>>>> Stashed changes
 export WEBOTS_HOME=/usr/local/webots
 
 # GNU Radio Pluto

@@ -1,0 +1,15 @@
+[Unit]
+Description=How-To Geek Service Example
+
+Wants=network.target
+After=syslog.target network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/glances -s
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+
