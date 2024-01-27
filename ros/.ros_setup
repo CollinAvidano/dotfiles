@@ -11,9 +11,9 @@ export WEBOTS_LIBRARY_PATH=/home/collin/documents/ros/dual_arm_ws/devel/lib/webo
 export WEBOTS_PROJECT=/home/collin/documents/ros/dual_arm_ws/src/dual_arm_control/hardware/webots_sim_driver
 
 #export CATKIN_WS=~/documents/ros/test_ws
-export CATKIN_WS=~/temp/test-ws
+#export CATKIN_WS=~/temp/test-ws
 
-export COLCON_WS=~/documents/ateam/software_ws
+#export COLCON_WS=~/documents/ateam/software_ws
 #export COLCON_WS=~/documents/slam-suit/slam_suit_ws
 
 
@@ -31,8 +31,6 @@ colcon-test-pkg () {
         #colcon test-result --verbose --test-result-base build/$1
     #fi
 }
-
-
 
 catkin-build() {
     cd $CATKIN_WS && catkin build $@ && source devel/setup.$SHELL_EXTENSION

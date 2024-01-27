@@ -130,5 +130,5 @@ fi
 
 alias recvkey='sudo apt-key adv -keyserver hkp://keyserver.ubuntu.com:80 --recv-key '
 
-alias -g sd='; notify-send "done"'
-alias -g e='; ssmtp 4049840995@att.com < .mail.txt'
+#alias -g sd='; notify-send "done"'
+#alias -g e='; ssmtp 4049840995@att.com < .mail.txt'

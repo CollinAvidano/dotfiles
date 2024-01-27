@@ -56,5 +56,3 @@ setxkbmap -option caps:swapescape
 setxkbmap -option altwin:swap_alt_win
 
 . "$HOME/.cargo/env"
-
-tsh ls type=nixos-remote-builder-ear
