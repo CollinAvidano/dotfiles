@@ -1,6 +1,10 @@
-# NOTE THIS IS SPERATE FROM .xinitrc BECAUSE TOUCHEGG ISNT ON PATH UNTIL THE LOGIN 
+# NOTE THIS IS SPERATE FROM .xinitrc BECAUSE TOUCHEGG ISNT ON PATH UNTIL THE LOGIN
 
 # .xprofile is just for setting up the environment when logging in with an X session (usually via a display manager). It is similar to your .profile file, but specific to x sessions.
+# allows you to execute commands at the beginning of the X user session - before the window manager is started.
+
+# jank hardcoded arandr setup script saved location changes per computer
+. /home/collin/.screenlayout/default.sh
 
 # this does setup before you login and the env path export below provides path for when i3 boots so it can find scripts
 
@@ -13,3 +17,4 @@ export PATH="$PATH:$HOME/.config/i3/"
 
 touchegg&
 #insync start&
+

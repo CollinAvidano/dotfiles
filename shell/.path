@@ -54,11 +54,9 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 export SPICETIFY_INSTALL="/home/$USER/.config/spicetify"
 export CLASSPATH="/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH"
 
-#export GOROOT=/usr/lib/go
-#export PATH="$PATH:/
-
 export GOROOT=$HOME/go
-export PATH=$PATH:$GOROOT/bin
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 export WEBOTS_HOME=/usr/local/webots
 
@@ -79,10 +77,10 @@ export PLATFORM_REPO_PATHS="/media/$USER/ssd-backup/fpga-projects/vitis-platform
 export PATH="$PATH:/media/$USER/ssd-backup/xilinx/Vitis_HLS/2021.1/bin"
 export PATH="$PATH:/media/$USER/ssd-backup/xilinx/Vitis/2021.1/bin"
 
-export NVARCH=`uname -s`_`uname -m`; export NVARCH
-export NVCOMPILERS=/opt/nvidia/hpc_sdk; export NVCOMPILERS
-export MANPATH=$MANPATH:$NVCOMPILERS/$NVARCH/22.7/compilers/man; export MANPATH
-export PATH=$NVCOMPILERS/$NVARCH/22.7/compilers/bin:$PATH; export PATH
-export PATH=$NVCOMPILERS/$NVARCH/22.7/comm_libs/mpi/bin:$PATH
-export MANPATH=$MANPATH:$NVCOMPILERS/$NVARCH/22.7/comm_libs/mpi/man
+#export NVARCH=`uname -s`_`uname -m`; export NVARCH
+#export NVCOMPILERS=/opt/nvidia/hpc_sdk; export NVCOMPILERS
+#export MANPATH=$MANPATH:$NVCOMPILERS/$NVARCH/22.7/compilers/man; export MANPATH
+#export PATH=$NVCOMPILERS/$NVARCH/22.7/compilers/bin:$PATH; export PATH
+#export PATH=$NVCOMPILERS/$NVARCH/22.7/comm_libs/mpi/bin:$PATH
+#export MANPATH=$MANPATH:$NVCOMPILERS/$NVARCH/22.7/comm_libs/mpi/man
 

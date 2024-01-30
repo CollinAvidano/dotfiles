@@ -54,6 +54,10 @@ if exists htop; then
     alias top='htop'
 fi
 
+if exists glances; then
+    alias glances="glances --percpu"
+fi
+
 alias df='df -H'
 
 alias pss='ps -e | grep '
@@ -106,8 +110,8 @@ if exists tmux; then
     alias as='tmux attach-session -t '
 fi
 
-alias list-ports='ss -tulpn'
 
+alias list-ports='ss -tulpn'
 alias nmap-quick='sudo nmap -sN -p - '
 
 link-speeds(){
@@ -121,6 +125,11 @@ link-speeds(){
 alias unlock-priv-env="gpg --decrypt --output $PRIVATE_DOTFILES/.private-env $PRIVATE_DOTFILES/.private-env.gpg"
 alias lock-priv-env="source $PRIVATE_DOTFILES/.personal-env && gpg --symmetric --output $PRIVATE_DOTFILES/.private-env.gpg $PRIVATE_DOTFILES/.private-env && rm $PRIVATE_DOTFILES/.private-env"
 
+
+# Docker Aliases
+alias dlsi='docker images'
+alias dockerflush='docker system prune'
+
 # uncommon program aliases
 if [ -f $HOME/.program_aliases ]; then
     . $HOME/.program_aliases
@@ -129,7 +138,3 @@ fi
 alias recvkey='sudo apt-key adv -keyserver hkp://keyserver.ubuntu.com:80 --recv-key '
 
 alias -g sd='; dunstify "done"'
-
-if exists glances; then 
-    alias glances="glances --percpu"
-fi

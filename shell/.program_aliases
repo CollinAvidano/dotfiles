@@ -35,11 +35,7 @@ if [ -f /opt/umlet/umlet.jar ]; then
     alias umlet="java -jar /opt/umlet/umlet.jar"
 fi
 
-if exists docker; then
-    # Docker Aliases
-    alias dlsi='docker images'
-    alias dockerflush='docker system prune'
-fi
+
 
 alias nvidia-top='watch -d -n 0.5 "clear&&nvidia-smi"'
 

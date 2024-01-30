@@ -14,6 +14,7 @@ export WEBOTS_PROJECT=/home/collin/documents/ros/dual_arm_ws/src/dual_arm_contro
 export CATKIN_WS=~/temp/test-ws
 
 export COLCON_WS=~/documents/ateam/software_ws
+export COLCON_WS=~/documents/ateam/temp_ws
 #export COLCON_WS=~/documents/slam-suit/slam_suit_ws
 
 

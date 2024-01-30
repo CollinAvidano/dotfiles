@@ -88,12 +88,12 @@ submoduleadd() {
 
 submoduleremove() {
     repopath=$(git rev-parse --show-toplevel)
-    
+
     git submodule deinit -f $1
     rm -rf $repopath/.git/modules/$1
     git rm -f $1
     git commit -m "Removed submodule"
-    
+
 }
 
 # -t allocates a psuedo tty -i keps stdin open after the process exits

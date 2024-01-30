@@ -42,6 +42,11 @@ HYPHEN_INSENSITIVE="true"
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # HIST_STAMPS="mm/dd/yyyy"
 
+# Appends every command to the history file once it is executed
+setopt inc_append_history
+# Reloads the history whenever you use it
+setopt share_history
+
 bindkey -v
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
@@ -67,7 +72,7 @@ unsetopt histverify
 unsetopt sharehistory
 
 # User configuration
-setopt extended_glob
+#setopt extended_glob
 setopt auto_cd
 
 # You may need to manually set your language environment
@@ -111,10 +116,6 @@ fi
 # run zsh hook
 precmd() { eval "$PROMPT_COMMAND" }
 
-if [ -f $HOME/.ros_setup ]; then
-    . $HOME/.ros_setup
-fi
-
 
 alias conda-init="unset PYTHON_PATH && conda init"
 
@@ -132,6 +133,9 @@ alias conda-init="unset PYTHON_PATH && conda init"
 #fi
 #unset __conda_setup
 # <<< conda initialize <<<
+
+eval "$(direnv hook zsh)"
+
 
 
 #if [ -f ~/.bashrc ]; then
