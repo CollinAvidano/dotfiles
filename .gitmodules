@@ -4,3 +4,9 @@
 [submodule "private-dotfiles"]
 	path = private-dotfiles
 	url = git@github.com:CollinAvidano/private-dotfiles.git
+[submodule "gdb/.gdb_printers/gdb_pretty_print"]
+	path = gdb/.gdb_printers/gdb_pretty_print
+	url = git@github.com:CollinAvidano/gdb_pretty_print.git
+[submodule "gdb/.gdb_printers/eigen_pretty_print"]
+	path = gdb/.gdb_printers/eigen_pretty_print
+	url = git@github.com:CollinAvidano/eigen_pretty_print.git
