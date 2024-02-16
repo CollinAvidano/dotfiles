@@ -17,6 +17,10 @@ alias please='sudo'
 # pwetty colors
 alias ls='ls --color=always'
 
+# grep aliases
+alias hgrep='egrep --color=always -e "^" -e '
+alias cgrep='egrep --color=always -e "^" -e '
+
 # List aliases
 alias l='ls -CF'
 alias ll='ls -alF'
@@ -29,6 +33,7 @@ alias rm='rm -rf'
 # Copy aliases
 alias cp='cp -r'
 alias scp='scp -r'
+
 
 if exists vim; then
     # Vim aliases
@@ -132,3 +137,7 @@ alias recvkey='sudo apt-key adv -keyserver hkp://keyserver.ubuntu.com:80 --recv-
 
 alias -g sd='; notify-send "done"'
 alias -g e='; ssmtp 4049840995@att.com < .mail.txt'
+
+alias mdns='avahi-browse  --all --resolve'
+
+alias glances='glances --percpu'
