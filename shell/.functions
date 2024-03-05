@@ -73,6 +73,14 @@ largest-files() {
     fi
 }
 
+link-speeds(){
+    ip a |awk '/state UP/{print $2}' | sed 's/://' | while read output;
+    do
+    echo $output:
+    sudo ethtool $output |grep "Speed:"
+    done
+}
+
 # Shortcut creating function
 short() {
     echo alias $1=\'$PWD\/$2\' >> ~/.dotfiles/shell/.shortcuts
@@ -88,12 +96,12 @@ submoduleadd() {
 
 submoduleremove() {
     repopath=$(git rev-parse --show-toplevel)
-    
+
     git submodule deinit -f $1
     rm -rf $repopath/.git/modules/$1
     git rm -f $1
     git commit -m "Removed submodule"
-    
+
 }
 
 # -t allocates a psuedo tty -i keps stdin open after the process exits

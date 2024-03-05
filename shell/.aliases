@@ -108,17 +108,11 @@ if exists tmux; then
     alias as='tmux attach-session -t '
 fi
 
+# networking aliases
 alias list-ports='ss -tulpn'
 
 alias nmap-quick='sudo nmap -sN -p - '
 
-link-speeds(){
-    ip a |awk '/state UP/{print $2}' | sed 's/://' | while read output;
-    do
-    echo $output:
-    sudo ethtool $output |grep "Speed:"
-    done
-}
 
 alias unlock-priv-env="gpg --decrypt --output $PRIVATE_DOTFILES/.private-env $PRIVATE_DOTFILES/.private-env.gpg"
 alias lock-priv-env="source $PRIVATE_DOTFILES/.personal-env && gpg --symmetric --output $PRIVATE_DOTFILES/.private-env.gpg $PRIVATE_DOTFILES/.private-env && rm $PRIVATE_DOTFILES/.private-env"
@@ -129,6 +123,9 @@ if [ -f $HOME/.program_aliases ]; then
 fi
 
 alias recvkey='sudo apt-key adv -keyserver hkp://keyserver.ubuntu.com:80 --recv-key '
+
+
+alias thermal-watch="watch -x -d find /sys/class/thermal/ -iname \"thermal_zone*\" -exec sh -c 'echo \$(cat {}/type && cat {}/temp)' {} \;"
 
 #alias -g sd='; notify-send "done"'
 #alias -g e='; ssmtp 4049840995@att.com < .mail.txt'

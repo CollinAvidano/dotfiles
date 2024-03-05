@@ -64,7 +64,7 @@ source $ZSH/oh-my-zsh.sh
 unsetopt histverify
 
 # don't share history
-unsetopt sharehistory
+#unsetopt sharehistory
 
 # User configuration
 #setopt extended_glob
@@ -76,6 +76,7 @@ setopt auto_cd
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
 
+# zoxide
 eval "$(zoxide init zsh)"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
@@ -111,6 +112,9 @@ fi
 # run zsh hook
 precmd() { eval "$PROMPT_COMMAND" }
 
+eval "$(direnv hook zsh)"
+
+. $HOME/.ros_setup
 
 #alias conda-init="unset PYTHON_PATH && conda init"
 ## >>> conda initialize >>>
@@ -150,6 +154,8 @@ export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/collin/.mujoco/mujoco200/bin"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/ArcGIS/arcgis/runtime_sdk/qt100.9/sdk/linux/x64/lib"
 
 
+
+
 alias qcmake="cmake ../ -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
 
 #export DEBUGINFOD_URLS=http://10.14.252.75:1949
@@ -174,13 +180,6 @@ install-remote () {(
         echo "done"
 )}
 
-quick () {
-    installer_path="${2:-embeddedInstaller--nix-v2.12.0-project-tag-test-tag-11.sh}"
-    installer="$(basename ${installer_path})"
-    #scp ${installer_path} slroot@$1:./ && ssh slroot@$1 "export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin && chmod +x ./${installer} && ./${installer} && readlink /runtime/* && sleep 5 && sudo systemctl status bird-watcher"
-    scp ${installer_path} slroot@$1:./ && ssh slroot@$1 "export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin && chmod +x ./${installer}"
-}
-
 alias snow=nix
 
 search-cwes () {
@@ -197,4 +196,3 @@ search-cwes () {
       ) | with_entries(select(.key | match("cwe-.*"; "i"))) ' > "$(basename ${1} .sarif).json"
 }
 
-eval "$(direnv hook zsh)"
