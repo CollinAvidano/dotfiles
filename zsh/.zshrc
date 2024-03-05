@@ -12,7 +12,7 @@ export ZSH=/home/$USERNAME/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
   # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-if [ "$TERM" = "xterm-256color" ] || [ "$TERM" = "screen-256color" ]; then
+if [ "$TERM" = "xterm-256color" ] || [ "$TERM" = "screen-256color" ] || [ "$TERM" = "xterm-kitty" ]; then
     ZSH_THEME="powerlevel10k/powerlevel10k"
     POWERLEVEL9K_MODE='awesome-fontconfig'
     # POWERLEVEL9K_VI_NORMAL_MODE_STRING="N"
