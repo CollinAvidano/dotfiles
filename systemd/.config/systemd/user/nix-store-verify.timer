@@ -1,0 +1,12 @@
+[Unit]
+Description=Triggers nix-store-verify.service to check the nix store
+Requires=nix-store-verify.service
+
+[Timer]
+Unit=nix-store-verify.service
+OnCalendar=*-*-* 12:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+

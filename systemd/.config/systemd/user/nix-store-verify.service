@@ -1,0 +1,10 @@
+[Unit]
+Description=nix-store-verify
+Wants=nix-store-verify.timer
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash -c "/nix/var/nix/profiles/default/bin/nix store verify --all --no-trust || notify-send 'nix store verification reported corruption'"
+
+[Install]
+WantedBy=multi-user.target

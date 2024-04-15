@@ -21,6 +21,10 @@ alias ls='ls --color=always'
 alias hgrep='egrep --color=always -e "^" -e '
 alias cgrep='egrep --color=always -e "^" -e '
 
+alias usystemctl='systemctl --user'
+alias systemctl-u='systemctl --user'
+alias systemctlu='systemctl --user'
+
 # List aliases
 alias l='ls -CF'
 alias ll='ls -alF'
