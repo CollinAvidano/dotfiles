@@ -133,28 +133,10 @@ set notimeout ttimeout ttimeoutlen=200
 set pastetoggle=<F11>
 
 " Indentation
-set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
-
-"*****************************************************************************
-"" Mappings
-"*****************************************************************************
-"------------------------------------------------------------
-" Indentation options {{{1
-"
-" Indentation settings according to personal preference.
-
-" Indentation settings for using 4 spaces instead of tabs.
-" Do not change 'tabstop' from its default value of 8 with this setup.
 set shiftwidth=4
 set softtabstop=4
 set expandtab
 set smarttab
-
-" Indentation settings for using hard tabs for indent. Display tabs as
-" four characters wide.
-"set shiftwidth=4
-"set tabstop=4
-
 
 "------------------------------------------------------------
 " Mappings {{{1
@@ -206,7 +188,7 @@ noremap <C-a> :call RunTmuxPythonAllCellsAbove()<CR>
 nnoremap ,sl :call PyShellSendKey("len(<C-R><C-W>)\r")<CR><Esc>
 nnoremap ,sc :call PyShellSendKey("<C-R><C-W>.count()\r")<CR><Esc>
 nnoremap ,so :call PyShellSendKey("<C-R><C-W>\r")<CR><Esc>
-vnoremap ,so y:call PyShellSendKey(substitute('<C-R>0',"\"","\\\"","")."\r")<CR> 
+vnoremap ,so y:call PyShellSendKey(substitute('<C-R>0',"\"","\\\"","")."\r")<CR>
 
 " on data frames
 nnoremap ,sdh :call PyShellSendKey("<C-R><C-W>.head()\r")<CR><Esc>

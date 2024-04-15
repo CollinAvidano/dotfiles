@@ -128,7 +128,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export SHELL_EXTENSION=bash
+# hack to deal with annoying tools for making envs that only work with bash under the hood (nix, direnv, etc)
+# its not even respecting this I think its direnv wiping vars Im just going to force it
+if [ -z "$SHELL_EXTENSION" ]; then 
+    echo "shell extension empty setting"
+    export SHELL_EXTENSION="bash"
+fi
 
 
 # Generated for envman. Do not edit.

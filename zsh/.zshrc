@@ -64,7 +64,7 @@ source $ZSH/oh-my-zsh.sh
 unsetopt histverify
 
 # don't share history
-unsetopt sharehistory
+#unsetopt sharehistory
 
 # User configuration
 #setopt extended_glob
@@ -76,6 +76,7 @@ setopt auto_cd
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
 
+# zoxide
 eval "$(zoxide init zsh)"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
@@ -111,6 +112,9 @@ fi
 # run zsh hook
 precmd() { eval "$PROMPT_COMMAND" }
 
+eval "$(direnv hook zsh)"
+
+. $HOME/.ros_setup
 
 #alias conda-init="unset PYTHON_PATH && conda init"
 ## >>> conda initialize >>>
@@ -148,6 +152,8 @@ if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/google-cloud-
 
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/collin/.mujoco/mujoco200/bin"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/ArcGIS/arcgis/runtime_sdk/qt100.9/sdk/linux/x64/lib"
+
+
 
 
 alias qcmake="cmake ../ -DCMAKE_EXPORT_COMPILE_COMMANDS=1"

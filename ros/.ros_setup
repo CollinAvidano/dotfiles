@@ -1,36 +1,10 @@
 # Exported Environment variables
-#export PATH="$PATH:/usr/share/colcon_cd/function"
-#. /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
 
-
-export ROS_LOCALHOST_ONLY=1
-
+#export ROS_LOCALHOST_ONLY=1
 
 export WEBOTS_HOME=/usr/local/webots
 export WEBOTS_LIBRARY_PATH=/home/collin/documents/ros/dual_arm_ws/devel/lib/webots_sim_driver
 export WEBOTS_PROJECT=/home/collin/documents/ros/dual_arm_ws/src/dual_arm_control/hardware/webots_sim_driver
-
-#export CATKIN_WS=~/documents/ros/test_ws
-#export CATKIN_WS=~/temp/test-ws
-
-#export COLCON_WS=~/documents/ateam/software_ws
-#export COLCON_WS=~/documents/slam-suit/slam_suit_ws
-
-
-# Useful Aliases
-alias rosdep-install="rosdep install --from-paths src --ignore-src -r -y"
-alias colcon-clean="cd $COLCON_WS && rm build install"
-#alias cdws="cd $CATKIN_WS"
-
-colcon-test-pkg () {
-    #cd $COLCON_WS && colcon build --packages-select $1 && source install/setup.$SHELL_EXTENSION
-    colcon test --packages-select $1
-    colcon test-result --verbose --test-result-base build/$1
-    #if [ cd $COLCON_WS && colcon build ]; then
-        #colcon test --packages-skip $1
-        #colcon test-result --verbose --test-result-base build/$1
-    #fi
-}
 
 catkin-build() {
     cd $CATKIN_WS && catkin build $@ && source devel/setup.$SHELL_EXTENSION
@@ -58,6 +32,17 @@ catkin-make() {
 catkin-clean() {
     cd $CATKIN_WS && catkin clean
     cd -
+}
+
+
+
+# Useful Aliases
+alias rosdep-install="rosdep install --from-paths src --ignore-src -r -y"
+alias colcon-clean="cd $COLCON_WS && rm build install"
+
+colcon-test-pkg () {
+    colcon test --packages-select $1
+    colcon test-result --verbose --test-result-base build/$1
 }
 
 colcon-build() {
@@ -99,11 +84,21 @@ setup-colcon-cd() {
     alias colconcd="colcon_cd"
 }
 
-setup-iron() {
-    export ROS_DISTRO="iron"
-    source /opt/ros/$ROS_DISTRO/setup.$SHELL_EXTENSION
-    source $COLCON_WS/install/setup.$SHELL_EXTENSION
+setup-distro() {
+    cleanup () {
+        cd $1 # return to orig dir
+    }
+    ORIG_DIR=$(pwd)
+    trap "cleanup $ORIG_DIR" EXIT
 
+    export ROS_DISTRO=$1
+    source /opt/ros/${ROS_DISTRO}/setup.${SHELL_EXTENSION}
+    
+    # because somehow iron is a pos and someone put a pwd in the local source
+    cd ${COLCON_WS}/install
+    source ${COLCON_WS}/install/setup.${SHELL_EXTENSION}
+    cd -
+    
     eval "$(register-python-argcomplete3 ros2)"
     eval "$(register-python-argcomplete3 colcon)"
 
@@ -116,14 +111,13 @@ setup-iron() {
     alias cdws="cd $COLCON_WS"
 }
 
+
+alias setup-humble='setup-distro "humble"'
+alias setup-iron='setup-distro "iron"'
+
+
 #Useful Functions
 ros2-color() {
     ros2 $@ | grep --color -e ".*FATAL.*" --color -e ".*ERROR.*" -e "^"
 }
 
-
-#setup-melodic
-#setup-noetic
-#setup-foxy
-#setup-galactic
-#setup-humble
