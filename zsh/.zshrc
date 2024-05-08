@@ -20,6 +20,12 @@ if [ "$TERM" = "xterm-256color" ] || [ "$TERM" = "screen-256color" ] || [ "$TERM
 else
     ZSH_THEME="af-magic"
 fi
+
+if [ "$TERM" = "xterm-kitty" ]; then
+    alias ssh="kitten ssh"
+fi
+
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -85,6 +91,8 @@ eval "$(zoxide init zsh)"
 # For a full list of active aliases, run `alias`.
 #
 # Most of these I try to keep shell independent
+
+
 
 if [ -f $HOME/.functions ]; then
     . $HOME/.functions
