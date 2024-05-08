@@ -1,1 +1,1 @@
-sudo apt install i3 feh udiskie blueman xss-lock arand libinput gnome-screenshot 
+sudo apt install i3 feh udiskie blueman xss-lock arandr gnome-screenshot 
