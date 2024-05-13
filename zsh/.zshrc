@@ -20,6 +20,12 @@ if [ "$TERM" = "xterm-256color" ] || [ "$TERM" = "screen-256color" ] || [ "$TERM
 else
     ZSH_THEME="af-magic"
 fi
+
+if [ "$TERM" = "xterm-kitty" ]; then
+    alias ssh="kitten ssh"
+fi
+
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -85,6 +91,8 @@ eval "$(zoxide init zsh)"
 # For a full list of active aliases, run `alias`.
 #
 # Most of these I try to keep shell independent
+
+
 
 if [ -f $HOME/.functions ]; then
     . $HOME/.functions
@@ -158,29 +166,7 @@ export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/ArcGIS/arcgis/runtime_sdk/qt100.9/
 
 alias qcmake="cmake ../ -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
 
-#export DEBUGINFOD_URLS=http://10.14.252.75:1949
-export DEBUGINFOD_URLS=http://127.0.0.1:1949
-export NIX_SSHOPTS="PATH=\$PATH:\$HOME/.nix-profile/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
-
-export NIX_PATH="$NIX_PATH:anixpkgs=$HOME/projects/anduril-nixpkgs"
-alias nix-repl="nix repl --extra-experimental-features 'flakes repl-flake'"
-alias nix-develop="nix develop --impure -c /bin/zsh"
-
-install-remote () {(
-        # in subshell
-        set -e
-        echo "package names should be x86_64-linux, aarch64-multiplatform, or armv7l-hf-multiplatform"
-        #nix_store=$(nix build nixpkgs#pkgsCross.$2 --no-link --print-out-paths) 
-        nix_store=$(nix build $2 --no-link --print-out-paths)
-        echo "copy closuring"
-        nix-copy-closure --to $1 "$nix_store" || echo "nothing to copy"
-        echo "installing on remote"
-        ssh $1 "export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin; if [ -e /home/slroot/.nix-profile/etc/profile.d/nix.sh ]; then . /home/slroot/.nix-profile/etc/profile.d/nix.sh; fi; nix-env -i $nix_store"
-        #ssh $1 "nix-env -i $nix_store"
-        echo "done"
-)}
-
-alias snow=nix
+source ${HOME}/.nix-setup
 
 search-cwes () {
     cat ${1} | jq '(reduce .runs[].tool.driver.rules[] as $rule ({}; .[$rule.id] = ($rule.properties.tags | map(sub("^external/cwe/"; ""))))) as $rules
@@ -196,3 +182,7 @@ search-cwes () {
       ) | with_entries(select(.key | match("cwe-.*"; "i"))) ' > "$(basename ${1} .sarif).json"
 }
 
+eval "$(direnv hook zsh)"
+
+# because im losing my mind as to what is resetting this
+setxkbmap -option caps:swapescape
