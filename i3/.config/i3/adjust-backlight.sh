@@ -1,8 +1,8 @@
 #!/bin/bash
 set -x
 # script copied from a guy to emulate xbacklight functionality for non intel gpus
-# baseDir="/sys/class/backlight/amdgpu_bl0"
-baseDir="$1"
+baseDir="/sys/class/backlight/amdgpu_bl0"
+#baseDir="$1"
 
 brightnessInterval=0.075
 brightnessIntervalLowBrightness=0.01

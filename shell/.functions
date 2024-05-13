@@ -135,22 +135,22 @@ idrac-console() {
     firefox 127.0.0.1:5800
 }
 
-#idrac-console() {
-#    dockersr idrac-console
-#    source $PRIVATE_DOTFILES/.personal-env
-#    gpg --decrypt $PRIVATE_DOTFILES/.private-env.gpg > $PRIVATE_DOTFILES/.private-env && source $PRIVATE_DOTFILES/.private-env
-#    rm -f $PRIVATE_DOTFILES/.private-env
-#    if [[ -n "$SOURCE_BIND" && -d "$SOURCE_BIND" && -n "$DEST_BIND" ]]
-#    then
-#        echo "Launching with mount path"
-#        docker run -d -p 5800:5800 -p 5900:5900 --name idrac-console --mount type=bind,source=$SOURCE_BIND,target=$DEST_BIND -e IDRAC_HOST=$IDRAC_HOST -e IDRAC_USER=$IDRAC_USER -e IDRAC_PASSWORD=$IDRAC_PASSWORD domistyle/idrac6
-#    else
-#        echo "Launching without mount path"
-#        docker run -d -p 5800:5800 -p 5900:5900 --name idrac-console -e IDRAC_HOST=$IDRAC_HOST -e IDRAC_USER=$IDRAC_USER -e IDRAC_PASSWORD=$IDRAC_PASSWORD domistyle/idrac6
-#    fi
-#    sleep 1
-#    firefox 127.0.0.1:5800
-#}
+idrac-console() {
+    dockersr idrac-console
+    source $PRIVATE_DOTFILES/.env
+    gpg --decrypt $PRIVATE_DOTFILES/.private-env.gpg > $PRIVATE_DOTFILES/.private-env && source $PRIVATE_DOTFILES/.private-env
+    rm -f $PRIVATE_DOTFILES/.private-env
+    if [[ -n "$SOURCE_BIND" && -d "$SOURCE_BIND" && -n "$DEST_BIND" ]]
+    then
+        echo "Launching with mount path"
+        docker run -d -p 5800:5800 -p 5900:5900 --name idrac-console --mount type=bind,source=$SOURCE_BIND,target=$DEST_BIND -e IDRAC_HOST=$IDRAC_HOST -e IDRAC_USER=$IDRAC_USER -e IDRAC_PASSWORD=$IDRAC_PASSWORD domistyle/idrac6
+    else
+        echo "Launching without mount path"
+        docker run -d -p 5800:5800 -p 5900:5900 --name idrac-console -e IDRAC_HOST=$IDRAC_HOST -e IDRAC_USER=$IDRAC_USER -e IDRAC_PASSWORD=$IDRAC_PASSWORD domistyle/idrac6
+    fi
+    sleep 1
+    $BROWSER 127.0.0.1:5800
+}
 
 iodine-connect() {
     source $PRIVATE_DOTFILES/.personal-env
