@@ -1,13 +1,9 @@
-#export DEBUGINFOD_URLS=http://10.14.252.75:1949
 export DEBUGINFOD_URLS=http://127.0.0.1:1949
 
 #export NIX_SSHOPTS="PATH=\$PATH:\$HOME/.nix-profile/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
 
 SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
 
-
-tsh ls type=nixos-remote-builder-ear
-export NIX_PATH="$NIX_PATH:anixpkgs=$HOME/projects/anduril-nixpkgs"
 
 alias nixbuild="nix build -L -vvv --show-trace "
 alias nix-repl="nix repl --extra-experimental-features 'flakes repl-flake'"
@@ -26,8 +22,6 @@ install-remote () {(
     echo "done"
 )}
 
-alias screen-jetson="\sudo screen -L /dev/ttyUSB0 115200"
-
 quick-installer() {
     set -x
     HOST="$1"
@@ -38,28 +32,7 @@ quick-installer() {
     ssh ${HOST} "bash -s" < ${SCRIPT_DIR}/quick.sh "${NIX_STORE} ${PASS}"
 }
 
-quick-flasher () {
-    # only reiterated to reinforce build order could just be an alias
-    HOST="areai@flasher.local"
-    PASS="areai"
-    BUILDSTRING="--system 'aarch64-linux' .#jetson-flash-server.config.system.build.toplevel -j0"
-    quick-installer ${HOST} ${PASS} ${BUILDSTRING}
-}
 
-quick-autonomy () {
-    HOST="anduril@autonomy.local"
-    PASS="anduril1"
-    BUILDSTRING="-L -vvv --show-trace --system 'aarch64-linux' .#altius-mk6-autonomy-orin-nx.config.system.build.toplevel -j0 --no-link"
-    quick-installer ${HOST} ${PASS} ${BUILDSTRING}
-}
-
-
-quick2 () {
-    installer_path="${2:-embeddedInstaller--nix-v2.12.0-project-tag-test-tag-11.sh}"
-    installer="$(basename ${installer_path})"
-    #scp ${installer_path} slroot@$1:./ && ssh slroot@$1 "export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin && chmod +x ./${installer} && ./${installer} && readlink /runtime/* && sleep 5 && sudo systemctl status bird-watcher"
-    scp ${installer_path} slroot@$1:./ && ssh slroot@$1 "export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin && chmod +x ./${installer}"
-}
 
 alias snow=nix
 

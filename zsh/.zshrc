@@ -55,6 +55,7 @@ bindkey -v
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+    poetry
     docker
     git
     pip
@@ -166,7 +167,7 @@ export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/ArcGIS/arcgis/runtime_sdk/qt100.9/
 
 alias qcmake="cmake ../ -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
 
-source ${HOME}/.nix-setup
+#source ${HOME}/.nix-setup
 
 search-cwes () {
     cat ${1} | jq '(reduce .runs[].tool.driver.rules[] as $rule ({}; .[$rule.id] = ($rule.properties.tags | map(sub("^external/cwe/"; ""))))) as $rules
@@ -186,3 +187,6 @@ eval "$(direnv hook zsh)"
 
 # because im losing my mind as to what is resetting this
 setxkbmap -option caps:swapescape
+setxkbmap -option altwin:swap_alt_win
+
+eval "$(register-python-argcomplete pipx)"

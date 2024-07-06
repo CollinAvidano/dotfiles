@@ -1,3 +1,5 @@
 #!/bin/bash
 WHEREAMI=$(cat /tmp/whereami)
-gnome-terminal --working-directory="$WHEREAMI"
+
+kitty $WHEREAMI
+#gnome-terminal --working-directory="$WHEREAMI"

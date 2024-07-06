@@ -62,6 +62,9 @@ set clipboard=unnamedplus
 " set confirm
 set autowrite
 
+" highlight on search
+set hlsearch
+
 " wrap text
 set wrap
 

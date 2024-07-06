@@ -48,6 +48,7 @@ bindsym XF86Display exec $scripts/monitor-switch.sh
 
 bindsym XF86Tools exec --no-startup-id $scripts/toggletouchpad.sh
 
+# t14 doesnt have explicit bluetooth
 # bindsym XF86Bluetooth exec $scripts/togglebluetooth.sh
 
 # change focus
@@ -176,6 +177,9 @@ exec --no-startup-id udiskie --tray --use-udisks2 &
 
 # Bluetooth applet
 exec --no-startup-id blueman-applet
+
+# power management applet
+exec --no-startup-id xfce4-power-manager
 
 # Setup Gaps
 gaps inner 5
