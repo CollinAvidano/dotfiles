@@ -36,7 +36,7 @@ alias rm='rm -rf'
 
 # Copy aliases
 alias cp='cp -r'
-alias scp='scp -r'
+#alias scp='scp -r'
 
 
 if exists vim; then
