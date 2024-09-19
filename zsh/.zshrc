@@ -163,7 +163,7 @@ export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/collin/.mujoco/mujoco200/bin"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/ArcGIS/arcgis/runtime_sdk/qt100.9/sdk/linux/x64/lib"
 
 
-
+alias scp="rsync"
 
 alias qcmake="cmake ../ -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
 

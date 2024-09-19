@@ -113,8 +113,9 @@ if exists python2; then
 fi
 
 if exists tmux; then
-    alias ns='tmux new -s '
-    alias as='tmux attach-session -t '
+    alias tns='tmux new -s '
+    alias tas='tmux attach-session -t '
+    alias tls='tmux list-session'
 fi
 
 # networking aliases
@@ -122,11 +123,20 @@ alias list-ports='ss -tulpn'
 
 alias nmap-quick='sudo nmap -sN -p - '
 
+link-speeds(){
+    ip a |awk '/state UP/{print $2}' | sed 's/://' | while read output;
+    do
+    echo $output:
+    sudo ethtool $output |grep "Speed:"
+    done
+}
+
+alias mdns='avahi-browse  --all --resolve'
 
 alias unlock-priv-env="gpg --decrypt --output $PRIVATE_DOTFILES/.private-env $PRIVATE_DOTFILES/.private-env.gpg"
 alias lock-priv-env="source $PRIVATE_DOTFILES/.personal-env && gpg --symmetric --output $PRIVATE_DOTFILES/.private-env.gpg $PRIVATE_DOTFILES/.private-env && rm $PRIVATE_DOTFILES/.private-env"
 
-# uncommon program aliases
+# aliases for STARTING programs when they need patches for ags
 if [ -f $HOME/.program_aliases ]; then
     . $HOME/.program_aliases
 fi
@@ -138,6 +148,17 @@ alias thermal-watch="watch -x -d find /sys/class/thermal/ -iname \"thermal_zone*
 alias -g sd='; notify-send "done"'
 alias -g e='; ssmtp 4049840995@att.com < .mail.txt'
 
-alias mdns='avahi-browse  --all --resolve'
 
 alias glances='glances --percpu'
+
+if exists docker; then
+    # Docker Aliases
+    alias dlsi='docker images'
+    alias dockerflush='docker system prune'
+fi
+
+alias nvidia-top='watch -d -n 0.5 "clear&&nvidia-smi"'
+
+alias service-logs='journalctl -p 3 -xb'
+alias service-location='systemctl show -p FragmentPath '
+alias service-reload='sudo systemctl daemon-reload'
