@@ -9,10 +9,10 @@ fi
 cmd=`(
 	IFS=:
         if [ -f ~/.aliases ]; then
-              aliases=( ~/.aliases )
-            fi
+          aliases=( ~/.aliases )
+        fi
 
-            if [ ~/.functions ]; then
+        if [ ~/.functions ]; then
           functions=( ~/.functions )
         fi
 

@@ -38,7 +38,8 @@ catkin-clean() {
 
 # Useful Aliases
 alias rosdep-install="rosdep install --from-paths src --ignore-src -r -y"
-alias colcon-clean="cd $COLCON_WS && rm build install"
+#alias colcon-clean="cd $COLCON_WS && rm build install"
+alias colcon-clean="rm build install log"
 
 colcon-test-pkg () {
     colcon test --packages-select $1
@@ -76,8 +77,10 @@ setup-noetic() {
 }
 
 setup-colcon-cd() {
-    if [ ! -r /usr/share/colcon_cd/function/ ] || [ ! -x /usr/share/colcon_cd/function/ ]; then
+    #sudo chmod -R o+xr /usr/share/colcon_cd/function/colcon_cd.sh
+    if [ ! -r /usr/share/colcon_cd/function/colcon_cd.sh ] || [ ! -x /usr/share/colcon_cd/function/colcon_cd.sh ]; then
         echo "setting perms on /usr/share/colcon_cd/function/"
+        # notice its actually setting it on the while dir recursively
         sudo chmod -R o+xr /usr/share/colcon_cd/function/
     fi 
     /usr/share/colcon_cd/function/colcon_cd.sh
@@ -92,15 +95,17 @@ setup-distro() {
     trap "cleanup $ORIG_DIR" EXIT
 
     export ROS_DISTRO=$1
-    source /opt/ros/${ROS_DISTRO}/setup.${SHELL_EXTENSION}
+    echo "ROSDISTRO: $ROS_DISTRO"
+    source "/opt/ros/${ROS_DISTRO}/setup.${SHELL_EXTENSION}"
     
+    echo "COLCON_WS: $COLCON_WS"
     # because somehow iron is a pos and someone put a pwd in the local source
     cd ${COLCON_WS}/install
     source ${COLCON_WS}/install/setup.${SHELL_EXTENSION}
     cd -
     
-    eval "$(register-python-argcomplete3 ros2)"
-    eval "$(register-python-argcomplete3 colcon)"
+    eval "$(register-python-argcomplete ros2)"
+    eval "$(register-python-argcomplete colcon)"
 
     export _colcon_cd_root=$COLCON_WS
     setup-colcon-cd
@@ -114,6 +119,7 @@ setup-distro() {
 
 alias setup-humble='setup-distro "humble"'
 alias setup-iron='setup-distro "iron"'
+alias setup-jazzy='setup-distro "jazzy"'
 
 
 #Useful Functions

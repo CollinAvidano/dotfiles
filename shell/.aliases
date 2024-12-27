@@ -6,6 +6,8 @@ exists() {
     return $?
 }
 
+alias files='nautilus'
+
 # When using sudo, use alias expansion (otherwise sudo ignores your aliases)
 alias sudo=$'sudo -E '
 
@@ -16,14 +18,6 @@ alias please='sudo'
 
 # pwetty colors
 alias ls='ls --color=always'
-
-# grep aliases
-alias hgrep='egrep --color=always -e "^" -e '
-alias cgrep='egrep --color=always -e "^" -e '
-
-alias usystemctl='systemctl --user'
-alias systemctl-u='systemctl --user'
-alias systemctlu='systemctl --user'
 
 # List aliases
 alias l='ls -CF'
@@ -36,9 +30,54 @@ alias rm='rm -rf'
 
 # Copy aliases
 alias cp='cp -r'
-#alias scp='scp -r'
+# lying to myself for the good of the world
+alias scp="rsync -r --info=progress2"
 
 
+alias qcmake="cmake ../ -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
+
+# grep aliases
+alias hgrep='egrep --color=always -e "^" -e '
+alias cgrep='egrep --color=always -e "^" -e '
+
+# service aliases
+alias usystemctl='systemctl --user'
+alias systemctl-u='systemctl --user'
+alias systemctlu='systemctl --user'
+
+alias service-logs='journalctl -p 3 -xb'
+alias service-location='systemctl show -p FragmentPath '
+alias service-reload='sudo systemctl daemon-reload'
+
+alias pse='ps -eF'
+alias pss='ps -e | grep '
+
+# System info aliases
+# htop instead of top
+if exists htop; then
+    alias top='htop'
+fi
+
+alias df='df -H'
+
+alias forcekill='killall -9 '
+alias fk="forcekill" 
+
+# Free memory info
+alias meminfo='free -m -l -t'
+
+# get GPU ram on desktop / laptop
+alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
+
+alias check-serial="ls -l /dev | grep -E 'ttyUSB|ttyS'"
+alias thermal-watch="watch -x -d find /sys/class/thermal/ -iname \"thermal_zone*\" -exec sh -c 'echo \$(cat {}/type && cat {}/temp)' {} \;"
+
+alias glances='glances --percpu'
+
+alias nvidia-top='watch -d -n 0.5 "clear&&nvidia-smi"'
+
+
+# editors
 if exists vim; then
     # Vim aliases
     alias v='vim'
@@ -55,27 +94,9 @@ fi
 # Refresh shell
 alias rfssh='source ~/.'$SHELL_EXTENSION'rc'
 
+# sound
 alias sound='pavucontrol'
 
-# System info aliases
-# htop instead of top
-if exists htop; then
-    alias top='htop'
-fi
-
-alias df='df -H'
-
-alias pss='ps -e | grep '
-
-alias force-kill='killall -9 '
-
-# Free memory info
-alias meminfo='free -m -l -t'
-
-# get GPU ram on desktop / laptop
-alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
-
-alias check-serial="ls -l /dev | grep -E 'ttyUSB|ttyS'"
 
 
 # Apt package management
@@ -86,6 +107,7 @@ fix-keys() {
     sudo apt update | sed -n -e 's/^.*NO_PUBKEY[[:space:]]//p' | xargs -I % sudo apt-key adv --recv-key --keyserver keyserver.ubuntu.com %
     sudo apt update | sed -n -e 's/^.*EXPKEYSIG[[:space:]]//p' | xargs -I % sudo apt-key adv --recv-key --keyserver keyserver.ubuntu.com %
 }
+alias recvkey='sudo apt-key adv -keyserver hkp://keyserver.ubuntu.com:80 --recv-key '
 
 
 if exists git; then
@@ -93,6 +115,7 @@ if exists git; then
 	alias gs='git status'
 	alias gr='cd $(git rev-parse --show-toplevel)'
 fi
+
 
 alias py='python'
 if exists python3; then
@@ -112,16 +135,27 @@ if exists python2; then
 	alias py2='python2'
 fi
 
+
+
 if exists tmux; then
     alias tns='tmux new -s '
     alias tas='tmux attach-session -t '
     alias tls='tmux list-session'
 fi
 
+if exists docker; then
+    # Docker Aliases
+    # remember you have the zsh docker plugin enableder as well
+    alias dlsi='docker images'
+    alias dflush='docker system prune'
+fi
+
 # networking aliases
 alias list-ports='ss -tulpn'
 
 alias nmap-quick='sudo nmap -sN -p - '
+
+alias wifi-stats='iwconfig'
 
 link-speeds(){
     ip a |awk '/state UP/{print $2}' | sed 's/://' | while read output;
@@ -132,33 +166,16 @@ link-speeds(){
 }
 
 alias mdns='avahi-browse  --all --resolve'
+# TODO ADD MORE MDNS AND MORE ALIASES FOR ALL THE THINGS YOU KEEP IN YOUR NOTES
 
+
+# keys and priveleged things
 alias unlock-priv-env="gpg --decrypt --output $PRIVATE_DOTFILES/.private-env $PRIVATE_DOTFILES/.private-env.gpg"
 alias lock-priv-env="source $PRIVATE_DOTFILES/.personal-env && gpg --symmetric --output $PRIVATE_DOTFILES/.private-env.gpg $PRIVATE_DOTFILES/.private-env && rm $PRIVATE_DOTFILES/.private-env"
 
+
+# TODO MOVE THIS FROM HERE INTO ZSHRC YES IT WOULD NEED TO BE CALLED IN BASH TOO BUT I THINK IT GIVES A BETTER IDEA WHAT IS BEING CALLED THEN
 # aliases for STARTING programs when they need patches for ags
 if [ -f $HOME/.program_aliases ]; then
     . $HOME/.program_aliases
 fi
-
-alias recvkey='sudo apt-key adv -keyserver hkp://keyserver.ubuntu.com:80 --recv-key '
-
-alias thermal-watch="watch -x -d find /sys/class/thermal/ -iname \"thermal_zone*\" -exec sh -c 'echo \$(cat {}/type && cat {}/temp)' {} \;"
-
-alias -g sd='; notify-send "done"'
-alias -g e='; ssmtp 4049840995@att.com < .mail.txt'
-
-
-alias glances='glances --percpu'
-
-if exists docker; then
-    # Docker Aliases
-    alias dlsi='docker images'
-    alias dockerflush='docker system prune'
-fi
-
-alias nvidia-top='watch -d -n 0.5 "clear&&nvidia-smi"'
-
-alias service-logs='journalctl -p 3 -xb'
-alias service-location='systemctl show -p FragmentPath '
-alias service-reload='sudo systemctl daemon-reload'

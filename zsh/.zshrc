@@ -158,35 +158,21 @@ if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/google-cloud-
 
 
 
-
+# these should not be here
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/collin/.mujoco/mujoco200/bin"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/ArcGIS/arcgis/runtime_sdk/qt100.9/sdk/linux/x64/lib"
 
 
-alias scp="rsync"
-
-alias qcmake="cmake ../ -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
-
 #source ${HOME}/.nix-setup
-
-search-cwes () {
-    cat ${1} | jq '(reduce .runs[].tool.driver.rules[] as $rule ({}; .[$rule.id] = ($rule.properties.tags | map(sub("^external/cwe/"; ""))))) as $rules
-      | reduce .runs[].results[] as $result (
-        {}; . as $final
-        | if $rules|has($result.ruleId) then
-            .*=($rules[$result.ruleId]
-            | map(. as $key | { "key": ., "value": (if ($final|has($key)) then $final[$key]+1 else 1 end)})
-            | from_entries)
-          else 
-              . 
-          end
-      ) | with_entries(select(.key | match("cwe-.*"; "i"))) ' > "$(basename ${1} .sarif).json"
-}
-
-eval "$(direnv hook zsh)"
 
 # because im losing my mind as to what is resetting this
 setxkbmap -option caps:swapescape
 setxkbmap -option altwin:swap_alt_win
+
+eval "$(direnv hook zsh)"
+
+
+autoload -U bashcompinit
+bashcompinit
 
 eval "$(register-python-argcomplete pipx)"
