@@ -45,6 +45,8 @@ alias usystemctl='systemctl --user'
 alias systemctl-u='systemctl --user'
 alias systemctlu='systemctl --user'
 
+alias systemctl-restart='sudo systemctl daemon-reload && sudo systemctl restart'  
+
 alias service-logs='journalctl -p 3 -xb'
 alias service-location='systemctl show -p FragmentPath '
 alias service-reload='sudo systemctl daemon-reload'
