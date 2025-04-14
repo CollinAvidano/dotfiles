@@ -28,14 +28,8 @@ fi
 #   export SSH_AUTH_SOCK
 #fi
 
-#if [ -f "${HOME}/.gpg-agent-info" ]; then
-#     source "${HOME}/.gpg-agent-info"
-#       export GPG_AGENT_INFO
-#       export SSH_AUTH_SOCK
-#       export SSH_AGENT_PID
-#else
-#    eval $( gpg-agent --daemon --write-env-file ~/.gpg-agent-info )
-#fi
+export SSH_AGENT_PID=""
+export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 
 # loads .env and .path if they exist both of which are intended to be shell independent
 if [ -f $HOME/.env ]; then
