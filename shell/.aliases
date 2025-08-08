@@ -106,8 +106,9 @@ alias list-installed-packages='sudo apt list --installed'
 alias search-installed-packages='sudo apt list --installed | grep '
 # tries to run an apt update and fix any keys that return no pubkey
 fix-keys() {
-    sudo apt update | sed -n -e 's/^.*NO_PUBKEY[[:space:]]//p' | xargs -I % sudo apt-key adv --recv-key --keyserver keyserver.ubuntu.com %
-    sudo apt update | sed -n -e 's/^.*EXPKEYSIG[[:space:]]//p' | xargs -I % sudo apt-key adv --recv-key --keyserver keyserver.ubuntu.com %
+    # notice this is substituing the first part of the line with blank but there can be other stuff after the key so we use awk for that. This is a convoluted way to do that...... why didnt I just capture group... its fine
+    sudo apt update | sed -n -e 's/^.*NO_PUBKEY[[:space:]]//p' | awk ' { print $1 }' | xargs -I % sudo apt-key adv --recv-key --keyserver keyserver.ubuntu.com %
+    sudo apt update | sed -n -e 's/^.*EXPKEYSIG[[:space:]]//p' | awk ' { print $1 }' | xargs -I % sudo apt-key adv --recv-key --keyserver keyserver.ubuntu.com %
 }
 alias recvkey='sudo apt-key adv -keyserver hkp://keyserver.ubuntu.com:80 --recv-key '
 

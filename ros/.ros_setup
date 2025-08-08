@@ -83,12 +83,14 @@ setup-colcon-cd() {
         # notice its actually setting it on the while dir recursively
         sudo chmod -R o+xr /usr/share/colcon_cd/function/
     fi 
-    /usr/share/colcon_cd/function/colcon_cd.sh
+    source /usr/share/colcon_cd/function/colcon_cd.sh
     alias colconcd="colcon_cd"
 }
 
+# THIS USED TO WORK BUT IS CURRENTLY BROKEN 
 setup-distro() {
     cleanup () {
+        echo "ERROR RETURNING TO ORIGINAL DIR $1"
         cd $1 # return to orig dir
     }
     ORIG_DIR=$(pwd)
@@ -96,11 +98,14 @@ setup-distro() {
 
     export ROS_DISTRO=$1
     echo "ROSDISTRO: $ROS_DISTRO"
+    echo "RUNNING source /opt/ros/${ROS_DISTRO}/setup.${SHELL_EXTENSION}"
     source "/opt/ros/${ROS_DISTRO}/setup.${SHELL_EXTENSION}"
     
+    # THIS SHOULD BE COMING FROM DIR ENV
     echo "COLCON_WS: $COLCON_WS"
     # because somehow iron is a pos and someone put a pwd in the local source
     cd ${COLCON_WS}/install
+    echo "RUNNING source ${COLCON_WS}/install/setup.${SHELL_EXTENSION}"
     source ${COLCON_WS}/install/setup.${SHELL_EXTENSION}
     cd -
     
@@ -117,6 +122,9 @@ setup-distro() {
 }
 
 
+# ROS VSCODE PLUGINS, BUILD TASKS, AND LAUNCH CONFIGS SHOULD HANDLE MOST SOURCING AND BUILD TASKS STOP TRYING TO USE YOUR SHELL SCRIPTS FOR SETUP
+
+
 alias setup-humble='setup-distro "humble"'
 alias setup-iron='setup-distro "iron"'
 alias setup-jazzy='setup-distro "jazzy"'
@@ -126,4 +134,4 @@ alias setup-jazzy='setup-distro "jazzy"'
 ros2-color() {
     ros2 $@ | grep --color -e ".*FATAL.*" --color -e ".*ERROR.*" -e "^"
 }
-
+# export -f myfunc
