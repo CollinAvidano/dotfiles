@@ -1,7 +1,5 @@
 # Exported Environment variables
 
-#export ROS_LOCALHOST_ONLY=1
-
 export WEBOTS_HOME=/usr/local/webots
 export WEBOTS_LIBRARY_PATH=/home/collin/documents/ros/dual_arm_ws/devel/lib/webots_sim_driver
 export WEBOTS_PROJECT=/home/collin/documents/ros/dual_arm_ws/src/dual_arm_control/hardware/webots_sim_driver
@@ -85,6 +83,7 @@ setup-colcon-cd() {
     fi 
     source /usr/share/colcon_cd/function/colcon_cd.sh
     alias colconcd="colcon_cd"
+    alias roscd="colcon_cd"
 }
 
 # THIS USED TO WORK BUT IS CURRENTLY BROKEN 
@@ -115,15 +114,12 @@ setup-distro() {
     export _colcon_cd_root=$COLCON_WS
     setup-colcon-cd
 
-    alias rostopic="ros2 topic"
-    alias roslaunch="ros2 launch"
-
     alias cdws="cd $COLCON_WS"
+    alias sourcews="source ${COLCON_WS}/install/setup.${SHELL_EXTENSION}"
 }
 
 
 # ROS VSCODE PLUGINS, BUILD TASKS, AND LAUNCH CONFIGS SHOULD HANDLE MOST SOURCING AND BUILD TASKS STOP TRYING TO USE YOUR SHELL SCRIPTS FOR SETUP
-
 
 alias setup-humble='setup-distro "humble"'
 alias setup-iron='setup-distro "iron"'
@@ -134,4 +130,12 @@ alias setup-jazzy='setup-distro "jazzy"'
 ros2-color() {
     ros2 $@ | grep --color -e ".*FATAL.*" --color -e ".*ERROR.*" -e "^"
 }
-# export -f myfunc
+
+# MAY NEED TO RUN THIS FOR COLCON CD
+# sudo apt install python3-colcon-cd
+
+alias rostopic="ros2 topic"
+alias roslaunch="ros2 launch"
+alias watch-topics="watch -d -n 1 ros2 topic list"
+alias watch-nodes="watch -d -n 1 ros2 node list"
+alias restart-daemon="ros2 daemon stop && ros2 daemon start"
