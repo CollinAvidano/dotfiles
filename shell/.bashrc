@@ -16,8 +16,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=2000
+HISTFILESIZE=4000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -96,6 +96,16 @@ alias l='ls -CF'
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
+
+
+# hack to deal with annoying tools for making envs that only work with bash under the hood (nix, direnv, etc)
+# its not even respecting this I think its direnv wiping vars Im just going to force it
+if [ -z "$SHELL_EXTENSION" ]; then 
+    echo "shell extension empty setting"
+    export SHELL_EXTENSION="bash"
+fi
+
+export SHELL_EXTENSION="bash"
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -117,6 +127,9 @@ if [ -f $HOME/.path ]; then
     . $HOME/.path
 fi
 
+if [ -f $HOME/.ros_setup ]; then
+    . $HOME/.ros_setup
+fi
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -128,15 +141,29 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# hack to deal with annoying tools for making envs that only work with bash under the hood (nix, direnv, etc)
-# its not even respecting this I think its direnv wiping vars Im just going to force it
-if [ -z "$SHELL_EXTENSION" ]; then 
-    echo "shell extension empty setting"
-    export SHELL_EXTENSION="bash"
-fi
-
-
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
-. "$HOME/.cargo/env"
+if [ -f $HOME/.cargo/env ]; then
+    . "$HOME/.cargo/env"
+fi
+
+
+
+export COLCON_WS="/home/collin/workspace/Maveric-AI-a2rl"
+source /opt/ros2bag_tools_ws/install/setup.bash
+setup-humble
+
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+export CYCLONEDDS_URI=$HOME/cyclone.xml
+
+#export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+#export FASTRTPS_DEFAULT_PROFILES_FILE="~/fastdds.xml"
+
+#export ROS_DOMAIN_ID=12
+export ROS_DOMAIN_ID=0
+#export ROS_LOCALHOST_ONLY=1 # BREAKS CYCLONE APPARENTLY
+
+alias chown-drives="sudo chown -R $USER:$USER /media/$USER/"
+
+export PATH="$PATH:/home/$USER/workspace/Maveric-AI-a2rl/scripts:/home/$USER/workspace/Maveric-AI-a2rl/"

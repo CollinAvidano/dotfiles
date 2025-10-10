@@ -75,9 +75,9 @@ setup-noetic() {
 }
 
 setup-colcon-cd() {
-    #sudo chmod -R o+xr /usr/share/colcon_cd/function/colcon_cd.sh
+    echo "Setting up colcon CD"
     if [ ! -r /usr/share/colcon_cd/function/colcon_cd.sh ] || [ ! -x /usr/share/colcon_cd/function/colcon_cd.sh ]; then
-        echo "setting perms on /usr/share/colcon_cd/function/"
+        #echo "setting perms on /usr/share/colcon_cd/function/"
         # notice its actually setting it on the while dir recursively
         sudo chmod -R o+xr /usr/share/colcon_cd/function/
     fi 
@@ -89,25 +89,30 @@ setup-colcon-cd() {
 # THIS USED TO WORK BUT IS CURRENTLY BROKEN 
 setup-distro() {
     cleanup () {
-        echo "ERROR RETURNING TO ORIGINAL DIR $1"
+	if [ $? -eq 0 ]; then
+             echo "Success RETURNING TO ORIGINAL DIR $1"
+	else
+             echo "ERROR RETURNING TO ORIGINAL DIR $1"
+	fi
         cd $1 # return to orig dir
     }
     ORIG_DIR=$(pwd)
     trap "cleanup $ORIG_DIR" EXIT
 
     export ROS_DISTRO=$1
-    echo "ROSDISTRO: $ROS_DISTRO"
-    echo "RUNNING source /opt/ros/${ROS_DISTRO}/setup.${SHELL_EXTENSION}"
+    #echo "ROSDISTRO: $ROS_DISTRO"
+    #echo "RUNNING source /opt/ros/${ROS_DISTRO}/setup.${SHELL_EXTENSION}"
     source "/opt/ros/${ROS_DISTRO}/setup.${SHELL_EXTENSION}"
     
     # THIS SHOULD BE COMING FROM DIR ENV
-    echo "COLCON_WS: $COLCON_WS"
+    #echo "COLCON_WS: $COLCON_WS"
     # because somehow iron is a pos and someone put a pwd in the local source
     cd ${COLCON_WS}/install
-    echo "RUNNING source ${COLCON_WS}/install/setup.${SHELL_EXTENSION}"
+    #echo "RUNNING source ${COLCON_WS}/install/setup.${SHELL_EXTENSION}"
     source ${COLCON_WS}/install/setup.${SHELL_EXTENSION}
     cd -
     
+    #echo "registering arg complete
     eval "$(register-python-argcomplete ros2)"
     eval "$(register-python-argcomplete colcon)"
 

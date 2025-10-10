@@ -123,7 +123,8 @@ precmd() { eval "$PROMPT_COMMAND" }
 
 eval "$(direnv hook zsh)"
 
-. $HOME/.ros_setup
+autoload -U bashcompinit
+bashcompinit
 
 
 # end for zsh profiler
@@ -141,22 +142,19 @@ if [ -f '/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/google-cloud-sdk/pa
 if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/google-cloud-sdk/completion.zsh.inc'; fi
 
 
-
-# these should not be here
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/collin/.mujoco/mujoco200/bin"
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/ArcGIS/arcgis/runtime_sdk/qt100.9/sdk/linux/x64/lib"
-
-
-#source ${HOME}/.nix-setup
-
 # because im losing my mind as to what is resetting this
 setxkbmap -option caps:swapescape
 setxkbmap -option altwin:swap_alt_win
 
-eval "$(direnv hook zsh)"
-
-
-autoload -U bashcompinit
-bashcompinit
-
 eval "$(register-python-argcomplete pipx)"
+
+export COLCON_WS="/home/collin/workspace/Maveric-AI-a2rl"
+if [ -f $HOME/.ros_setup ]; then
+    . $HOME/.ros_setup
+fi
+setup-humble
+
+#export FASTRTPS_DEFAULT_PROFILES_FILE="~/fastdds.xml"
+#export ROS_DOMAIN_ID=12
+export ROS_DOMAIN_ID=11
+export ROS_LOCALHOST_ONLY=1
