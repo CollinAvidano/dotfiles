@@ -131,16 +131,28 @@ alias setup-iron='setup-distro "iron"'
 alias setup-jazzy='setup-distro "jazzy"'
 
 
-#Useful Functions
-ros2-color() {
-    ros2 $@ | grep --color -e ".*FATAL.*" --color -e ".*ERROR.*" -e "^"
-}
-
 # MAY NEED TO RUN THIS FOR COLCON CD
 # sudo apt install python3-colcon-cd
+
+#Useful Functions
+alias baginfo="ros2-baginfo"
+ros2-baginfo() {
+    ros2 bag info "$@" | awk '{ $1=""; sub(/^ /,""); print }' | sort
+}
+
+ros2-color() {
+    ros2 "$@" | sed -E '
+        /FATAL/ s/^.*$/\x1b[1;31m&\x1b[0m/;
+        /ERROR/ s/^.*$/\x1b[31m&\x1b[0m/;
+        /WARN/  s/^.*$/\x1b[33m&\x1b[0m/;
+        /INFO/  s/^.*$/\x1b[32m&\x1b[0m/
+    '
+}
 
 alias rostopic="ros2 topic"
 alias roslaunch="ros2 launch"
 alias watch-topics="watch -d -n 1 ros2 topic list"
 alias watch-nodes="watch -d -n 1 ros2 node list"
-alias restart-daemon="ros2 daemon stop && ros2 daemon start"
+alias restart-daemon="ros2 daemon stop && pkill ros2 && ros2 daemon start"
+
+export ROSBAG2_RECORDER__STORAGE_OPTIONS__AUTOMATIC_RECOVERY=true
