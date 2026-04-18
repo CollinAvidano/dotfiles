@@ -81,7 +81,9 @@ export PLATFORM_REPO_PATHS="/media/$USER/ssd-backup/fpga-projects/vitis-platform
 export PATH="$PATH:/media/$USER/ssd-backup/xilinx/Vitis_HLS/2021.1/bin"
 export PATH="$PATH:/media/$USER/ssd-backup/xilinx/Vitis/2021.1/bin"
 
-NVARCH=`uname -s`_`uname -m`; export NVARCH
-NVCOMPILERS=/opt/nvidia/hpc_sdk; export NVCOMPILERS
-MANPATH=$MANPATH:$NVCOMPILERS/$NVARCH/25.5/compilers/man; export MANPATH
-PATH=$NVCOMPILERS/$NVARCH/25.5/compilers/bin:$PATH; export PATH
+export CUDACXX=/usr/local/cuda-13.0/bin/nvcc
+
+#NVARCH=`uname -s`_`uname -m`; export NVARCH
+#NVCOMPILERS=/opt/nvidia/hpc_sdk; export NVCOMPILERS
+#MANPATH=$MANPATH:$NVCOMPILERS/$NVARCH/25.5/compilers/man; export MANPATH
+#PATH=$NVCOMPILERS/$NVARCH/25.5/compilers/bin:$PATH; export PATH

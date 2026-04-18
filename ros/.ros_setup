@@ -1,9 +1,4 @@
-# Exported Environment variables
-
-export WEBOTS_HOME=/usr/local/webots
-export WEBOTS_LIBRARY_PATH=/home/collin/documents/ros/dual_arm_ws/devel/lib/webots_sim_driver
-export WEBOTS_PROJECT=/home/collin/documents/ros/dual_arm_ws/src/dual_arm_control/hardware/webots_sim_driver
-
+### ROS1 Build Aliases
 catkin-build() {
     cd $CATKIN_WS && catkin build $@ && source devel/setup.$SHELL_EXTENSION
     cd -
@@ -33,12 +28,13 @@ catkin-clean() {
 }
 
 
-
-# Useful Aliases
+### ROS2 Build Aliases 
 alias rosdep-install="rosdep install --from-paths src --ignore-src -r -y"
-#alias colcon-clean="cd $COLCON_WS && rm build install"
-alias colcon-clean="rm build install log"
+#alias colcon-clean="cd $COLCON_WS && rm -rf build install"
+alias colcon-clean="rm -rf build install log"
 
+
+# TODO need a trap handler for these that returns to stored dir like I have for other scripts
 colcon-test-pkg () {
     colcon test --packages-select $1
     colcon test-result --verbose --test-result-base build/$1
@@ -64,6 +60,8 @@ colcon-build-debug-all() {
     cd -
 }
 
+
+### ENV setup functions
 setup-melodic() {
     source /opt/ros/melodic/setup.$SHELL_EXTENSION
     source $CATKIN_WS/devel/setup.$SHELL_EXTENSION
@@ -86,19 +84,22 @@ setup-colcon-cd() {
     alias roscd="colcon_cd"
 }
 
-# THIS USED TO WORK BUT IS CURRENTLY BROKEN 
+# TODO THIS USED TO WORK BUT IS CURRENTLY BROKEN 
+# Ok working on 22.04...
 setup-distro() {
     cleanup () {
 	if [ $? -eq 0 ]; then
-             echo "Success RETURNING TO ORIGINAL DIR $1"
+             echo "Success RETURNING TO ORIGINAL DIR $1" 
+             # THIS TRAP DOESNT SEEM TO PRINT UNLESS I USE -X and then yeah it prints outside just what is text to run over.... huh...
 	else
              echo "ERROR RETURNING TO ORIGINAL DIR $1"
 	fi
         cd $1 # return to orig dir
     }
-    ORIG_DIR=$(pwd)
+    ORIG_DIR="$(pwd)"
     trap "cleanup $ORIG_DIR" EXIT
 
+    echo "COLCON_WS is ${COLCON_WS}"
     export ROS_DISTRO=$1
     #echo "ROSDISTRO: $ROS_DISTRO"
     #echo "RUNNING source /opt/ros/${ROS_DISTRO}/setup.${SHELL_EXTENSION}"
@@ -131,17 +132,14 @@ alias setup-iron='setup-distro "iron"'
 alias setup-jazzy='setup-distro "jazzy"'
 
 
-# MAY NEED TO RUN THIS FOR COLCON CD
+# Install this for colocon-cd
 # sudo apt install python3-colcon-cd
 
-#Useful Functions
-alias baginfo="ros2-baginfo"
-ros2-baginfo() {
-    ros2 bag info "$@" | awk '{ $1=""; sub(/^ /,""); print }' | sort
-}
-
-ros2-color() {
-    ros2 "$@" | sed -E '
+### Useful Functions
+# Color ros2
+# THIS IS WHAT WAS CAUSING ALL MY WEIRD ROS2 ISSUES. NEVER USE IT DIRECTLY IN PLACE OF ROS2
+ros2color() {
+    \ros2 "$@" | sed -E '
         /FATAL/ s/^.*$/\x1b[1;31m&\x1b[0m/;
         /ERROR/ s/^.*$/\x1b[31m&\x1b[0m/;
         /WARN/  s/^.*$/\x1b[33m&\x1b[0m/;
@@ -149,10 +147,198 @@ ros2-color() {
     '
 }
 
+# better bag info that actually sorts the topics
+alias bagtopics="ros2-bagtopics"
+ros2-bagtopics() {
+    ros2 bag info "$@" | awk '{ $1=""; sub(/^ /,""); print }' | sort
+}
+
+# because my brain wont let go of ros1 stuff
 alias rostopic="ros2 topic"
 alias roslaunch="ros2 launch"
+alias rosbag="ros2 bag"
+
 alias watch-topics="watch -d -n 1 ros2 topic list"
 alias watch-nodes="watch -d -n 1 ros2 node list"
 alias restart-daemon="ros2 daemon stop && pkill ros2 && ros2 daemon start"
 
+alias ros-clear='unset COLCON_WS ROS_VERSION ROS_PYTHON_VERSION ROS_DISTRO AMENT_PREFIX_PATH COLCON_PREFIX_PATH PYTHONPATH CMAKE_PREFIX_PATH'
+
+### Exported Environment variables
 export ROSBAG2_RECORDER__STORAGE_OPTIONS__AUTOMATIC_RECOVERY=true
+
+export WEBOTS_HOME=/usr/local/webots
+#export WEBOTS_LIBRARY_PATH=$HOME/documents/ros/dual_arm_ws/devel/lib/webots_sim_driver
+#export WEBOTS_PROJECT=$HOME/documents/ros/dual_arm_ws/src/dual_arm_control/hardware/webots_sim_driver
+
+
+
+### all work specific things for now 
+# basically use use --start and --end after this
+alias bag-cut="ros2 bag cut --out-storage mcap -o cut"
+alias bag-merge='printf "output_bags:\n- uri: output_bags\n  storage_id: mcap\n  all: true\n" > out.yaml; ros2 bag convert -i lidar_topics*/ -i other_topics*/ -i out.yaml; rm  out.yaml'
+
+alias chown-drives="sudo chown -R $USER:$USER /media/$USER/"
+
+
+## Main setup using above aliases
+export COLCON_WS="/home/collin/arcspear/ros_ws"
+
+#export COLCON_WS="/home/collin/workspace/Maveric-AI-a2rl"
+export PATH="$PATH:/home/$USER/workspace/Maveric-AI-a2rl/scripts:/home/$USER/workspace/Maveric-AI-a2rl/"
+
+# Source other workspace before sourcing our workspace
+source /opt/ros2bag_tools_ws/install/setup.bash
+setup-humble
+
+## DDS 
+#export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+#export CYCLONEDDS_URI=$HOME/.dds/cyclone.xml
+
+export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+#export FASTRTPS_DEFAULT_PROFILES_FILE="~/fastdds.xml"
+
+#export ROS_DOMAIN_ID=12
+#export ROS_LOCALHOST_ONLY=1 # BREAKS CYCLONE APPARENTLY
+
+export ROS_DOMAIN_ID=0
+
+# ---------------------------
+# ISAAC SIM SETUP
+# ---------------------------
+# Isaac Sim root directory
+export ISAACSIM_PATH="/opt/isaacsim"
+# Isaac Sim python executable
+export ISAACSIM_PYTHON="${ISAACSIM_PATH}/python.sh"
+# Isaac Sim app
+export ISAACSIM="${ISAACSIM_PATH}/isaac-sim.sh"
+
+# not really a short hand but easier to remember I have it as a tab complete alias vs a var I have to expand
+alias isaac-python="${ISAACSIM_PYTHON}" 
+# Define an auxiliary function to launch Isaac Sim or run scripts with Isaac Sim's python
+# This is done to avoid conflicts between ROS 2 and Isaac Sim's Python environment
+#
+isaac_clean() {
+
+    if [ ! -x "$ISAACSIM_PYTHON" ]; then
+        echo "❌ IsaacSim python.sh not found at: $ISAACSIM_PYTHON"
+        return 1
+    fi
+    if [ ! -x "$ISAACSIM" ]; then
+        echo "❌ IsaacSim launcher not found at: $ISAACSIM"
+        return 1
+    fi
+
+    # -------------------------
+    # === CLEAN ENVIRONMENT ===
+    # -------------------------
+    # Unset ROS 2 environment variables to avoid conflicts with Isaac's Python 3.11
+    unset ROS_VERSION ROS_PYTHON_VERSION ROS_DISTRO AMENT_PREFIX_PATH COLCON_PREFIX_PATH PYTHONPATH CMAKE_PREFIX_PATH
+
+    # Remove ROS 2 paths from LD_LIBRARY_PATH if present
+    local ros_paths=("/opt/ros/humble" "/opt/ros/jazzy" "/opt/ros/iron")
+    for ros_path in "${ros_paths[@]}"; do
+        export LD_LIBRARY_PATH=$(echo "$LD_LIBRARY_PATH" | tr ':' '\n' | grep -v "^${ros_path}" | paste -sd':' -)
+    done
+
+    # -----------------------------
+    # === UBUNTU VERSION CHECK ===
+    # -----------------------------
+
+    if [ -f /etc/os-release ]; then
+        UBUNTU_VERSION=$(grep "^VERSION_ID=" /etc/os-release | cut -d'"' -f2)
+    fi
+
+    # If Ubuntu 24.04 -> use the Isaac Sim internal ROS2 Jazzy (ROS2 Jazzy bridge)
+    if [[ "$UBUNTU_VERSION" == "24.04" ]]; then
+        export ROS_DISTRO=jazzy
+        export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+        export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${ISAACSIM_PATH}/exts/isaacsim.ros2.bridge/jazzy/lib"
+        echo "🧩 Detected Ubuntu 24.04 -> Using ROS_DISTRO=jazzy"
+    # If Ubuntu 22.04 -> use the Isaac Sim internal ROS2 Humble (ROS2 Humble bridge)
+    else
+        export ROS_DISTRO=humble
+        export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+        export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${ISAACSIM_PATH}/exts/isaacsim.ros2.bridge/humble/lib"
+        echo "🧩 Detected Ubuntu ${UBUNTU_VERSION:-unknown} -> Using ROS_DISTRO=humble"
+    fi
+}
+
+isaac_run() {
+
+    # ------------------
+    # === VALIDATION ===
+    # ------------------
+    if [ ! -x "$ISAACSIM_PYTHON" ]; then
+        echo "❌ IsaacSim python.sh not found at: $ISAACSIM_PYTHON"
+        return 1
+    fi
+    if [ ! -x "$ISAACSIM" ]; then
+        echo "❌ IsaacSim launcher not found at: $ISAACSIM"
+        return 1
+    fi
+
+    # -------------------------
+    # === CLEAN ENVIRONMENT ===
+    # -------------------------
+    # Unset ROS 2 environment variables to avoid conflicts with Isaac's Python 3.11
+    unset ROS_VERSION ROS_PYTHON_VERSION ROS_DISTRO AMENT_PREFIX_PATH COLCON_PREFIX_PATH PYTHONPATH CMAKE_PREFIX_PATH
+
+    # Remove ROS 2 paths from LD_LIBRARY_PATH if present
+    local ros_paths=("/opt/ros/humble" "/opt/ros/jazzy" "/opt/ros/iron")
+    for ros_path in "${ros_paths[@]}"; do
+        export LD_LIBRARY_PATH=$(echo "$LD_LIBRARY_PATH" | tr ':' '\n' | grep -v "^${ros_path}" | paste -sd':' -)
+    done
+
+    # -----------------------------
+    # === UBUNTU VERSION CHECK ===
+    # -----------------------------
+
+    if [ -f /etc/os-release ]; then
+        UBUNTU_VERSION=$(grep "^VERSION_ID=" /etc/os-release | cut -d'"' -f2)
+    fi
+
+    # If Ubuntu 24.04 -> use the Isaac Sim internal ROS2 Jazzy (ROS2 Jazzy bridge)
+    if [[ "$UBUNTU_VERSION" == "24.04" ]]; then
+        export ROS_DISTRO=jazzy
+        export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+        export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${ISAACSIM_PATH}/exts/isaacsim.ros2.bridge/jazzy/lib"
+        echo "🧩 Detected Ubuntu 24.04 -> Using ROS_DISTRO=jazzy"
+    # If Ubuntu 22.04 -> use the Isaac Sim internal ROS2 Humble (ROS2 Humble bridge)
+    else
+        export ROS_DISTRO=humble
+        export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+        export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${ISAACSIM_PATH}/exts/isaacsim.ros2.bridge/humble/lib"
+        echo "🧩 Detected Ubuntu ${UBUNTU_VERSION:-unknown} -> Using ROS_DISTRO=humble"
+    fi
+
+    # ---------------------
+    # === RUN ISAAC SIM ===
+    # ---------------------
+    if [ $# -eq 0 ]; then
+        # No args → Launch full Isaac Sim GUI
+        echo "🧠 Launching Isaac Sim GUI..."
+        "${ISAACSIM}"
+
+    elif [[ "$1" == --* ]]; then
+        # Arguments start with "--" → pass them to Isaac Sim executable
+        echo "⚙️  Launching Isaac Sim with options: $*"
+        "${ISAACSIM}" "$@"
+
+    elif [ -f "$1" ]; then
+        # First argument is a Python file → run with Isaac Sim's Python
+        local SCRIPT_PATH="$1"
+        shift
+        echo "🚀 Running Python script with Isaac Sim: $SCRIPT_PATH"
+        "${ISAACSIM_PYTHON}" "$SCRIPT_PATH" "$@"
+
+    else
+        # Unrecognized input
+        echo "❌ Unknown argument or file not found: '$1'"
+        echo "Usage:"
+        echo "  isaac_run                 → launch GUI"
+        echo "  isaac_run my_script.py    → run script with IsaacSim Python"
+        echo "  isaac_run --headless ...  → launch IsaacSim with CLI flags"
+        return 1
+    fi
+}

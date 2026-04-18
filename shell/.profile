@@ -3,7 +3,7 @@
 # This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
 # exists.
 
-TZ='America/New_York'; export TZ
+#TZ='America/New_York'; export TZ
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
@@ -40,13 +40,16 @@ if [ -f $HOME/.path ]; then
     . $HOME/.path
 fi
 
+
 export PROMPT_COMMAND="pwd > /tmp/whereami"
 
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
-#gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
-setxkbmap -option caps:swapescape
-setxkbmap -option altwin:swap_alt_win
+# gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
+# setxkbmap -option caps:swapescape
+# setxkbmap -option altwin:swap_alt_win
 
-. "$HOME/.cargo/env"
+if [ -f "$HOME/.cargo/env" ]; then
+    . "$HOME/.cargo/env"
+fi

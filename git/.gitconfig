@@ -1,6 +1,8 @@
+[init]
+    defaultBranch = main
 [user]
     # its on my github profile anyways
-    email = collin.avidano@gmail.com
+    email = collin@code19.ai
     name = CollinAvidano
 [credential]
     helper = cache --timeout 7200
@@ -9,10 +11,15 @@
 [core]
     autocrlf = input
 [alias]
-	mainlog = log --all --decorate --oneline --graph
-	subup = submodule update --init --recursive
+    mainlog = log --all --decorate --oneline --graph
+    subup = submodule update --init --recursive
     # for adding tracking of things that cant be moved here which is really only done in the rare case of things that look for symlinking
     addext = --work-tree=/ add
 [http]
-	sslCAinfo = /etc/ssl/certs/ca-certificates.crt
-	sslVerify = true
+    sslCAinfo = /etc/ssl/certs/ca-certificates.crt
+    sslVerify = true
+[filter "lfs"]
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f

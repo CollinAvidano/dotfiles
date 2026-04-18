@@ -1,0 +1,131 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+NTFY_BASE_URL="https://ntfy.sh"
+
+usage() {
+  cat <<EOF
+Usage:
+  $0 <topic> "message" ["title"]
+
+Examples:
+  $0 mytopic "Deploy finished"
+  $0 mytopic "Deploy finished" "CI"
+
+This publishes to: ${NTFY_BASE_URL}/<topic>
+EOF
+  exit 1
+}
+
+require_ntfy() {
+  if command -v ntfy >/dev/null 2>&1; then
+    return
+  fi
+
+  echo "ntfy not found. Installing ntfy CLI..."
+
+  # Homebrew (macOS/Linux)
+  if command -v brew >/dev/null 2>&1; then
+    brew install ntfy
+    return
+  fi
+
+  # Debian/Ubuntu: install via official apt repo
+  if command -v apt-get >/dev/null 2>&1; then
+    sudo apt-get update
+    sudo apt-get install -y curl ca-certificates apt-transport-https
+
+    sudo mkdir -p /etc/apt/keyrings
+    sudo curl -fsSL -o /etc/apt/keyrings/ntfy.gpg https://archive.ntfy.sh/apt/keyring.gpg
+    echo "deb [signed-by=/etc/apt/keyrings/ntfy.gpg] https://archive.ntfy.sh/apt stable main" \
+      | sudo tee /etc/apt/sources.list.d/ntfy.list >/dev/null
+
+    sudo apt-get update
+    sudo apt-get install -y ntfy
+    return
+  fi
+
+  # Fedora/RHEL/CentOS: install latest RPM from GitHub releases
+  if command -v dnf >/dev/null 2>&1 || command -v yum >/dev/null 2>&1; then
+    local pm="dnf"
+    command -v dnf >/dev/null 2>&1 || pm="yum"
+
+    sudo "$pm" install -y curl
+
+    local arch
+    case "$(uname -m)" in
+      x86_64|amd64) arch="amd64" ;;
+      aarch64|arm64) arch="arm64" ;;
+      armv7l|armv7) arch="armv7" ;;
+      *)
+        echo "Unsupported CPU arch: $(uname -m)"
+        exit 1
+        ;;
+    esac
+
+    # Fetch latest tag from GitHub API (no jq required)
+    local tag
+    tag="$(curl -fsSL https://api.github.com/repos/binwiederhier/ntfy/releases/latest \
+      | sed -n 's/.*"tag_name":[[:space:]]*"\([^"]*\)".*/\1/p' | head -n1)"
+
+    if [[ -z "${tag}" ]]; then
+      echo "Could not determine latest ntfy version from GitHub."
+      exit 1
+    fi
+
+    local ver="${tag#v}"
+    local rpm_url="https://github.com/binwiederhier/ntfy/releases/download/${tag}/ntfy_${ver}_linux_${arch}.rpm"
+
+    sudo rpm -ivh "$rpm_url"
+    return
+  fi
+
+  # Arch Linux: AUR helper required
+  if command -v pacman >/dev/null 2>&1; then
+    if command -v paru >/dev/null 2>&1; then
+      paru -S --noconfirm ntfysh-bin
+      return
+    elif command -v yay >/dev/null 2>&1; then
+      yay -S --noconfirm ntfysh-bin
+      return
+    else
+      echo "On Arch, install an AUR helper (paru/yay), then: paru -S ntfysh-bin"
+      exit 1
+    fi
+  fi
+
+  echo "No supported package manager found. Install ntfy manually."
+  exit 1
+}
+
+publish_ntfy() {
+  local topic="$1"
+  local msg="$2"
+  local title="${3:-}"
+
+  local url="${NTFY_BASE_URL}/${topic}"
+
+  if [[ -n "$title" ]]; then
+    ntfy publish --title "$title" "$url" "$msg"
+  else
+    ntfy publish "$url" "$msg"
+  fi
+}
+
+# ---- main ----
+TOPIC="${1:-}"
+MESSAGE="${2:-}"
+TITLE="${3:-}"
+
+[[ -z "$TOPIC" || -z "$MESSAGE" ]] && usage
+
+# Basic topic hygiene (ntfy topics are URL path segments):
+# - strip spaces
+# - remove leading/trailing slashes
+TOPIC="$(printf '%s' "$TOPIC" | tr -d ' ' | sed 's#^/*##; s#/*$##')"
+[[ -z "$TOPIC" ]] && { echo "Error: topic is empty after normalization"; exit 1; }
+
+require_ntfy
+publish_ntfy "$TOPIC" "$MESSAGE" "$TITLE"
+
+echo "Published to: ${NTFY_BASE_URL}/${TOPIC}"

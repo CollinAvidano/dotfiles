@@ -1,5 +1,6 @@
 #!/bin/zsh
 
+#alias cloudini='~/application-images/cloudini_88a1adf340d062857b47a57e0bc073aa.AppImage'
 
 alias easyeffects='flatpak run com.github.wwmm.easyeffects'
 
@@ -13,8 +14,11 @@ alias chromecast="mkchromecast –y [youtube-URL] --video"
 # Because arm is garbage
 alias cubemx='/opt/STM32CubeMX/STM32CubeMX'
 #alias ghidra='/opt/ghidra/ghidraRun'
+#
+#
 alias evelauncher='/opt/evelauncher/evelauncher.sh'
 alias multimc='/opt/multimc/run.sh'
+
 
 alias radar='mono /opt/virtual-radar/VirtualRadar.exe'
 

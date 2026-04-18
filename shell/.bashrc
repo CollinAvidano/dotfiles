@@ -8,16 +8,18 @@ case $- in
       *) return;;
 esac
 
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
+# Avoid duplicates
+HISTCONTROL=ignoredups:erasedups
 
-# append to the history file, don't overwrite it
+# When the shell exits, append to the history file instead of overwriting it
 shopt -s histappend
 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=2000
-HISTFILESIZE=4000
+# Increase history size (optional, default is often 500)
+HISTSIZE=10000
+HISTFILESIZE=10000
+
+# After each command, save and reload history
+#PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -82,6 +84,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
+ 
 fi
 
 # colored GCC warnings and errors
@@ -105,7 +108,6 @@ if [ -z "$SHELL_EXTENSION" ]; then
     export SHELL_EXTENSION="bash"
 fi
 
-export SHELL_EXTENSION="bash"
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -127,9 +129,10 @@ if [ -f $HOME/.path ]; then
     . $HOME/.path
 fi
 
-if [ -f $HOME/.ros_setup ]; then
-    . $HOME/.ros_setup
-fi
+#if [ -f $HOME/.ros_setup ]; then
+#    . $HOME/.ros_setup
+#fi
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -144,26 +147,27 @@ fi
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
-if [ -f $HOME/.cargo/env ]; then
-    . "$HOME/.cargo/env"
-fi
+#if [ -f $HOME/.cargo/env ]; then
+#    . "$HOME/.cargo/env"
+#fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export CODEX_HOME=/home/collin/workspace/Maveric-AI-a2rl/.codex  
+alias codex="codex --full-auto"
 
 
+source /home/collin/DroneInterceptorWs/DroneInterceptor/ros_ws/src/arcspear_launch/scripts/sim_env.sh
 
-export COLCON_WS="/home/collin/workspace/Maveric-AI-a2rl"
-source /opt/ros2bag_tools_ws/install/setup.bash
-setup-humble
+alias ashell="adb wait-for-device && adb shell"
+alias ssh-radio="ssh -o KexAlgorithms=+diffie-hellman-group14-sha1 -o HostKeyAlgorithms=+ssh-rsa"
 
-export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
-export CYCLONEDDS_URI=$HOME/cyclone.xml
+#export VOXL_IP="192.168.168.155"
+#export VOXL_IP="192.168.1.76"
+#export VOXL_IP="192.168.168.223"
+export VOXL_IP="hunter.local"
+alias vssh='sshpass -p oelinux123 ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@${VOXL_IP}'
+export PATH="$PATH:/home/collin/DroneInterceptorWs/DroneInterceptor/scripts/voxl2_setup"
 
-#export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
-#export FASTRTPS_DEFAULT_PROFILES_FILE="~/fastdds.xml"
-
-#export ROS_DOMAIN_ID=12
-export ROS_DOMAIN_ID=0
-#export ROS_LOCALHOST_ONLY=1 # BREAKS CYCLONE APPARENTLY
-
-alias chown-drives="sudo chown -R $USER:$USER /media/$USER/"
-
-export PATH="$PATH:/home/$USER/workspace/Maveric-AI-a2rl/scripts:/home/$USER/workspace/Maveric-AI-a2rl/"

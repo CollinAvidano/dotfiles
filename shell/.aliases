@@ -6,6 +6,9 @@ exists() {
     return $?
 }
 
+#dont know why I didnt add this earlier when I use it all the time
+alias acompgen='compgen -abckA function | less'
+
 alias files='nautilus'
 
 # When using sudo, use alias expansion (otherwise sudo ignores your aliases)
@@ -21,24 +24,29 @@ alias ls='ls --color=always'
 
 # List aliases
 alias l='ls -CF'
-alias ll='ls -alF'
+alias ll='ls -alFh'
 alias lsa='ls -A'
 alias lsh='ls -alh'
 
+alias du='du -h'
 # Remove aliases
-alias rm='rm -rf'
+alias rm='rm -r'
 
 # Copy aliases
 alias cp='cp -r'
 # lying to myself for the good of the world
 alias scp="rsync -r --info=progress2"
 
+alias ip6="ip -6"
 
 alias qcmake="cmake ../ -DCMAKE_EXPORT_COMPILE_COMMANDS=1"
 
 # grep aliases
+# keeps original but highlight search
 alias hgrep='egrep --color=always -e "^" -e '
 alias cgrep='egrep --color=always -e "^" -e '
+
+alias less="less -R" # Preserve color aliases
 
 # service aliases
 alias usystemctl='systemctl --user'
@@ -72,12 +80,14 @@ alias meminfo='free -m -l -t'
 alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 
 alias check-serial="ls -l /dev | grep -E 'ttyUSB|ttyS'"
+
+# really jank way of not using lmsensors
 alias thermal-watch="watch -x -d find /sys/class/thermal/ -iname \"thermal_zone*\" -exec sh -c 'echo \$(cat {}/type && cat {}/temp)' {} \;"
 
 alias glances='glances --percpu'
 
 alias nvidia-top='watch -d -n 0.5 "clear&&nvidia-smi"'
-
+# SHOULD USE nvtop OVER ABOVE AS IT GIVES A GRAPH above is really only for constrained package enenvironments
 
 # editors
 if exists vim; then
@@ -182,3 +192,7 @@ alias lock-priv-env="source $PRIVATE_DOTFILES/.personal-env && gpg --symmetric -
 if [ -f $HOME/.program_aliases ]; then
     . $HOME/.program_aliases
 fi
+
+
+alias codex="codex --search --ask-for-approval untrusted"
+
