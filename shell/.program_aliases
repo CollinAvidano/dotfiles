@@ -19,6 +19,8 @@ alias cubemx='/opt/STM32CubeMX/STM32CubeMX'
 alias evelauncher='/opt/evelauncher/evelauncher.sh'
 alias multimc='/opt/multimc/run.sh'
 
+alias postman='/opt/postman/app/Postman'
+
 
 alias radar='mono /opt/virtual-radar/VirtualRadar.exe'
 
