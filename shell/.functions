@@ -161,6 +161,36 @@ iodine-connect() {
 alias socks-tunnel='ssh -ND 31337 -i ~/.ssh/id_ed25519 collin@172.16.0.1'
 
 
+# Copy a directory by recreating its tree and hardlinking every file.
+# The destination is independent of the source path — moving or deleting
+# the source directory won't affect the copy (inodes stay alive as long
+# as any link references them). Cross-filesystem copies will fail since
+# hardlinks can't span devices.
+cphl() {
+    if [ -z "$1" ] || [ -z "$2" ]; then
+        echo "usage: cphl <src-dir> <dst-dir>" >&2
+        return 1
+    fi
+    if [ ! -d "$1" ]; then
+        echo "cphl: source '$1' is not a directory" >&2
+        return 1
+    fi
+    # Strip trailing slash from src so dst becomes the new top-level dir
+    # (matches `cp -r` semantics rather than rsync's).
+    local src="${1%/}"
+    cp -al -- "$src" "$2"
+}
+
+h264tomp4() {
+    if [ -z "$1" ] || [ ! -f "$1" ]; then
+        echo "usage: h264tomp4 <file.h264> [out.mp4]" >&2
+        return 1
+    fi
+    local in="$1"
+    local out="${2:-${in%.h264}.mp4}"
+    ffmpeg -i "$in" -c copy "$out"
+}
+
 search-cwes () {
     cat ${1} | jq '(reduce .runs[].tool.driver.rules[] as $rule ({}; .[$rule.id] = ($rule.properties.tags | map(sub("^external/cwe/"; ""))))) as $rules
       | reduce .runs[].results[] as $result (

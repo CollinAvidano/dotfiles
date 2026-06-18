@@ -35,7 +35,9 @@ alias rm='rm -r'
 # Copy aliases
 alias cp='cp -r'
 # lying to myself for the good of the world
-alias scp="rsync -r --info=progress2"
+alias scp="rsync -zaP"
+# a and P are option collections (covering progress, partial, ownership and recursive mode)
+# z is compression
 
 alias ip6="ip -6"
 

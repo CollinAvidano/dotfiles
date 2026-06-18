@@ -129,9 +129,9 @@ if [ -f $HOME/.path ]; then
     . $HOME/.path
 fi
 
-#if [ -f $HOME/.ros_setup ]; then
-#    . $HOME/.ros_setup
-#fi
+if [ -f $HOME/.ros_setup ]; then
+    . $HOME/.ros_setup
+fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -147,27 +147,21 @@ fi
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
-#if [ -f $HOME/.cargo/env ]; then
-#    . "$HOME/.cargo/env"
-#fi
+export PATH="$HOME/.cargo/bin:$PATH"
+if [ -f $HOME/.cargo/env ]; then
+    . "$HOME/.cargo/env"
+fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export CODEX_HOME=/home/collin/workspace/Maveric-AI-a2rl/.codex  
-alias codex="codex --full-auto"
+csvtail() {
+    if [ -z "$1" ] || [ ! -f "$1" ]; then
+        echo "usage: csvtail <file.csv>" >&2
+        return 1
+    fi
+    { head -n 1 "$1"; tail -n 1 "$1"; } | column -t -s,
+}
 
-
-source /home/collin/DroneInterceptorWs/DroneInterceptor/ros_ws/src/arcspear_launch/scripts/sim_env.sh
-
-alias ashell="adb wait-for-device && adb shell"
-alias ssh-radio="ssh -o KexAlgorithms=+diffie-hellman-group14-sha1 -o HostKeyAlgorithms=+ssh-rsa"
-
-#export VOXL_IP="192.168.168.155"
-#export VOXL_IP="192.168.1.76"
-#export VOXL_IP="192.168.168.223"
-export VOXL_IP="hunter.local"
-alias vssh='sshpass -p oelinux123 ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@${VOXL_IP}'
-export PATH="$PATH:/home/collin/DroneInterceptorWs/DroneInterceptor/scripts/voxl2_setup"
-
+alias claude='claude --dangerously-skip-permissions'
