@@ -161,46 +161,41 @@ alias watch-topics="watch -d -n 1 ros2 topic list"
 alias watch-nodes="watch -d -n 1 ros2 node list"
 alias restart-daemon="ros2 daemon stop && pkill ros2 && ros2 daemon start"
 
-# fkie-multi-agent-suite: the UI connects to the per-host mas-daemon (websocket
-# :35430). Neither `mas-gui` nor `mas-gui --headless` reliably starts that daemon,
-# so without it the UI shows no running ROS daemon. This helper starts the daemon
-# (local host) + discovery (other hosts) if they aren't already running. Inherits
-# the already-sourced ROS env; logs in /tmp. Used by `mas` and `mas-web`.
-mas-backends() {
-    # resolve the real ros/ dotfiles dir (this file is symlinked from ~/.ros_setup)
-    # so the install script is found regardless of where it's sourced from.
-    local _dir; _dir="$(dirname "$(readlink -f "${BASH_SOURCE[0]:-$HOME/.ros_setup}")")"
-    "$_dir/install-mas.sh" || { echo "mas: install check failed" >&2; return 1; }
-    pgrep -f 'fkie_mas_daemon/mas-daemon' >/dev/null \
-        || { echo "starting fkie mas-daemon..."; setsid ros2 run fkie_mas_daemon mas-daemon >/tmp/mas-daemon.log 2>&1 & }
-    pgrep -f 'fkie_mas_discovery/mas-discovery' >/dev/null \
-        || { echo "starting fkie mas-discovery (other hosts)..."; setsid ros2 run fkie_mas_discovery mas-discovery >/tmp/mas-discovery.log 2>&1 & }
-}
-
-# Normal Electron GUI: start the backends, then launch the desktop app.
-mas() {
-    mas-backends
-    setsid mas-gui >/tmp/mas-gui.log 2>&1 &
-}
-
-# Headless: start the backends + headless web server (:6275), then open the browser.
-mas-web() {
-    local url="http://localhost:6275"
-    mas-backends
-    pgrep -f 'mas-gui.*--headless' >/dev/null \
-        || { echo "starting mas-gui --headless ($url)..."; setsid mas-gui --headless >/tmp/mas-gui.log 2>&1 & }
-    # wait for the web server to come up, then open the default browser
-    for _ in $(seq 1 40); do (exec 3<>/dev/tcp/localhost/6275) 2>/dev/null && { exec 3>&- 3<&-; break; }; sleep 0.5; done
-    xdg-open "$url" >/dev/null 2>&1 &
-}
-
-alias ros-clear='unset COLCON_WS ROS_VERSION ROS_PYTHON_VERSION ROS_DISTRO AMENT_PREFIX_PATH COLCON_PREFIX_PATH PYTHONPATH CMAKE_PREFIX_PATH'
+alias ros-clear-env='unset COLCON_WS ROS_VERSION ROS_PYTHON_VERSION ROS_DISTRO AMENT_PREFIX_PATH COLCON_PREFIX_PATH PYTHONPATH CMAKE_PREFIX_PATH'
 
 # basically use use --start and --end after this
 alias bag-cut="ros2 bag cut --out-storage mcap -o cut"
 alias bag-merge='printf "output_bags:\n- uri: output_bags\n  storage_id: mcap\n  all: true\n" > out.yaml; ros2 bag convert -i lidar_topics*/ -i other_topics*/ -i out.yaml; rm  out.yaml'
 
 alias chown-drives="sudo chown -R $USER:$USER /media/$USER/"
+
+mas-install() {
+    # resolve the real ros/ dotfiles dir (this file is symlinked from ~/.ros_setup)
+    # so the install script is found regardless of where it's sourced from.
+    local _dir; _dir="$(dirname "$(readlink -f "${BASH_SOURCE[0]:-$HOME/.ros_setup}")")"
+    "$_dir/install-mas.sh" || { echo "mas: install check failed" >&2; return 1; }
+}
+
+# Normal Electron GUI desktop app. Pass --ros-domain-id explicitly: the GUI picks
+# the daemon's websocket port as 35430+domain, but its --ros-domain-id defaults to
+# -1 (the ROS_DOMAIN_ID fromEnv fallback is unreliable), so without this it tries
+# port 35429 and the provider shows "closed".
+mas() {
+    mas-install
+    setsid mas-gui --ros-domain-id="${ROS_DOMAIN_ID:-0}" >/tmp/mas-gui.log 2>&1 &
+}
+
+# Headless web server (:6275), then open the browser. Same --ros-domain-id fix.
+mas-web() {
+    local url="http://localhost:6275"
+    mas-install
+    pgrep -f 'mas-gui.*--headless' >/dev/null \
+        || { echo "starting mas-gui --headless ($url)..."; setsid mas-gui --headless --ros-domain-id="${ROS_DOMAIN_ID:-0}" >/tmp/mas-gui.log 2>&1 & }
+    # wait for the web server to come up, then open the default browser
+    for _ in $(seq 1 40); do (exec 3<>/dev/tcp/localhost/6275) 2>/dev/null && { exec 3>&- 3<&-; break; }; sleep 0.5; done
+    xdg-open "$url" >/dev/null 2>&1 &
+}
+
 
 
 ### all work specific things for now 
